@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">mobility scooter app</string>
+    <string name="drive">Drive</string>
+    <string name="analytics">Analytics</string>
+    <string name="messages">Messages</string>
+    <string name="button_4">Button 4</string>
+    <string name="record_a_new_session">Record a new session</string>
+    <string name="view_data_analytics_or_history">View data analytics or history</string>
+    <string name="accessibility">Accessibility</string>
+    <string name="edit_accessibility">Edit accessibility settings</string>
+</resources>
