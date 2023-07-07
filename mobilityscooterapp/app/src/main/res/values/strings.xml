@@ -8,4 +8,8 @@
     <string name="view_data_analytics_or_history">View data analytics or history</string>
     <string name="accessibility">Accessibility</string>
     <string name="edit_accessibility">Edit accessibility settings</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="more">More</string>
+    <string name="analyticss">Analytics</string>
+    <string name="messagess">Messages</string>
 </resources>
