@@ -12,34 +12,32 @@ import android.widget.TextView
 import androidx.navigation.fragment.findNavController
 
 
-class drive_start_page : Fragment() {
+class analytic_start_page : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_drive_start_page, container, false)
+        return inflater.inflate(R.layout.fragment_analytic_start_page, container, false)
     }
 
         @SuppressLint("SuspiciousIndentation")
         override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val HomeButton = view.findViewById<TextView>(R.id.home)
-            HomeButton?.setOnClickListener {
-                findNavController().navigate(R.id.action_drive_start_page_to_homeFragment)
+        val homeButton = view.findViewById<TextView>(R.id.home)
+            homeButton?.setOnClickListener {
+            findNavController().navigate(R.id.action_analytic_start_page_to_homeFragment)
+        }
+        val driveButton = view.findViewById<TextView>(R.id.Drive_Bottom)
+            driveButton?.setOnClickListener {
+                findNavController().navigate(R.id.action_analytic_start_page_to_drive_start_page)
+
             }
-
-
-        val AnalyticsButton = view.findViewById<TextView>(R.id.analytics_button)
-            AnalyticsButton?.setOnClickListener {
-                findNavController().navigate(R.id.action_drive_start_page_to_analytic_start_page)
-            }
-
         val MessageButton = view.findViewById<TextView>(R.id.button4)
             MessageButton?.setOnClickListener {
-                findNavController().navigate(R.id.action_drive_start_page_to_messeges_page)
+                findNavController().navigate(R.id.action_analytic_start_page_to_messeges_page)
             }
     }
 }

@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/fragment_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
-
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".HomeFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="73dp"
         android:background="#0000FF"
+
         tools:ignore="MissingConstraints">
 
         <ImageView
@@ -20,7 +19,7 @@
             android:layout_height="60dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginEnd="-1dp"
+            android:layout_marginEnd="19dp"
             android:layout_marginBottom="2dp"
             android:src="@drawable/hamberger_button" />
 
@@ -30,9 +29,9 @@
             android:layout_height="26dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="7dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginRight="-41dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="28dp"
+            android:layout_marginRight="-43dp"
             android:layout_toLeftOf="@id/hamburgerMenu"
             android:gravity="end"
             android:text="@string/more"
@@ -243,6 +242,7 @@
             android:textColor="@color/white"
             android:textSize="19sp" />
     </RelativeLayout>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
