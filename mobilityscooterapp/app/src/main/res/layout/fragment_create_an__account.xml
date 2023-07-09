@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
@@ -213,15 +213,19 @@
             android:text="@string/back" />
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/backButton"
             android:layout_width="51dp"
             android:layout_height="47dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
             android:layout_marginStart="3dp"
             android:layout_marginTop="-4dp"
-            android:src="@drawable/baseline_arrow_circle_left_24"
-            android:contentDescription="@string/todo" />
+            android:layout_marginEnd="325dp"
+            android:layout_marginBottom="656dp"
+            android:contentDescription="@string/todo"
+            android:src="@drawable/baseline_arrow_circle_left_24" />
 
         <TextView
             android:id="@+id/textView7"
