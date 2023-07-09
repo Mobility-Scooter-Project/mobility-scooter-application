@@ -92,4 +92,14 @@
             android:id="@+id/action_accessibilityFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/login_page"
+        android:name="com.example.mobilityscooterapp.login_page"
+        android:label="fragment_login_page"
+        tools:layout="@layout/fragment_login_page" />
+    <fragment
+        android:id="@+id/create_an_Account"
+        android:name="com.example.mobilityscooterapp.Create_an_Account"
+        android:label="fragment_create_an__account"
+        tools:layout="@layout/fragment_create_an__account" />
 </navigation>

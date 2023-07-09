@@ -16,4 +16,11 @@
     <string name="analytic_data">Analytic_data</string>
     <string name="please_place_your_phone_on_the_scooter">please place your phone on the scooter</string>
     <string name="messages_between_user_and_doctor_goes_here">Messages between user and doctor goes here</string>
+    <string name="Username">Username:</string>
+    <string name="please_enter_your_username_here">Type username here</string>
+    <string name="password">Password:</string>
+    <string name="please_enter_your_password_here">Type password here</string>
+    <string name="login">Login</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="create_an_account">Create an account</string>
 </resources>
