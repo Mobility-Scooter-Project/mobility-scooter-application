@@ -23,4 +23,15 @@
     <string name="login">Login</string>
     <string name="forgot_password">Forgot password?</string>
     <string name="create_an_account">Create an account</string>
+    <string name="todo">TODO</string>
+    <string name="back">Back</string>
+    <string name="view_terms_conditions"><![CDATA[View Terms & Conditions]]></string>
+    <string name="i_accept_the_terms_conditions"><![CDATA[I accept the Terms & Conditions]]></string>
+    <string name="register">Register</string>
+    <string name="hospital">Hospital:</string>
+    <string name="clinic_code">Clinic code:</string>
+    <string name="confirm_password">Confirm Password:</string>
+    <string name="email">Email:</string>
+    <string name="first_name">First Name:</string>
+    <string name="last_name">Last Name:</string>
 </resources>
