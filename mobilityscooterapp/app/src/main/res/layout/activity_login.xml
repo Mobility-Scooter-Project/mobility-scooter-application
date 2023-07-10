@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    tools:context=".login_page">
+    tools:context=".LoginActivity">
+
 
     <LinearLayout
         android:id="@+id/login_layout"
@@ -117,5 +118,3 @@
         android:textAllCaps="false" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
