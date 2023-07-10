@@ -40,6 +40,9 @@
         <action
             android:id="@+id/action_drive_start_page_to_messeges_page"
             app:destination="@id/messeges_page" />
+        <action
+            android:id="@+id/action_drive_start_page_to_record_preview_activity"
+            app:destination="@id/record_preview_activity" />
     </fragment>
     <fragment
         android:id="@+id/analytic_start_page"
@@ -92,4 +95,9 @@
             android:id="@+id/action_accessibilityFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
+    <activity
+        android:id="@+id/record_preview_activity"
+        android:name="com.example.mobilityscooterapp.record_preview_activity"
+        android:label="activity_record_preview"
+        tools:layout="@layout/activity_record_preview" />
 </navigation>
