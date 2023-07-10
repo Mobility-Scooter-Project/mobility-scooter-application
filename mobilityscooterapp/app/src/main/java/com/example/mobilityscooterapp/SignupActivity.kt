@@ -25,16 +25,22 @@ class SignupActivity : AppCompatActivity() {
             val password = binding.password.text.toString()
             val confirmPassword = binding.confirmPassword.text.toString()
             val clinicCode = binding.clinicCode.text.toString()
+            val termsConditionsChecked = binding.termsConditionsCheckbox.isChecked
 
             if (firstName.isNotEmpty() && lastName.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty() && confirmPassword.isNotEmpty()){
                 if (password == confirmPassword){
-                    firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener{
-                        if(it.isSuccessful){
-                            val intent = Intent(this, LoginActivity::class.java)
-                            startActivity(intent)
-                        }else{
-                            Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
+                    if (termsConditionsChecked) {
+                        firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener{
+                            if(it.isSuccessful){
+                                Toast.makeText(this, "You successfully registered!",Toast.LENGTH_SHORT).show()
+                                val intent = Intent(this, LoginActivity::class.java)
+                                startActivity(intent)
+                            }else{
+                                Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
+                            }
                         }
+                    } else {
+                        Toast.makeText(this, "please read and accept the terms and conditions ", Toast.LENGTH_SHORT).show()
                     }
                 }else{
                     Toast.makeText(this, "Password does not matched",Toast.LENGTH_SHORT).show()
@@ -46,6 +52,10 @@ class SignupActivity : AppCompatActivity() {
         binding.backButton.setOnClickListener{
             val loginIntent = Intent(this, LoginActivity::class.java)
             startActivity(loginIntent)
+        }
+        binding.termsConditionsButton.setOnClickListener {
+            val termsAndCondition = Intent(this,Terms_and_conditon_activity::class.java )
+            startActivity(termsAndCondition)
         }
 
     }

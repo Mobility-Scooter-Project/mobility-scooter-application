@@ -181,15 +181,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:textAllCaps="false"
-                android:text="@string/view_terms_conditions" />
+                android:text="@string/view_terms_conditions"
+                android:textAllCaps="false" />
 
             <CheckBox
                 android:id="@+id/terms_conditions_checkbox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAllCaps="false"
-                android:text="@string/i_accept_the_terms_conditions" />
+                android:text="@string/i_accept_the_terms_conditions"
+                android:textAllCaps="false" />
 
             <Button
                 android:id="@+id/create_account_button"
@@ -197,18 +197,18 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:textAllCaps="false"
-                android:text="@string/register" />
+                android:text="@string/register"
+                android:textAllCaps="false" />
 
         </LinearLayout>
 
         <TextView
             android:id="@+id/textView6"
-            android:layout_width="wrap_content"
+            android:layout_width="49dp"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginEnd="334dp"
+            android:layout_marginEnd="316dp"
             android:layout_marginBottom="639dp"
             android:text="@string/back" />
 

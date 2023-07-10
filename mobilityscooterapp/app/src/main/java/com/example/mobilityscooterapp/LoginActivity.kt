@@ -27,6 +27,7 @@ class LoginActivity : AppCompatActivity() {
             if(email.isNotEmpty() && password.isNotEmpty()){
                 firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener{
                     if(it.isSuccessful){
+                        Toast.makeText(this,"You successfully Login!", Toast.LENGTH_SHORT).show()
                         val intent = Intent(this, MainActivity::class.java)
                         startActivity(intent)
                         finish()
@@ -37,6 +38,10 @@ class LoginActivity : AppCompatActivity() {
             }else{
                 Toast.makeText(this,"Fields cannot be empty!", Toast.LENGTH_SHORT).show()
             }
+        }
+        binding.forgotPasswordButton.setOnClickListener {
+            val resetPassword = Intent(this, reset_password_activity::class.java)
+            startActivity(resetPassword)
         }
         binding.createAccountButton.setOnClickListener {
             val create_an_account_Intent = Intent(this, SignupActivity::class.java)
