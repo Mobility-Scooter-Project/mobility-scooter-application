@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
     tools:context=".record_preview_activity">
 
     <!-- Toolbar -->
@@ -33,34 +32,32 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:text="Please Position torso within screen and press \record\ when ready"
-        android:textColor="@android:color/black"
-        android:textStyle="bold" />
+            android:textColor="@android:color/black"
+            android:textStyle="bold" />
     </androidx.appcompat.widget.Toolbar>
 
     <!-- Preview -->
-
-    <!-- Record Button -->
-    <SurfaceView
-        android:id="@+id/sfv_preview"
+    <TextureView
+        android:id="@+id/textureView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="photo preview"
-        app:layout_constraintBottom_toTopOf="@+id/record_button"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
+    <!-- Record Button -->
     <Button
         android:id="@+id/record_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="104dp"
         android:text="Start Record"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@id/textureView"
+        app:layout_constraintEnd_toEndOf="@id/textureView"
+        app:layout_constraintHorizontal_bias="0.944"
+        app:layout_constraintStart_toStartOf="@id/textureView"
+        app:layout_constraintTop_toTopOf="@id/textureView"
+        app:layout_constraintVertical_bias="0.492" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

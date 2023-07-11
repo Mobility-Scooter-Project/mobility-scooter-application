@@ -1,5 +1,6 @@
 package com.example.mobilityscooterapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
@@ -37,5 +38,9 @@ class reset_password_activity : AppCompatActivity() {
                 Toast.makeText(this,"Fields cannot be empty!", Toast.LENGTH_SHORT).show()
             }
         }
+        binding.backButton.setOnClickListener {
+            finish()
+        }
+
     }
 }
