@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.graphics.SurfaceTexture
 import android.hardware.camera2.CameraCaptureSession
+import android.hardware.camera2.CameraCharacteristics
 import android.hardware.camera2.CameraDevice
 import android.hardware.camera2.CameraManager
 import android.hardware.camera2.CaptureRequest
@@ -40,6 +41,7 @@ class record_preview_activity : AppCompatActivity() {
 
 
         textureView.surfaceTextureListener = object: TextureView.SurfaceTextureListener{
+
             override fun onSurfaceTextureAvailable(p0: SurfaceTexture, p1: Int, p2: Int) {
                 open_camera()
 
@@ -71,18 +73,21 @@ class record_preview_activity : AppCompatActivity() {
                 var surface =  Surface(textureView.surfaceTexture)
                 capReq.addTarget(surface)
 
+                val map = cameraManager.getCameraCharacteristics(cameraManager.cameraIdList[0])
+                    .get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP)!!
+                val size = map.getOutputSizes(SurfaceTexture::class.java)[0]
+                textureView.surfaceTexture?.setDefaultBufferSize(size.width, size.height)
+
                 cameraDevice.createCaptureSession(listOf(surface), object: CameraCaptureSession.StateCallback(){
                     override fun onConfigured(p0: CameraCaptureSession) {
                         cameraCaptureSession = p0
-                        cameraCaptureSession.setRepeatingRequest(capReq.build(),null,null)
+                        cameraCaptureSession.setRepeatingRequest(capReq.build(),null,handler)
                     }
 
-                    override fun onConfigureFailed(p0: CameraCaptureSession) {
-
-                    }
+                    override fun onConfigureFailed(p0: CameraCaptureSession) {}
                 }, handler)
-
             }
+
 
             override fun onDisconnected(p0: CameraDevice) {
 
