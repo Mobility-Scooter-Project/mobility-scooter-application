@@ -1,102 +1,116 @@
 package com.example.mobilityscooterapp
 
-import android.annotation.SuppressLint
-import android.content.Context
+import android.Manifest
+import android.content.ContentValues
 import android.content.pm.PackageManager
-import android.graphics.SurfaceTexture
-import android.hardware.camera2.CameraCaptureSession
-import android.hardware.camera2.CameraCharacteristics
-import android.hardware.camera2.CameraDevice
-import android.hardware.camera2.CameraManager
-import android.hardware.camera2.CaptureRequest
-import androidx.appcompat.app.AppCompatActivity
+import android.os.Build
 import android.os.Bundle
-import android.os.Handler
-import android.os.HandlerThread
-import android.view.Surface
-import android.view.TextureView
-import androidx.core.content.getSystemService
+import android.provider.MediaStore
+import androidx.appcompat.app.AppCompatActivity
+import androidx.camera.core.ImageCapture
+import androidx.camera.video.Recorder
+import androidx.camera.video.Recording
+import androidx.camera.video.VideoCapture
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executors
+import android.widget.Toast
+import androidx.camera.lifecycle.ProcessCameraProvider
+import androidx.camera.core.Preview
+import androidx.camera.core.CameraSelector
+import android.util.Log
+import androidx.camera.core.ImageAnalysis
+import androidx.camera.core.ImageCaptureException
+import androidx.camera.core.ImageProxy
+import androidx.camera.video.FallbackStrategy
+import androidx.camera.video.MediaStoreOutputOptions
+import androidx.camera.video.Quality
+import androidx.camera.video.QualitySelector
+import androidx.camera.video.VideoRecordEvent
+import androidx.core.content.PermissionChecker
+import com.example.mobilityscooterapp.databinding.ActivityRecordPreviewBinding
+import java.nio.ByteBuffer
+import java.text.SimpleDateFormat
+import java.util.Locale
 
+typealias LumaListener = (luma: Double) -> Unit
 
 class record_preview_activity : AppCompatActivity() {
+    private lateinit var viewBinding: ActivityRecordPreviewBinding
 
-    lateinit var capReq: CaptureRequest.Builder
-    lateinit var handler: Handler
-    lateinit var handlerThread: HandlerThread
-    lateinit var cameraManager:CameraManager
-    lateinit var textureView: TextureView
-    lateinit var cameraCaptureSession: CameraCaptureSession
-    lateinit var cameraDevice: CameraDevice
-    lateinit var captureRequest:CaptureRequest
+    private var videoCapture: VideoCapture<Recorder>? = null
+    private var recording: Recording? = null
+
+    private lateinit var cameraExecutor: ExecutorService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_record_preview)
+        viewBinding = ActivityRecordPreviewBinding.inflate(layoutInflater)
+        setContentView(viewBinding.root)
 
-        textureView = findViewById(R.id.textureView)
-        cameraManager = getSystemService(Context.CAMERA_SERVICE) as CameraManager
-        handlerThread = HandlerThread("videoThread")
-        handlerThread.start()
-        handler = Handler((handlerThread).looper)
-
-
-        textureView.surfaceTextureListener = object: TextureView.SurfaceTextureListener{
-
-            override fun onSurfaceTextureAvailable(p0: SurfaceTexture, p1: Int, p2: Int) {
-                open_camera()
-
-            }
-
-            override fun onSurfaceTextureSizeChanged(p0: SurfaceTexture, p1: Int, p2: Int) {
-
-            }
-
-            override fun onSurfaceTextureDestroyed(p0: SurfaceTexture): Boolean {
-                return false
-            }
-
-            override fun onSurfaceTextureUpdated(p0: SurfaceTexture) {
-
-            }
-
-        }
+        // Request camera permissions
+        startCamera()
+        // Set up the listeners for take photo and video capture buttons
+        cameraExecutor = Executors.newSingleThreadExecutor()
     }
 
-    @SuppressLint("MissingPermission")
-    fun open_camera(){
-        cameraManager.openCamera(cameraManager.cameraIdList[0],object: CameraDevice.StateCallback(){
+    private fun captureVideo() {}
 
-            override fun onOpened(p0: CameraDevice) {
+    private fun startCamera() {
+        val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
 
-                cameraDevice = p0
-                capReq = cameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_PREVIEW)
-                var surface =  Surface(textureView.surfaceTexture)
-                capReq.addTarget(surface)
+        cameraProviderFuture.addListener({
+            // Used to bind the lifecycle of cameras to the lifecycle owner
+            val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
 
-                val map = cameraManager.getCameraCharacteristics(cameraManager.cameraIdList[0])
-                    .get(CameraCharacteristics.SCALER_STREAM_CONFIGURATION_MAP)!!
-                val size = map.getOutputSizes(SurfaceTexture::class.java)[0]
-                textureView.surfaceTexture?.setDefaultBufferSize(size.width, size.height)
+            // Preview
+            val preview = Preview.Builder()
+                .build()
+                .also {
+                    it.setSurfaceProvider(viewBinding.viewFinder.surfaceProvider)
+                }
 
-                cameraDevice.createCaptureSession(listOf(surface), object: CameraCaptureSession.StateCallback(){
-                    override fun onConfigured(p0: CameraCaptureSession) {
-                        cameraCaptureSession = p0
-                        cameraCaptureSession.setRepeatingRequest(capReq.build(),null,handler)
-                    }
+            // Select back camera as a default
+            val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
 
-                    override fun onConfigureFailed(p0: CameraCaptureSession) {}
-                }, handler)
+            try {
+                // Unbind use cases before rebinding
+                cameraProvider.unbindAll()
+
+                // Bind use cases to camera
+                cameraProvider.bindToLifecycle(
+                    this, cameraSelector, preview)
+
+            } catch(exc: Exception) {
+                Log.e(TAG, "Use case binding failed", exc)
             }
 
-
-            override fun onDisconnected(p0: CameraDevice) {
-
-            }
-
-            override fun onError(p0: CameraDevice, p1: Int) {
-
-            }
-        },handler)
+        }, ContextCompat.getMainExecutor(this))
     }
 
+    private fun allPermissionsGranted() = REQUIRED_PERMISSIONS.all {
+        ContextCompat.checkSelfPermission(
+            baseContext, it) == PackageManager.PERMISSION_GRANTED
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        cameraExecutor.shutdown()
+    }
+
+    companion object {
+        private const val TAG = "CameraXApp"
+        private const val FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss-SSS"
+        private const val REQUEST_CODE_PERMISSIONS = 10
+        private val REQUIRED_PERMISSIONS =
+            mutableListOf (
+                Manifest.permission.CAMERA,
+                Manifest.permission.RECORD_AUDIO
+            ).apply {
+                if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P) {
+                    add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                }
+            }.toTypedArray()
+    }
 }
