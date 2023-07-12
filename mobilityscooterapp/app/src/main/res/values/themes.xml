@@ -3,6 +3,7 @@
     <style name="Base.Theme.MobilityScooterApp" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:windowBackground">@android:color/transparent</item>
     </style>
 
     <style name="Theme.MobilityScooterApp" parent="Base.Theme.MobilityScooterApp" />

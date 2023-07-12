@@ -2,6 +2,7 @@ package com.example.mobilityscooterapp
 
 import android.Manifest
 import android.content.ContentValues
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
@@ -42,7 +43,9 @@ class record_preview_activity : AppCompatActivity() {
         startCamera()
 
         // Set up the listeners for take photo and video capture buttons
-        viewBinding.recordButton.setOnClickListener { captureVideo() }
+        viewBinding.recordButton.setOnClickListener {
+            captureVideo()
+        }
 
         cameraExecutor = Executors.newSingleThreadExecutor()
     }
@@ -97,9 +100,10 @@ class record_preview_activity : AppCompatActivity() {
                         if (!recordEvent.hasError()) {
                             val msg = "Video capture succeeded: " +
                                     "${recordEvent.outputResults.outputUri}"
-                            Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT)
-                                .show()
+                            Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
                             Log.d(TAG, msg)
+                            val sessionSummary = Intent(this, Driving_Session_Summary_activity::class.java)
+                            startActivity(sessionSummary)
                         } else {
                             recording?.close()
                             recording = null
