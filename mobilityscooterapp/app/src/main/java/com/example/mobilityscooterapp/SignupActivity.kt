@@ -1,8 +1,12 @@
 package com.example.mobilityscooterapp
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Gravity
+import android.view.LayoutInflater
+import android.widget.TextView
 import android.widget.Toast
 import com.example.mobilityscooterapp.databinding.ActivitySignupBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -11,6 +15,23 @@ class SignupActivity : AppCompatActivity() {
 
     private lateinit var binding:ActivitySignupBinding
     private lateinit var firebaseAuth: FirebaseAuth
+
+    fun showToast(context: Context, message: String) {
+        val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val layout = inflater.inflate(R.layout.custom_toast_layout, null)
+
+        val toastText = layout.findViewById<TextView>(R.id.toast_text)
+        toastText.text = message
+
+        with (Toast(context)) {
+            duration = Toast.LENGTH_LONG
+            setGravity(Gravity.CENTER, 0, 0)
+            view = layout
+            show()
+        }
+    }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySignupBinding.inflate(layoutInflater)
@@ -28,11 +49,13 @@ class SignupActivity : AppCompatActivity() {
             val termsConditionsChecked = binding.termsConditionsCheckbox.isChecked
 
             if (firstName.isNotEmpty() && lastName.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty() && confirmPassword.isNotEmpty()){
+
+                if (password.length > 8){
                 if (password == confirmPassword){
                     if (termsConditionsChecked) {
                         firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener{
                             if(it.isSuccessful){
-                                Toast.makeText(this, "You successfully registered!",Toast.LENGTH_SHORT).show()
+                                showToast(this, "You successfully registered!")
                                 val intent = Intent(this, LoginActivity::class.java)
                                 startActivity(intent)
                             }else{
@@ -40,15 +63,20 @@ class SignupActivity : AppCompatActivity() {
                             }
                         }
                     } else {
-                        Toast.makeText(this, "please read and accept the terms and conditions ", Toast.LENGTH_SHORT).show()
+                        showToast(this, "please read and accept the terms and conditions")
                     }
                 }else{
-                    Toast.makeText(this, "Password does not matched",Toast.LENGTH_SHORT).show()
+                    showToast(this, "Password doesn't matched")
+                }
+                }else{
+                    showToast(this, "password at least 8 characters")
                 }
             }else{
-                Toast.makeText(this, "Fields cannot be empty", Toast.LENGTH_SHORT).show()
+                showToast(this, "Fields cannot be empty")
             }
         }
+
+
         binding.backButton.setOnClickListener{
             val loginIntent = Intent(this, LoginActivity::class.java)
             startActivity(loginIntent)
