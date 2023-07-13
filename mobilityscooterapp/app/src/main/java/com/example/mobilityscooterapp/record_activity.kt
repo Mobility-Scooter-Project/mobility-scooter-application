@@ -27,7 +27,7 @@ import com.example.mobilityscooterapp.databinding.ActivityRecordPreviewBinding
 import java.text.SimpleDateFormat
 import java.util.Locale
 
-class record_preview_activity : AppCompatActivity() {
+class record_activity : AppCompatActivity() {
     private lateinit var viewBinding: ActivityRecordPreviewBinding
 
     private var videoCapture: VideoCapture<Recorder>? = null
@@ -81,12 +81,6 @@ class record_preview_activity : AppCompatActivity() {
         recording = videoCapture.output
             .prepareRecording(this, mediaStoreOutputOptions)
             .apply {
-                if (PermissionChecker.checkSelfPermission(this@record_preview_activity,
-                        Manifest.permission.RECORD_AUDIO) ==
-                    PermissionChecker.PERMISSION_GRANTED)
-                {
-                    withAudioEnabled()
-                }
             }
             .start(ContextCompat.getMainExecutor(this)) { recordEvent ->
                 when(recordEvent) {
@@ -138,7 +132,7 @@ class record_preview_activity : AppCompatActivity() {
             videoCapture = VideoCapture.withOutput(recorder)
 
             // Select back camera as a default
-            val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
+            val cameraSelector = CameraSelector.DEFAULT_FRONT_CAMERA
 
             try {
                 // Unbind use cases before rebinding
