@@ -26,6 +26,8 @@
             android:exported="false" />
         <activity
             android:name=".record_preview_activity"
+            android:theme="@style/FullScreenTheme"
+            android:screenOrientation="landscape"
             android:exported="false" />
         <activity
             android:name=".reset_password_activity"
