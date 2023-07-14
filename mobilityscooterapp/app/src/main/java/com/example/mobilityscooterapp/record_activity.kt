@@ -46,6 +46,9 @@ class record_activity : AppCompatActivity() {
         viewBinding.recordButton.setOnClickListener {
             captureVideo()
         }
+        viewBinding.backButton.setOnClickListener {
+            finish()
+        }
 
         cameraExecutor = Executors.newSingleThreadExecutor()
     }
