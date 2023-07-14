@@ -5,6 +5,7 @@ import android.content.ContentValues
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.os.SystemClock
 import android.provider.MediaStore
 import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.video.Recorder
@@ -18,6 +19,7 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.core.Preview
 import androidx.camera.core.CameraSelector
 import android.util.Log
+import android.widget.Chronometer
 import androidx.camera.video.MediaStoreOutputOptions
 import androidx.camera.video.Quality
 import androidx.camera.video.QualitySelector
@@ -33,6 +35,7 @@ class record_activity : AppCompatActivity() {
     private var videoCapture: VideoCapture<Recorder>? = null
     private var recording: Recording? = null
 
+
     private lateinit var cameraExecutor: ExecutorService
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,6 +44,7 @@ class record_activity : AppCompatActivity() {
         setContentView(viewBinding.root)
 
         startCamera()
+
 
         // Set up the listeners for take photo and video capture buttons
         viewBinding.recordButton.setOnClickListener {
@@ -54,6 +58,7 @@ class record_activity : AppCompatActivity() {
     }
 
     private fun captureVideo() {
+        val chronometer: Chronometer = findViewById(R.id.chronometer)
         val videoCapture = this.videoCapture ?: return
 
         viewBinding.recordButton.isEnabled = false
@@ -62,10 +67,12 @@ class record_activity : AppCompatActivity() {
         if (curRecording != null) {
             // Stop the current recording session.P
             curRecording.stop()
+            chronometer.stop()
             recording = null
             return
         }
-
+        chronometer.base = SystemClock.elapsedRealtime()
+        chronometer.start()
         // create and start a new recording session
         val name = SimpleDateFormat(FILENAME_FORMAT, Locale.US)
             .format(System.currentTimeMillis())
