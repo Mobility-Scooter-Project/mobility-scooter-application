@@ -1,8 +1,11 @@
 package com.example.mobilityscooterapp
 
+import java.time.Instant
 import android.Manifest
+import android.content.ContentResolver
 import android.content.ContentValues
 import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.SystemClock
@@ -20,13 +23,21 @@ import androidx.camera.core.Preview
 import androidx.camera.core.CameraSelector
 import android.util.Log
 import android.widget.Chronometer
+import androidx.annotation.RequiresApi
 import androidx.camera.video.MediaStoreOutputOptions
 import androidx.camera.video.Quality
 import androidx.camera.video.QualitySelector
 import androidx.camera.video.VideoRecordEvent
 import androidx.core.content.PermissionChecker
+import androidx.documentfile.provider.DocumentFile
+import androidx.security.crypto.EncryptedFile
+import androidx.security.crypto.MasterKeys
 import com.example.mobilityscooterapp.databinding.ActivityRecordPreviewBinding
+import java.io.File
+import java.io.FileInputStream
+import java.io.FileOutputStream
 import java.text.SimpleDateFormat
+import java.util.Date
 import java.util.Locale
 
 class record_activity : AppCompatActivity() {
@@ -46,7 +57,6 @@ class record_activity : AppCompatActivity() {
         startCamera()
 
 
-        // Set up the listeners for take photo and video capture buttons
         viewBinding.recordButton.setOnClickListener {
             captureVideo()
         }
@@ -106,8 +116,15 @@ class record_activity : AppCompatActivity() {
                                     "${recordEvent.outputResults.outputUri}"
                             Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
                             Log.d(TAG, msg)
-                            val sessionSummary = Intent(this, Driving_Session_Summary_activity::class.java)
+
+                            val sessionSummary = Intent(this, Driving_Session_Summary_activity::class.java).apply {
+                                val videoUri = recordEvent.outputResults.outputUri
+                                val encryptedFilePath = encryptFile(videoUri, contentResolver)
+                                putExtra("encrypted_video_path", encryptedFilePath)
+                            }
                             startActivity(sessionSummary)
+
+
                         } else {
                             recording?.close()
                             recording = null
@@ -169,4 +186,39 @@ class record_activity : AppCompatActivity() {
         private const val TAG = "CameraXApp"
         private const val FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss-SSS"
     }
+
+
+    //create a function for encryption after store in local
+    private fun encryptFile(fileUri: Uri, contentResolver: ContentResolver): String {
+
+        val masterKeyAlias = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC)
+
+        val originalFile = DocumentFile.fromSingleUri(this, fileUri)
+        val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(Date())
+        val encryptedFile = File(filesDir, "encrypted_$timeStamp.mp4")
+
+        val encryptedFileOutput = EncryptedFile.Builder(
+            encryptedFile,
+            this,
+            masterKeyAlias,
+            EncryptedFile.FileEncryptionScheme.AES256_GCM_HKDF_4KB
+        ).build()
+
+        contentResolver.openInputStream(fileUri)?.use { inputStream ->
+            encryptedFileOutput.openFileOutput().use { outputStream ->
+                val buffer = ByteArray(1024)
+                var length: Int
+                while (inputStream.read(buffer).also { length = it } != -1) {
+                    outputStream.write(buffer, 0, length)
+                }
+            }
+        }
+
+        originalFile?.delete()
+
+        return encryptedFile.absolutePath
+    }
+
+
+
 }

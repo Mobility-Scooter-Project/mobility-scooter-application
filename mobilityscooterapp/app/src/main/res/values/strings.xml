@@ -43,4 +43,5 @@
     <string name="sessionLength_placeholder">Session Length: session_length_placeholder</string>
     <string name="request_reset">Request reset</string>
     <string name="email_address">type your email address</string>
+    <string name="pause">pause</string>
 </resources>
