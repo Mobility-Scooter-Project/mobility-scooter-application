@@ -1,45 +1,74 @@
 package com.example.mobilityscooterapp
 
+import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.widget.Button
 import android.widget.Toast
 import android.widget.VideoView
 import androidx.security.crypto.EncryptedFile
 import androidx.security.crypto.MasterKeys
+import com.example.mobilityscooterapp.databinding.ActivityDrivingSessionSummaryBinding
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
 
 class Driving_Session_Summary_activity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityDrivingSessionSummaryBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        binding = ActivityDrivingSessionSummaryBinding.inflate(layoutInflater)
+
+        binding.videoView.setOnClickListener{
+            val watchVideo = Intent(this, video_view_activity::class.java)
+            startActivity(watchVideo)
+        }
+
+
         setContentView(R.layout.activity_driving_session_summary)
 
         val videoView = findViewById<VideoView>(R.id.videoView)
-        val playPauseButton = findViewById<Button>(R.id.play_pause_button)
 
 
         // Get the path of the encrypted video file from the intent
         val encryptedFilePath = intent.getStringExtra("encrypted_video_path")
+
 
         if (encryptedFilePath != null) {
             val encryptedFile = File(encryptedFilePath)
             if (encryptedFile.exists()) {
                 val decryptedFile = decryptFile(encryptedFile)
 
+
+
                 // Play the decrypted video
-                videoView.setVideoURI(Uri.fromFile(decryptedFile))
-                playPauseButton.setOnClickListener {
-                    if (videoView.isPlaying) {
-                        videoView.pause()
-                        playPauseButton.text = getString(R.string.start)
-                    } else {
-                        videoView.start()
-                        playPauseButton.text = getString(R.string.pause)
+                val videoUri = Uri.fromFile(decryptedFile)
+
+                videoView.setVideoURI(videoUri)
+
+                val handler = Handler(Looper.getMainLooper())
+                val runnable = object : Runnable {
+                    override fun run() {
+                        if (videoView.currentPosition >= 5000) {
+                            videoView.seekTo(1)
+                        }
+                        handler.postDelayed(this, 100)
                     }
                 }
+
+                videoView.setOnPreparedListener { mp ->
+                    mp.isLooping = true
+
+                    handler.postDelayed(runnable, 100)
+
+                    videoView.start()
+                }
+
             } else {
                 println("error")
             }
