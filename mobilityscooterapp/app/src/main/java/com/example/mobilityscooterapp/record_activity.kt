@@ -112,10 +112,6 @@ class record_activity : AppCompatActivity() {
                     }
                     is VideoRecordEvent.Finalize -> {
                         if (!recordEvent.hasError()) {
-                            val msg = "Video capture succeeded: " +
-                                    "${recordEvent.outputResults.outputUri}"
-                            Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
-                            Log.d(TAG, msg)
 
                             val sessionSummary = Intent(this, Driving_Session_Summary_activity::class.java).apply {
                                 val videoUri = recordEvent.outputResults.outputUri
@@ -214,11 +210,13 @@ class record_activity : AppCompatActivity() {
             }
         }
 
-        originalFile?.delete()
+        deleteFile(fileUri)
 
         return encryptedFile.absolutePath
     }
 
-
+    private fun deleteFile(fileUri: Uri) {
+        contentResolver.delete(fileUri, null, null)
+    }
 
 }
