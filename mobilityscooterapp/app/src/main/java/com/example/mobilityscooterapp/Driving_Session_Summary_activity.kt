@@ -8,6 +8,7 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import android.widget.VideoView
 import androidx.security.crypto.EncryptedFile
@@ -21,6 +22,7 @@ class Driving_Session_Summary_activity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDrivingSessionSummaryBinding
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -30,6 +32,19 @@ class Driving_Session_Summary_activity : AppCompatActivity() {
 
         // Get the path of the encrypted video file from the intent
         val encryptedFilePath = intent.getStringExtra("encrypted_video_path")
+
+        val date = intent.getStringExtra("date")
+        val startTime = intent.getStringExtra("start_time")
+        val sessionLength = intent.getStringExtra("session_length")
+
+        val dateTextView = findViewById<TextView>(R.id.textViewDate)
+        val startTimeTextView = findViewById<TextView>(R.id.textViewStartTime)
+        val sessionLengthTextView = findViewById<TextView>(R.id.SessionLength)
+
+        dateTextView.text = getString(R.string.date_placeholder, date)
+        startTimeTextView.text = getString(R.string.start_time_placeholder, startTime)
+        sessionLengthTextView.text = getString(R.string.session_length_placeholder, sessionLength)
+
 
         if (encryptedFilePath != null) {
             val encryptedFile = File(encryptedFilePath)

@@ -37,11 +37,16 @@
     <string name="terms_conditions"><![CDATA[Terms & Conditions]]></string>
     <string name="stop_recording">stop recording</string>
     <string name="start_recording">start recording</string>
-    <string name="date_date_placeholder">Date: date_placeholder</string>
+    <string name="date_placeholder">Date: %1$s</string>
     <string name="driving_session_summary">Driving Session Summary</string>
-    <string name="start_time_start_time_placeholder">Start Time: start_time_placeholder</string>
-    <string name="sessionLength_placeholder">Session Length: session_length_placeholder</string>
+    <string name="start_time_placeholder">Start Time: %1$s</string>
+    <string name="session_length_placeholder">Session Length: %1$s</string>
     <string name="request_reset">Request reset</string>
     <string name="email_address">type your email address</string>
     <string name="pause">pause</string>
+    <string name="estimate_estimate_placeholder">Estimate: estimate_placeholder</string>
+    <string name="date_date_placeholder">Date: </string>
+    <string name="start_time_start_time_placeholder">Start Time: </string>
+    <string name="sessionLength_placeholder">Session Length: </string>
+    <string name="click_the_following_video_to_view_it">Click the following video to view it:</string>
 </resources>

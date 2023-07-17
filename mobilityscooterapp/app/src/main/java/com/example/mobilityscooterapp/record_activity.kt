@@ -5,6 +5,7 @@ import android.Manifest
 import android.content.ContentResolver
 import android.content.ContentValues
 import android.content.Intent
+import android.icu.util.Calendar
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -39,6 +40,7 @@ import java.io.FileOutputStream
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import java.util.concurrent.TimeUnit
 
 class record_activity : AppCompatActivity() {
     private lateinit var viewBinding: ActivityRecordPreviewBinding
@@ -46,6 +48,10 @@ class record_activity : AppCompatActivity() {
     private var videoCapture: VideoCapture<Recorder>? = null
     private var recording: Recording? = null
 
+    private lateinit var date: String
+    var startTime: Long = 0
+    var startTimeFormatted: String = ""
+    private var sessionLength: Long = 0
 
     private lateinit var cameraExecutor: ExecutorService
 
@@ -73,16 +79,27 @@ class record_activity : AppCompatActivity() {
 
         viewBinding.recordButton.isEnabled = false
 
+
         val curRecording = recording
         if (curRecording != null) {
             // Stop the current recording session.P
             curRecording.stop()
             chronometer.stop()
+
+            sessionLength = System.currentTimeMillis() - startTime
+
             recording = null
             return
         }
         chronometer.base = SystemClock.elapsedRealtime()
         chronometer.start()
+
+        date = SimpleDateFormat("yyyy-MM-dd", Locale.US).format(Date())
+        startTime = System.currentTimeMillis()
+        startTimeFormatted = SimpleDateFormat("hh:mm a", Locale.US).format(Date())
+
+
+
         // create and start a new recording session
         val name = SimpleDateFormat(FILENAME_FORMAT, Locale.US)
             .format(System.currentTimeMillis())
@@ -113,9 +130,19 @@ class record_activity : AppCompatActivity() {
                     is VideoRecordEvent.Finalize -> {
                         if (!recordEvent.hasError()) {
 
+                            sessionLength = System.currentTimeMillis() - startTime
+                            val minutes = TimeUnit.MILLISECONDS.toMinutes(sessionLength)
+                            val seconds = TimeUnit.MILLISECONDS.toSeconds(sessionLength) -
+                                    TimeUnit.MINUTES.toSeconds(minutes)
+                            val sessionLengthFormatted = String.format(Locale.US, "%02d min %02d sec", minutes, seconds)
+
                             val sessionSummary = Intent(this, Driving_Session_Summary_activity::class.java).apply {
                                 val videoUri = recordEvent.outputResults.outputUri
                                 val encryptedFilePath = encryptFile(videoUri, contentResolver)
+
+                                putExtra("date", date)
+                                putExtra("start_time", startTimeFormatted)
+                                putExtra("session_length", sessionLengthFormatted)
                                 putExtra("encrypted_video_path", encryptedFilePath)
                             }
                             startActivity(sessionSummary)

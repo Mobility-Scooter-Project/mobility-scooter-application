@@ -85,7 +85,7 @@
             android:id="@+id/textViewEstimate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Estimate: estimate_placeholder"
+            android:text="@string/estimate_estimate_placeholder"
             android:textSize="18sp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp" />
@@ -94,7 +94,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:text="Click the following video to view it:"
+            android:text="@string/click_the_following_video_to_view_it"
             android:textSize="20sp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp" />
