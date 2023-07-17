@@ -22,10 +22,22 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:targetApi="31">
         <activity
+            android:name=".message_activity"
+            android:exported="false" />
+        <activity
+            android:name=".drive_activity"
+            android:exported="false" />
+        <activity
+            android:name=".analysis_acitvity"
+            android:exported="false" />
+        <activity
+            android:name=".session_history_activity"
+            android:exported="false" />
+        <activity
             android:name=".video_view_activity"
             android:exported="false"
             android:screenOrientation="landscape"
-            android:theme="@style/FullScreenTheme"/>
+            android:theme="@style/FullScreenTheme" />
         <activity
             android:name=".Driving_Session_Summary_activity"
             android:exported="false" />

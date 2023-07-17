@@ -1,6 +1,7 @@
 package com.example.mobilityscooterapp
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.os.Message
 import androidx.fragment.app.Fragment
@@ -8,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.fragment.findNavController
 
@@ -39,5 +41,14 @@ class analytic_start_page : Fragment() {
             MessageButton?.setOnClickListener {
                 findNavController().navigate(R.id.action_analytic_start_page_to_messeges_page)
             }
+
+            val sessionHistory = view.findViewById<ImageView>(R.id.imageView3)
+            sessionHistory?.setOnClickListener {
+                val intent = Intent(activity, session_history_activity::class.java)
+                startActivity(intent)
+            }
+
+
     }
+
 }

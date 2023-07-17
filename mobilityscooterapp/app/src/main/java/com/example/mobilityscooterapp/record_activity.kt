@@ -145,6 +145,7 @@ class record_activity : AppCompatActivity() {
                                 putExtra("session_length", sessionLengthFormatted)
                                 putExtra("encrypted_video_path", encryptedFilePath)
                             }
+                            finish()
                             startActivity(sessionSummary)
 
 

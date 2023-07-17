@@ -89,6 +89,33 @@ class Driving_Session_Summary_activity : AppCompatActivity() {
         } else {
             println("Error: encrypted file path is null")
         }
+
+        binding.buttonNext.setOnClickListener {
+            val history = Intent(this, session_history_activity::class.java)
+            finish()
+            startActivity(history)
+        }
+        binding.home.setOnClickListener {
+            val goTohHomeFragment = Intent(this, MainActivity::class.java)
+            finish()
+            startActivity(goTohHomeFragment)
+        }
+        binding.DriveBottom.setOnClickListener {
+            val drive = Intent(this, drive_activity::class.java)
+            finish()
+            startActivity(drive)
+        }
+        binding.analyticsButton.setOnClickListener {
+            val analyticsPage = Intent(this, analysis_acitvity::class.java)
+            finish()
+            startActivity(analyticsPage)
+        }
+        binding.button4.setOnClickListener {
+            val toMessage = Intent(this, message_activity::class.java)
+            finish()
+            startActivity(toMessage)
+        }
+
     }
 
     private fun decryptFile(encryptedFile: File): File {

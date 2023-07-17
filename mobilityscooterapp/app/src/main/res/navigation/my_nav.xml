@@ -61,6 +61,9 @@
         <action
             android:id="@+id/action_analytic_start_page_to_homeFragment2"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_analytic_start_page_to_session_history_activity"
+            app:destination="@id/session_history_activity" />
     </fragment>
     <fragment
         android:id="@+id/messeges_page"
@@ -100,4 +103,9 @@
         android:name="com.example.mobilityscooterapp.record_activity"
         android:label="activity_record_preview"
         tools:layout="@layout/activity_record_preview" />
+    <activity
+        android:id="@+id/session_history_activity"
+        android:name="com.example.mobilityscooterapp.session_history_activity"
+        android:label="activity_session_history"
+        tools:layout="@layout/activity_session_history" />
 </navigation>

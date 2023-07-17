@@ -7,6 +7,7 @@
     tools:context=".analytic_start_page">
 
     <RelativeLayout
+        android:id="@+id/relativeLayout4"
         android:layout_width="match_parent"
         android:layout_height="73dp"
         android:background="#557EA8"
@@ -114,5 +115,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="174dp"
+        android:layout_height="91dp"
+        android:src="@drawable/analytics_bottom"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.384" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

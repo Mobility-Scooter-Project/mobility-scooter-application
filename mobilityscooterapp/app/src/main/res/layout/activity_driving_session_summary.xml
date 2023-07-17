@@ -90,6 +90,14 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp" />
         <TextView
+            android:id="@+id/textViewEstimate2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/estimate_estimate_placeholder"
+            android:textSize="18sp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp" />
+        <TextView
             android:id="@+id/textviewVideo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -117,26 +125,13 @@
         </FrameLayout>
 
 
-
-
-        <TextView
-            android:id="@+id/textViewAnalytics"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:text="Go to Analytic Page"
-            android:textSize="18sp" />
-
         <Button
             android:id="@+id/buttonNext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Next"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp" />
+            android:layout_marginTop="16dp"
+            android:text="Go to session history" />
 
     </LinearLayout>
 
