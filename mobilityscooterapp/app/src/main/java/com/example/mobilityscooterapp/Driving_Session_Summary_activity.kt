@@ -1,5 +1,6 @@
 package com.example.mobilityscooterapp
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -14,6 +15,10 @@ import android.widget.VideoView
 import androidx.security.crypto.EncryptedFile
 import androidx.security.crypto.MasterKeys
 import com.example.mobilityscooterapp.databinding.ActivityDrivingSessionSummaryBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
@@ -48,6 +53,16 @@ class Driving_Session_Summary_activity : AppCompatActivity() {
 
         if (encryptedFilePath != null) {
             val encryptedFile = File(encryptedFilePath)
+
+
+            /* This part is for the Database and firebase storage */
+            val userId = FirebaseAuth.getInstance().currentUser?.uid
+            val storage = Firebase.storage
+            val storageRef = storage.reference
+            val videoRef = storageRef.child("users/$userId/videos/${encryptedFile.name}")
+            /**/
+
+
             if (encryptedFile.exists()) {
                 val decryptedFile = decryptFile(encryptedFile)
 
@@ -58,6 +73,7 @@ class Driving_Session_Summary_activity : AppCompatActivity() {
                     }
                     startActivity(watchVideo)
                 }
+
 
                 // Play the decrypted video
                 val videoUri = Uri.fromFile(decryptedFile)
@@ -83,6 +99,37 @@ class Driving_Session_Summary_activity : AppCompatActivity() {
 
                     binding.videoView.start()
                 }
+
+
+                /* This part is for the Database and firebase storage */
+                val uploadTask = videoRef.putFile(Uri.fromFile(encryptedFile))
+                uploadTask.addOnFailureListener {
+                    // Handle unsuccessful uploads
+                    Log.d(TAG, "Error uploading video to Firebase Storage")
+                }.addOnSuccessListener {
+                    // Task successful, now we can store the session data in Firestore
+                    val db = Firebase.firestore
+                    val sessionData = hashMapOf(
+                        "date" to date,
+                        "start_time" to startTime,
+                        "session_length" to sessionLength,
+                        "video_url" to videoRef.path // or use download URL if you have it
+                    )
+
+                    db.collection("users").document(userId!!).collection("sessions").document()
+                        .set(sessionData)
+                        .addOnSuccessListener {
+                            Log.d(TAG, "DocumentSnapshot successfully written!")
+                        }
+                        .addOnFailureListener { e ->
+                            Log.w(TAG, "Error writing document", e)
+                        }
+                }
+                /* end */
+
+
+
+
             } else {
                 println("Error: encrypted file does not exist")
             }
@@ -116,7 +163,20 @@ class Driving_Session_Summary_activity : AppCompatActivity() {
             startActivity(toMessage)
         }
 
+
+        /* This part is for the Database and firebase storage */
+
+
+
     }
+
+
+
+
+
+
+
+    /* This part is for the Database and firebase storage */
 
     private fun decryptFile(encryptedFile: File): File {
         val masterKeyAlias = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC)
