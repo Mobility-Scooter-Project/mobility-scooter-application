@@ -52,6 +52,7 @@ class record_activity : AppCompatActivity() {
     var startTime: Long = 0
     var startTimeFormatted: String = ""
     private var sessionLength: Long = 0
+    private var timeStamp: String = ""
 
     private lateinit var cameraExecutor: ExecutorService
 
@@ -144,6 +145,7 @@ class record_activity : AppCompatActivity() {
                                 putExtra("start_time", startTimeFormatted)
                                 putExtra("session_length", sessionLengthFormatted)
                                 putExtra("encrypted_video_path", encryptedFilePath)
+                                putExtra("video_timestamp", timeStamp)
                             }
                             finish()
                             startActivity(sessionSummary)
@@ -218,7 +220,7 @@ class record_activity : AppCompatActivity() {
         val masterKeyAlias = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC)
 
         val originalFile = DocumentFile.fromSingleUri(this, fileUri)
-        val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(Date())
+        timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.US).format(Date())
         val encryptedFile = File(filesDir, "encrypted_$timeStamp.mp4")
 
         val encryptedFileOutput = EncryptedFile.Builder(

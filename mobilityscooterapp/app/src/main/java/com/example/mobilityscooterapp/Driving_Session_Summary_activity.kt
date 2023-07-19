@@ -2,16 +2,16 @@ package com.example.mobilityscooterapp
 
 import android.content.ContentValues.TAG
 import android.content.Intent
+import android.graphics.Bitmap
+import android.media.ThumbnailUtils
 import android.net.Uri
+import android.provider.MediaStore
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
-import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
-import android.widget.VideoView
 import androidx.security.crypto.EncryptedFile
 import androidx.security.crypto.MasterKeys
 import com.example.mobilityscooterapp.databinding.ActivityDrivingSessionSummaryBinding
@@ -20,20 +20,19 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import java.io.File
-import java.io.FileInputStream
+import kotlinx.coroutines.*
 import java.io.FileOutputStream
 
 class Driving_Session_Summary_activity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDrivingSessionSummaryBinding
 
-
+    @OptIn(DelicateCoroutinesApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityDrivingSessionSummaryBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
 
         // Get the path of the encrypted video file from the intent
         val encryptedFilePath = intent.getStringExtra("encrypted_video_path")
@@ -50,10 +49,8 @@ class Driving_Session_Summary_activity : AppCompatActivity() {
         startTimeTextView.text = getString(R.string.start_time_placeholder, startTime)
         sessionLengthTextView.text = getString(R.string.session_length_placeholder, sessionLength)
 
-
         if (encryptedFilePath != null) {
             val encryptedFile = File(encryptedFilePath)
-
 
             /* This part is for the Database and firebase storage */
             val userId = FirebaseAuth.getInstance().currentUser?.uid
@@ -62,9 +59,30 @@ class Driving_Session_Summary_activity : AppCompatActivity() {
             val videoRef = storageRef.child("users/$userId/videos/${encryptedFile.name}")
             /**/
 
-
             if (encryptedFile.exists()) {
                 val decryptedFile = decryptFile(encryptedFile)
+
+                // Create a thumbnail from the decrypted video
+                val timestamp = System.currentTimeMillis()
+                val thumbnailFile = File(externalCacheDir, "${encryptedFile.name}_thumbnail.png")
+                val fos = FileOutputStream(thumbnailFile)
+                GlobalScope.launch(Dispatchers.IO) {
+                    ThumbnailUtils.createVideoThumbnail(
+                        decryptedFile.path,
+                        MediaStore.Video.Thumbnails.MINI_KIND
+                    )?.compress(Bitmap.CompressFormat.JPEG, 75, fos)
+                    fos.close()
+                }
+
+                val thumbnailRef = storageRef.child("users/$userId/thumbnails/${thumbnailFile.name}")
+                val thumbnailUploadTask = thumbnailRef.putFile(Uri.fromFile(thumbnailFile))
+                thumbnailUploadTask.addOnFailureListener {
+                    // Handle unsuccessful thumbnail uploads
+                    Log.d(TAG, "Error uploading thumbnail to Firebase Storage")
+                }.addOnSuccessListener {
+                    // Thumbnail upload successful, handle as needed
+                    Log.d(TAG, "Thumbnail successfully uploaded to Firebase Storage")
+                }
 
                 // Start video_view_activity with the path of decrypted video
                 binding.videoView.setOnClickListener {
@@ -74,16 +92,12 @@ class Driving_Session_Summary_activity : AppCompatActivity() {
                     startActivity(watchVideo)
                 }
 
-
                 // Play the decrypted video
                 val videoUri = Uri.fromFile(decryptedFile)
-
                 binding.videoView.setVideoURI(videoUri)
 
                 val handler = Handler(Looper.getMainLooper())
                 val runnable = object : Runnable {
-
-
                     override fun run() {
                         if (binding.videoView.currentPosition >= 5000) {
                             binding.videoView.seekTo(1)
@@ -94,42 +108,45 @@ class Driving_Session_Summary_activity : AppCompatActivity() {
 
                 binding.videoView.setOnPreparedListener { mp ->
                     mp.isLooping = true
-
                     handler.postDelayed(runnable, 100)
-
                     binding.videoView.start()
                 }
 
-
                 /* This part is for the Database and firebase storage */
-                val uploadTask = videoRef.putFile(Uri.fromFile(encryptedFile))
-                uploadTask.addOnFailureListener {
-                    // Handle unsuccessful uploads
-                    Log.d(TAG, "Error uploading video to Firebase Storage")
-                }.addOnSuccessListener {
-                    // Task successful, now we can store the session data in Firestore
-                    val db = Firebase.firestore
-                    val sessionData = hashMapOf(
-                        "date" to date,
-                        "start_time" to startTime,
-                        "session_length" to sessionLength,
-                        "video_url" to videoRef.path // or use download URL if you have it
-                    )
+                thumbnailUploadTask.continueWithTask { task ->
+                    if (!task.isSuccessful) {
+                        task.exception?.let {
+                            throw it
+                        }
+                    }
+                    thumbnailRef.downloadUrl
+                }.addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        val downloadUri = task.result
 
-                    db.collection("users").document(userId!!).collection("sessions").document()
-                        .set(sessionData)
-                        .addOnSuccessListener {
-                            Log.d(TAG, "DocumentSnapshot successfully written!")
-                        }
-                        .addOnFailureListener { e ->
-                            Log.w(TAG, "Error writing document", e)
-                        }
+                        val db = Firebase.firestore
+                        val sessionData = hashMapOf(
+                            "date" to date,
+                            "start_time" to startTime,
+                            "session_length" to sessionLength,
+                            "video_url" to videoRef.path,
+                            "thumbnail_url" to downloadUri.toString()
+                        )
+
+                        db.collection("users").document(userId!!).collection("sessions").document()
+                            .set(sessionData)
+                            .addOnSuccessListener {
+                                Log.d(TAG, "DocumentSnapshot successfully written!")
+                            }
+                            .addOnFailureListener { e ->
+                                Log.w(TAG, "Error writing document", e)
+                            }
+                    } else {
+                        // Handle failures
+                        Log.d(TAG, "Error uploading thumbnail to Firebase Storage")
+                    }
                 }
                 /* end */
-
-
-
-
             } else {
                 println("Error: encrypted file does not exist")
             }
@@ -162,21 +179,7 @@ class Driving_Session_Summary_activity : AppCompatActivity() {
             finish()
             startActivity(toMessage)
         }
-
-
-        /* This part is for the Database and firebase storage */
-
-
-
     }
-
-
-
-
-
-
-
-    /* This part is for the Database and firebase storage */
 
     private fun decryptFile(encryptedFile: File): File {
         val masterKeyAlias = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC)
@@ -199,7 +202,6 @@ class Driving_Session_Summary_activity : AppCompatActivity() {
                 }
             }
         }
-
         return decryptedFile
     }
 }
