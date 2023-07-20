@@ -39,6 +39,7 @@ import java.util.Date
 class Driving_Session_Summary_activity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDrivingSessionSummaryBinding
+    private lateinit var decryptedFile: File
 
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -76,6 +77,7 @@ class Driving_Session_Summary_activity : AppCompatActivity() {
             val sessionDocRef = db.collection("users").document(userId!!).collection("sessions").document()
 
             /**/
+
             //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
             val videoUploadTask = videoRef.putFile(Uri.fromFile(encryptedFile)).continueWithTask { task ->
@@ -149,9 +151,9 @@ class Driving_Session_Summary_activity : AppCompatActivity() {
                     thumbnailRef.downloadUrl
                 }
                 Tasks.whenAllSuccess<Uri>(videoUploadTask, thumbnailUploadTask).addOnSuccessListener { urls ->
+
                     val videoLink = urls[0].toString() // 0-index is videoUploadTask
                     val thumbnailLink = urls[1].toString() // 1-index is thumbnailUploadTask
-
                     val dateTimeString = "$date $startTime" // Combine date and startTime
 
 
@@ -186,26 +188,31 @@ class Driving_Session_Summary_activity : AppCompatActivity() {
         }
 
         binding.buttonNext.setOnClickListener {
+            deleteDecryptedFile()
             val history = Intent(this, session_history_activity::class.java)
             finish()
             startActivity(history)
         }
         binding.home.setOnClickListener {
+            deleteDecryptedFile()
             val goTohHomeFragment = Intent(this, MainActivity::class.java)
             finish()
             startActivity(goTohHomeFragment)
         }
         binding.DriveBottom.setOnClickListener {
+            deleteDecryptedFile()
             val drive = Intent(this, drive_activity::class.java)
             finish()
             startActivity(drive)
         }
         binding.analyticsButton.setOnClickListener {
+            deleteDecryptedFile()
             val analyticsPage = Intent(this, analysis_acitvity::class.java)
             finish()
             startActivity(analyticsPage)
         }
         binding.button4.setOnClickListener {
+            deleteDecryptedFile()
             val toMessage = Intent(this, message_activity::class.java)
             finish()
             startActivity(toMessage)
@@ -215,7 +222,7 @@ class Driving_Session_Summary_activity : AppCompatActivity() {
     private fun decryptFile(encryptedFile: File): File {
         val masterKeyAlias = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC)
 
-        val decryptedFile = File(filesDir, encryptedFile.name.replace("encrypted", "decrypted"))
+        decryptedFile = File(filesDir, encryptedFile.name.replace("encrypted", "decrypted"))
 
         val encryptedFileInput = EncryptedFile.Builder(
             encryptedFile,
@@ -234,6 +241,11 @@ class Driving_Session_Summary_activity : AppCompatActivity() {
             }
         }
         return decryptedFile
+    }
+    private fun deleteDecryptedFile() {
+        if (::decryptedFile.isInitialized && decryptedFile.exists()) {
+            decryptedFile.delete()
+        }
     }
 }
 
