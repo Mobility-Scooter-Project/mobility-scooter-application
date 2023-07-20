@@ -32,8 +32,7 @@ class SessionAdapter(var sessions: List<Session>, val context: Context) : Recycl
     override fun onBindViewHolder(holder: SessionViewHolder, position: Int) {
         val session = sessions[position]
 
-        holder.sessionDate.text = session.date
-        holder.sessionStartTime.text = session.startTime
+        holder.sessionDate.text = session.dateTimeString
         session.thumbnail_url?.let { Log.d("URL_CHECK", it) }
         Glide.with(context).load(session.thumbnail_url).listener(object : RequestListener<Drawable> {
             override fun onLoadFailed(e: GlideException?, model: Any?, target: com.bumptech.glide.request.target.Target<Drawable>?, isFirstResource: Boolean): Boolean {
@@ -57,9 +56,9 @@ class SessionAdapter(var sessions: List<Session>, val context: Context) : Recycl
         holder.itemView.setOnClickListener {
             val intent = Intent(context, session_detail_activity::class.java)
             intent.putExtra("date", session.date)
-            intent.putExtra("start_time", session.startTime)
-            intent.putExtra("session_length", session.sessionLength)
-            intent.putExtra("video_url", session.videoUrl)
+            intent.putExtra("start_time", session.start_time)
+            intent.putExtra("session_length", session.session_length)
+            intent.putExtra("video_url", session.video_url)
             context.startActivity(intent)
         }
     }

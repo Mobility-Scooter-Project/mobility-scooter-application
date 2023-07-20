@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mobilityscooterapp.databinding.ActivitySessionHistoryBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -39,6 +40,7 @@ class session_history_activity : AppCompatActivity() {
         val userId = FirebaseAuth.getInstance().currentUser?.uid
 
         db.collection("users").document(userId!!).collection("sessions")
+            .orderBy("dateTimeString", Query.Direction.DESCENDING)
             .get()
             .addOnSuccessListener { documents ->
                 for (document in documents) {
@@ -52,4 +54,5 @@ class session_history_activity : AppCompatActivity() {
                 Log.w(TAG, "Error getting documents: ", exception)
             }
     }
+
 }
