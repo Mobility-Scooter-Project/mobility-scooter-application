@@ -5,6 +5,7 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.media.ThumbnailUtils
 import android.net.Uri
+import android.os.Build
 import android.provider.MediaStore
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -12,6 +13,7 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.security.crypto.EncryptedFile
 import androidx.security.crypto.MasterKeys
 import com.example.mobilityscooterapp.databinding.ActivityDrivingSessionSummaryBinding
@@ -26,12 +28,20 @@ import com.google.firebase.storage.ktx.storage
 import java.io.File
 import kotlinx.coroutines.*
 import java.io.FileOutputStream
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.Locale
+import java.time.ZoneOffset
+import com.google.firebase.Timestamp
+import java.time.ZoneId
+import java.util.Date
 
 class Driving_Session_Summary_activity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDrivingSessionSummaryBinding
 
 
+    @RequiresApi(Build.VERSION_CODES.O)
     @OptIn(DelicateCoroutinesApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -142,12 +152,16 @@ class Driving_Session_Summary_activity : AppCompatActivity() {
                     val videoLink = urls[0].toString() // 0-index is videoUploadTask
                     val thumbnailLink = urls[1].toString() // 1-index is thumbnailUploadTask
 
+                    val dateTimeString = "$date $startTime" // Combine date and startTime
+
+
                     val sessionData = hashMapOf(
                         "date" to date,
                         "start_time" to startTime,
                         "session_length" to sessionLength,
                         "video_url" to videoLink,
-                        "thumbnail_url" to thumbnailLink
+                        "thumbnail_url" to thumbnailLink,
+                        "dateTimeString" to dateTimeString
                     )
 
                     db.collection("users").document(userId!!).collection("sessions").document()
