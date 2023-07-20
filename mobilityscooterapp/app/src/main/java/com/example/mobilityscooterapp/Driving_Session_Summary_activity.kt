@@ -15,9 +15,13 @@ import android.widget.TextView
 import androidx.security.crypto.EncryptedFile
 import androidx.security.crypto.MasterKeys
 import com.example.mobilityscooterapp.databinding.ActivityDrivingSessionSummaryBinding
+import com.google.android.gms.tasks.Task
+import com.google.android.gms.tasks.Tasks
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.UploadTask
 import com.google.firebase.storage.ktx.storage
 import java.io.File
 import kotlinx.coroutines.*
@@ -26,6 +30,7 @@ import java.io.FileOutputStream
 class Driving_Session_Summary_activity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDrivingSessionSummaryBinding
+
 
     @OptIn(DelicateCoroutinesApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,13 +62,29 @@ class Driving_Session_Summary_activity : AppCompatActivity() {
             val storage = Firebase.storage
             val storageRef = storage.reference
             val videoRef = storageRef.child("users/$userId/videos/${encryptedFile.name}")
+            val db = Firebase.firestore
+            val sessionDocRef = db.collection("users").document(userId!!).collection("sessions").document()
+
             /**/
+            //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            val videoUploadTask = videoRef.putFile(Uri.fromFile(encryptedFile)).continueWithTask { task ->
+                if (!task.isSuccessful) {
+                    task.exception?.let {
+                        throw it
+                    }
+                }
+                videoRef.downloadUrl
+            }
+
+
+            //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
             if (encryptedFile.exists()) {
                 val decryptedFile = decryptFile(encryptedFile)
 
                 // Create a thumbnail from the decrypted video
-                val timestamp = System.currentTimeMillis()
                 val thumbnailFile = File(externalCacheDir, "${encryptedFile.name}_thumbnail.png")
                 val fos = FileOutputStream(thumbnailFile)
                 GlobalScope.launch(Dispatchers.IO) {
@@ -75,14 +96,10 @@ class Driving_Session_Summary_activity : AppCompatActivity() {
                 }
 
                 val thumbnailRef = storageRef.child("users/$userId/thumbnails/${thumbnailFile.name}")
-                val thumbnailUploadTask = thumbnailRef.putFile(Uri.fromFile(thumbnailFile))
-                thumbnailUploadTask.addOnFailureListener {
-                    // Handle unsuccessful thumbnail uploads
-                    Log.d(TAG, "Error uploading thumbnail to Firebase Storage")
-                }.addOnSuccessListener {
-                    // Thumbnail upload successful, handle as needed
-                    Log.d(TAG, "Thumbnail successfully uploaded to Firebase Storage")
-                }
+
+
+
+
 
                 // Start video_view_activity with the path of decrypted video
                 binding.videoView.setOnClickListener {
@@ -113,39 +130,39 @@ class Driving_Session_Summary_activity : AppCompatActivity() {
                 }
 
                 /* This part is for the Database and firebase storage */
-                thumbnailUploadTask.continueWithTask { task ->
+                val thumbnailUploadTask = thumbnailRef.putFile(Uri.fromFile(thumbnailFile)).continueWithTask { task ->
                     if (!task.isSuccessful) {
                         task.exception?.let {
                             throw it
                         }
                     }
                     thumbnailRef.downloadUrl
-                }.addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        val downloadUri = task.result
-
-                        val db = Firebase.firestore
-                        val sessionData = hashMapOf(
-                            "date" to date,
-                            "start_time" to startTime,
-                            "session_length" to sessionLength,
-                            "video_url" to videoRef.path,
-                            "thumbnail_url" to downloadUri.toString()
-                        )
-
-                        db.collection("users").document(userId!!).collection("sessions").document()
-                            .set(sessionData)
-                            .addOnSuccessListener {
-                                Log.d(TAG, "DocumentSnapshot successfully written!")
-                            }
-                            .addOnFailureListener { e ->
-                                Log.w(TAG, "Error writing document", e)
-                            }
-                    } else {
-                        // Handle failures
-                        Log.d(TAG, "Error uploading thumbnail to Firebase Storage")
-                    }
                 }
+                Tasks.whenAllSuccess<Uri>(videoUploadTask, thumbnailUploadTask).addOnSuccessListener { urls ->
+                    val videoLink = urls[0].toString() // 0-index is videoUploadTask
+                    val thumbnailLink = urls[1].toString() // 1-index is thumbnailUploadTask
+
+                    val sessionData = hashMapOf(
+                        "date" to date,
+                        "start_time" to startTime,
+                        "session_length" to sessionLength,
+                        "video_url" to videoLink,
+                        "thumbnail_url" to thumbnailLink
+                    )
+
+                    db.collection("users").document(userId!!).collection("sessions").document()
+                        .set(sessionData)
+                        .addOnSuccessListener {
+                            Log.d(TAG, "DocumentSnapshot successfully written!")
+                        }
+                        .addOnFailureListener { e ->
+                            Log.w(TAG, "Error writing document", e)
+                        }
+                }.addOnFailureListener { exception ->
+                    Log.d(TAG, "Error: ${exception.message}")
+                }
+
+
                 /* end */
             } else {
                 println("Error: encrypted file does not exist")
