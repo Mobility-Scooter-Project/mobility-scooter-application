@@ -59,6 +59,7 @@ class SessionAdapter(var sessions: List<Session>, val context: Context) : Recycl
             intent.putExtra("start_time", session.start_time)
             intent.putExtra("session_length", session.session_length)
             intent.putExtra("video_url", session.video_url)
+            intent.putExtra("encryptedFilePath", session.encryptedFilePath)
             context.startActivity(intent)
         }
     }

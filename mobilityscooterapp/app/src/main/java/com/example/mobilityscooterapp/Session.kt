@@ -8,5 +8,6 @@ data class Session(
     val start_time: String? = null,
     val session_length: String? = null,
     val video_url: String? = null,
-    val thumbnail_url: String? = null
+    val thumbnail_url: String? = null,
+    val encryptedFilePath: String? = null
 )
