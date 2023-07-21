@@ -163,7 +163,8 @@ class Driving_Session_Summary_activity : AppCompatActivity() {
                         "session_length" to sessionLength,
                         "video_url" to videoLink,
                         "thumbnail_url" to thumbnailLink,
-                        "dateTimeString" to dateTimeString
+                        "dateTimeString" to dateTimeString,
+                        "encryptedFilePath" to encryptedFilePath
                     )
 
                     db.collection("users").document(userId!!).collection("sessions").document()

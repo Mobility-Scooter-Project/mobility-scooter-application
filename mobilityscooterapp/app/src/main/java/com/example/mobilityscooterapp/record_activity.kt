@@ -213,8 +213,6 @@ class record_activity : AppCompatActivity() {
         private const val FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss-SSS"
     }
 
-
-    //create a function for encryption after store in local
     private fun encryptFile(fileUri: Uri, contentResolver: ContentResolver): String {
 
         val masterKeyAlias = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC)
