@@ -23,6 +23,7 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.core.Preview
 import androidx.camera.core.CameraSelector
 import android.util.Log
+import android.view.WindowManager
 import android.widget.Chronometer
 import androidx.annotation.RequiresApi
 import androidx.camera.video.MediaStoreOutputOptions
@@ -58,6 +59,7 @@ class record_activity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         viewBinding = ActivityRecordPreviewBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
 
@@ -202,6 +204,10 @@ class record_activity : AppCompatActivity() {
     }
 
 
+    override fun onPause() {
+        super.onPause()
+        window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+    }
 
     override fun onDestroy() {
         super.onDestroy()
