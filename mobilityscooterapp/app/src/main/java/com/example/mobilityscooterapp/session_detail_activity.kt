@@ -22,6 +22,9 @@ import okhttp3.Callback
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
+import okio.Okio
+import okio.buffer
+import okio.sink
 
 
 class session_detail_activity : AppCompatActivity() {
@@ -54,6 +57,13 @@ class session_detail_activity : AppCompatActivity() {
         binding.textViewEstimate2.text = getString(R.string.estimate_placeholder, estimate2)
 
          */
+        if (encryptedFilePath != null && videoUrl != null) {
+            val encryptedFile = File(encryptedFilePath)
+
+            if (!encryptedFile.exists()) {
+                downloadFile(videoUrl, encryptedFilePath)
+            }
+        }
 
         if (encryptedFilePath != null) {
             val encryptedFile = File(encryptedFilePath)
@@ -124,4 +134,36 @@ class session_detail_activity : AppCompatActivity() {
             decryptedFile.delete()
         }
     }
+
+    private fun downloadFile(url: String, path: String) {
+        val request = Request.Builder().url(url).build()
+
+        OkHttpClient().newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                runOnUiThread {
+                    Toast.makeText(this@session_detail_activity, "Failed to download file: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                if (response.isSuccessful) {
+                    val file = File(path)
+                    val sink = file.sink().buffer()
+                    sink.writeAll(response.body!!.source())
+                    sink.close()
+
+                    runOnUiThread {
+                        Toast.makeText(this@session_detail_activity, "File downloaded successfully", Toast.LENGTH_SHORT).show()
+                        // Here you can call a method to process the downloaded file
+                    }
+                } else {
+                    runOnUiThread {
+                        Toast.makeText(this@session_detail_activity, "Failed to download file", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        })
+    }
+
+
 }
