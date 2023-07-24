@@ -35,6 +35,9 @@ import androidx.documentfile.provider.DocumentFile
 import androidx.security.crypto.EncryptedFile
 import androidx.security.crypto.MasterKeys
 import com.example.mobilityscooterapp.databinding.ActivityRecordPreviewBinding
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
+import com.google.firebase.storage.ktx.storageMetadata
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
@@ -141,6 +144,11 @@ class record_activity : AppCompatActivity() {
 
                             val sessionSummary = Intent(this, Driving_Session_Summary_activity::class.java).apply {
                                 val videoUri = recordEvent.outputResults.outputUri
+
+                                //upload to firebase do estimation
+                                uploadVideoToFirebaseStorage(videoUri)
+
+
                                 val encryptedFilePath = encryptFile(videoUri, contentResolver)
 
                                 putExtra("date", date)
@@ -251,6 +259,27 @@ class record_activity : AppCompatActivity() {
 
     private fun deleteFile(fileUri: Uri) {
         contentResolver.delete(fileUri, null, null)
+    }
+
+    private fun uploadVideoToFirebaseStorage(uri: Uri) {
+
+        val storage = Firebase.storage
+        val storageRef = storage.reference
+
+        val videoRef = storageRef.child("videos/${uri.lastPathSegment}")
+
+        val metadata = storageMetadata {
+            contentType = "video/mp4"
+        }
+
+        // Upload the file to Firebase Storage
+        videoRef.putFile(uri, metadata)
+            .addOnSuccessListener {
+                Toast.makeText(this, "Video uploaded successfully", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener { exception ->
+                Toast.makeText(this, "Failed to upload video: $exception", Toast.LENGTH_SHORT).show()
+            }
     }
 
 }
