@@ -1,11 +1,12 @@
 package com.example.mobilityscooterapp
 
-import java.time.Instant
-import android.Manifest
 import android.content.ContentResolver
 import android.content.ContentValues
+import android.content.Context
 import android.content.Intent
-import android.icu.util.Calendar
+import android.content.res.AssetManager
+import android.graphics.Bitmap
+import android.media.MediaMetadataRetriever
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -25,7 +26,6 @@ import androidx.camera.core.CameraSelector
 import android.util.Log
 import android.view.WindowManager
 import android.widget.Chronometer
-import androidx.annotation.RequiresApi
 import androidx.camera.video.MediaStoreOutputOptions
 import androidx.camera.video.Quality
 import androidx.camera.video.QualitySelector
@@ -41,10 +41,16 @@ import com.google.firebase.storage.ktx.storageMetadata
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
+import java.nio.MappedByteBuffer
+import java.nio.channels.FileChannel
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 import java.util.concurrent.TimeUnit
+import org.tensorflow.lite.Interpreter
+import java.nio.ByteBuffer
+import java.nio.ByteOrder
+
 
 class record_activity : AppCompatActivity() {
     private lateinit var viewBinding: ActivityRecordPreviewBinding
@@ -145,9 +151,7 @@ class record_activity : AppCompatActivity() {
                             val sessionSummary = Intent(this, Driving_Session_Summary_activity::class.java).apply {
                                 val videoUri = recordEvent.outputResults.outputUri
 
-                                //upload to firebase do estimation
-                                uploadVideoToFirebaseStorage(videoUri)
-
+                                processFrames(videoUri)
 
                                 val encryptedFilePath = encryptFile(videoUri, contentResolver)
 
@@ -261,6 +265,107 @@ class record_activity : AppCompatActivity() {
         contentResolver.delete(fileUri, null, null)
     }
 
+
+    private fun processFrames(uri: Uri) {
+
+        var stableCount = 0
+        var unstableCount = 0
+
+        val tflite = Interpreter(loadModelFile(this.assets))
+
+        // Get video frames
+        val videoFrames = getVideoFrames(this, uri)
+
+        // Run model on each frame
+        for (frame in videoFrames) {
+            val byteBuffer = convertBitmapToByteBuffer(frame)
+            val inputs: Array<Any> = arrayOf(byteBuffer)
+            val outputs: MutableMap<Int, Any> = HashMap()
+            outputs[0] = Array(1) { FloatArray(2) }
+
+            tflite.runForMultipleInputsOutputs(inputs, outputs)
+
+            val output = outputs[0] as Array<*>
+
+            if (isStable(output)) {
+                stableCount++
+            } else {
+                unstableCount++
+            }
+        }
+
+        val totalFrames = stableCount + unstableCount
+        val stablePercentage = stableCount * 100.0 / totalFrames
+        val unstablePercentage = unstableCount * 100.0 / totalFrames
+
+        // Display the results
+        showResults(stablePercentage, unstablePercentage)
+    }
+
+    fun isStable(output: Array<*>) : Boolean {
+        val prediction = output[0] as FloatArray
+        return prediction[1] > 0.5
+    }
+
+    fun showResults(stablePercentage: Double, unstablePercentage: Double) {
+        Toast.makeText(this, "Stable: $stablePercentage%, Unstable: $unstablePercentage%", Toast.LENGTH_SHORT).show()
+    }
+
+    fun getVideoFrames(context: Context, videoUri: Uri): List<Bitmap> {
+        val mediaMetadataRetriever = MediaMetadataRetriever()
+
+        mediaMetadataRetriever.setDataSource(context, videoUri)
+
+        val videoLengthInMs =
+            mediaMetadataRetriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)
+                ?.toLong() ?: (0L * 1000)
+
+        val frameIntervalMs = 1000000
+
+        val videoFrames = mutableListOf<Bitmap>()
+
+        var currentTimeMs = 0
+        while (currentTimeMs < videoLengthInMs) {
+            val bitmap = mediaMetadataRetriever.getFrameAtTime(currentTimeMs.toLong())
+            if (bitmap != null) {
+                videoFrames.add(bitmap)
+            }
+            currentTimeMs += frameIntervalMs
+        }
+
+        return videoFrames
+    }
+
+
+    private fun loadModelFile(assetManager: AssetManager): MappedByteBuffer {
+        val modelPath = "model.tflite"
+        val fileDescriptor = assetManager.openFd(modelPath)
+        val inputStream = FileInputStream(fileDescriptor.fileDescriptor)
+        val fileChannel = inputStream.channel
+        val startOffset = fileDescriptor.startOffset
+        val declaredLength = fileDescriptor.declaredLength
+        return fileChannel.map(FileChannel.MapMode.READ_ONLY, startOffset, declaredLength)
+    }
+
+    private fun convertBitmapToByteBuffer(bitmap: Bitmap): ByteBuffer {
+        val byteBuffer = ByteBuffer.allocateDirect(4 * bitmap.width * bitmap.height * 3) // float has 4 bytes, times width, times height, times three color channels
+        byteBuffer.order(ByteOrder.nativeOrder())
+        val intValues = IntArray(bitmap.width * bitmap.height)
+        bitmap.getPixels(intValues, 0, bitmap.width, 0, 0, bitmap.width, bitmap.height)
+        var pixel = 0
+        for (i in 0 until bitmap.width) {
+            for (j in 0 until bitmap.height) {
+                val value = intValues[pixel++]
+                byteBuffer.putFloat(((value shr 16 and 0xFF) - 127.5f) / 127.5f) // Red
+                byteBuffer.putFloat(((value shr 8 and 0xFF) - 127.5f) / 127.5f) // Green
+                byteBuffer.putFloat(((value and 0xFF) - 127.5f) / 127.5f) // Blue
+            }
+        }
+        return byteBuffer
+    }
+
+
+    /*
     private fun uploadVideoToFirebaseStorage(uri: Uri) {
 
         val storage = Firebase.storage
@@ -281,5 +386,6 @@ class record_activity : AppCompatActivity() {
                 Toast.makeText(this, "Failed to upload video: $exception", Toast.LENGTH_SHORT).show()
             }
     }
+     */
 
 }

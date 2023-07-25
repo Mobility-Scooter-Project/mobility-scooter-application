@@ -60,6 +60,8 @@ dependencies {
 
     implementation libs.exoplayer
 
+    implementation 'org.tensorflow:tensorflow-lite:2.7.0'
+
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2'
 
     implementation 'com.squareup.okhttp3:okhttp:4.9.2'
