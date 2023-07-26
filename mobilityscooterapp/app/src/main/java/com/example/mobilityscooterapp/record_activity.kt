@@ -151,7 +151,7 @@ class record_activity : AppCompatActivity() {
                             val sessionSummary = Intent(this, Driving_Session_Summary_activity::class.java).apply {
                                 val videoUri = recordEvent.outputResults.outputUri
 
-                                processFrames(videoUri)
+                                uploadVideoToFirebaseStorage(videoUri)
 
                                 val encryptedFilePath = encryptFile(videoUri, contentResolver)
 
@@ -266,19 +266,43 @@ class record_activity : AppCompatActivity() {
     }
 
 
+
+
+    private fun uploadVideoToFirebaseStorage(uri: Uri) {
+
+        val storage = Firebase.storage
+        val storageRef = storage.reference
+
+        val videoRef = storageRef.child("videos/${uri.lastPathSegment}")
+
+        val metadata = storageMetadata {
+            contentType = "video/mp4"
+        }
+
+        // Upload the file to Firebase Storage
+        videoRef.putFile(uri, metadata)
+            .addOnSuccessListener {
+                Toast.makeText(this, "Video uploaded successfully", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener { exception ->
+                Toast.makeText(this, "Failed to upload video: $exception", Toast.LENGTH_SHORT).show()
+            }
+    }
+    /*
     private fun processFrames(uri: Uri) {
 
         var stableCount = 0
         var unstableCount = 0
 
         val tflite = Interpreter(loadModelFile(this.assets))
+        val inputShape = tflite.getInputTensor(0).shape() // get the expected input shape
 
         // Get video frames
         val videoFrames = getVideoFrames(this, uri)
 
         // Run model on each frame
         for (frame in videoFrames) {
-            val byteBuffer = convertBitmapToByteBuffer(frame)
+            val byteBuffer = convertBitmapToByteBuffer(frame, inputShape)
             val inputs: Array<Any> = arrayOf(byteBuffer)
             val outputs: MutableMap<Int, Any> = HashMap()
             outputs[0] = Array(1) { FloatArray(2) }
@@ -347,44 +371,41 @@ class record_activity : AppCompatActivity() {
         return fileChannel.map(FileChannel.MapMode.READ_ONLY, startOffset, declaredLength)
     }
 
-    private fun convertBitmapToByteBuffer(bitmap: Bitmap): ByteBuffer {
-        val byteBuffer = ByteBuffer.allocateDirect(4 * bitmap.width * bitmap.height * 3) // float has 4 bytes, times width, times height, times three color channels
-        byteBuffer.order(ByteOrder.nativeOrder())
-        val intValues = IntArray(bitmap.width * bitmap.height)
-        bitmap.getPixels(intValues, 0, bitmap.width, 0, 0, bitmap.width, bitmap.height)
-        var pixel = 0
-        for (i in 0 until bitmap.width) {
-            for (j in 0 until bitmap.height) {
-                val value = intValues[pixel++]
-                byteBuffer.putFloat(((value shr 16 and 0xFF) - 127.5f) / 127.5f) // Red
-                byteBuffer.putFloat(((value shr 8 and 0xFF) - 127.5f) / 127.5f) // Green
-                byteBuffer.putFloat(((value and 0xFF) - 127.5f) / 127.5f) // Blue
+    private fun convertBitmapToByteBuffer(bitmap: Bitmap, inputShape: IntArray): ByteBuffer {
+        val height: Int
+        val width: Int
+        val channels: Int
+
+        if (inputShape.size == 4) {
+            // Shape: [batch_size, height, width, channels]
+            height = inputShape[1]
+            width = inputShape[2]
+            channels = inputShape[3]
+        } else {
+            // Shape: [height, width, channels]
+            height = inputShape[0]
+            width = inputShape[1]
+            channels = inputShape[2]
+        }
+
+        // Create a ByteBuffer to hold the RGB data
+        val byteBuffer: ByteBuffer = ByteBuffer.allocateDirect(height * width * channels)
+
+        // Fill the ByteBuffer with the RGB data from the bitmap
+        for (y in 0 until height) {
+            for (x in 0 until width) {
+                val pixelValue: Int = bitmap.getPixel(x, y)
+
+                byteBuffer.put((pixelValue shr 16 and 0xFF).toByte()) // Red channel
+                byteBuffer.put((pixelValue shr 8 and 0xFF).toByte()) // Green channel
+                byteBuffer.put((pixelValue and 0xFF).toByte()) // Blue channel
             }
         }
+
+        // Reset the position of the buffer to the start
+        byteBuffer.rewind()
+
         return byteBuffer
-    }
-
-
-    /*
-    private fun uploadVideoToFirebaseStorage(uri: Uri) {
-
-        val storage = Firebase.storage
-        val storageRef = storage.reference
-
-        val videoRef = storageRef.child("videos/${uri.lastPathSegment}")
-
-        val metadata = storageMetadata {
-            contentType = "video/mp4"
-        }
-
-        // Upload the file to Firebase Storage
-        videoRef.putFile(uri, metadata)
-            .addOnSuccessListener {
-                Toast.makeText(this, "Video uploaded successfully", Toast.LENGTH_SHORT).show()
-            }
-            .addOnFailureListener { exception ->
-                Toast.makeText(this, "Failed to upload video: $exception", Toast.LENGTH_SHORT).show()
-            }
     }
      */
 
