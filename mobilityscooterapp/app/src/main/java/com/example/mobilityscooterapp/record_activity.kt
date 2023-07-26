@@ -51,6 +51,13 @@ import org.tensorflow.lite.Interpreter
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
+import org.json.JSONObject
+
 
 class record_activity : AppCompatActivity() {
     private lateinit var viewBinding: ActivityRecordPreviewBinding
@@ -63,6 +70,9 @@ class record_activity : AppCompatActivity() {
     var startTimeFormatted: String = ""
     private var sessionLength: Long = 0
     private var timeStamp: String = ""
+
+    private var videoUrl: String? = null
+
 
     private lateinit var cameraExecutor: ExecutorService
 
@@ -282,12 +292,49 @@ class record_activity : AppCompatActivity() {
         // Upload the file to Firebase Storage
         videoRef.putFile(uri, metadata)
             .addOnSuccessListener {
-                Toast.makeText(this, "Video uploaded successfully", Toast.LENGTH_SHORT).show()
+                videoRef.downloadUrl.addOnSuccessListener { uri ->
+
+                    videoUrl = uri.toString()
+                    sendVideoToServer(videoUrl!!)
+
+                    Toast.makeText(this, "Video uploaded successfully: $videoUrl", Toast.LENGTH_SHORT).show()
+                }
             }
             .addOnFailureListener { exception ->
                 Toast.makeText(this, "Failed to upload video: $exception", Toast.LENGTH_SHORT).show()
             }
     }
+
+    private fun sendVideoToServer(url: String) {
+        val client = OkHttpClient()
+
+
+        val jsonObject = JSONObject()
+        jsonObject.put("url", url)
+        val jsonMediaType = "application/json; charset=utf-8".toMediaTypeOrNull()
+        val body: RequestBody = jsonObject.toString().toRequestBody(jsonMediaType)
+
+        // Build the request
+        val request = Request.Builder()
+            .url("https://your-app-url/analyze")
+            .post(body)
+            .build()
+
+        // Send the request
+        client.newCall(request).execute().use { response ->
+            if (!response.isSuccessful) {
+
+                Toast.makeText(this, "Failed to send video to server: ${response.message}", Toast.LENGTH_SHORT).show()
+            } else {
+
+                val responseData = response.body?.string()
+
+                Toast.makeText(this, "Video processed successfully: $responseData", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+
     /*
     private fun processFrames(uri: Uri) {
 
