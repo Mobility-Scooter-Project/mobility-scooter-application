@@ -26,7 +26,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/Username"
+                android:text="@string/email"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -38,7 +38,7 @@
                     android:id="@+id/email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/please_enter_your_username_here"
+                    android:hint="@string/type_email_here"
                     android:inputType = "text" />
 
             </com.google.android.material.textfield.TextInputLayout>
