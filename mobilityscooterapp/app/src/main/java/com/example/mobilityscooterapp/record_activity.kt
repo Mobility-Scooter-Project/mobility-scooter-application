@@ -35,6 +35,7 @@ import androidx.documentfile.provider.DocumentFile
 import androidx.security.crypto.EncryptedFile
 import androidx.security.crypto.MasterKeys
 import com.example.mobilityscooterapp.databinding.ActivityRecordPreviewBinding
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.google.firebase.storage.ktx.storageMetadata
@@ -279,12 +280,9 @@ class record_activity : AppCompatActivity() {
 
 
     private fun uploadVideoToFirebaseStorage(uri: Uri) {
-
         val storage = Firebase.storage
         val storageRef = storage.reference
-
         val videoRef = storageRef.child("videos/${uri.lastPathSegment}")
-
         val metadata = storageMetadata {
             contentType = "video/mp4"
         }
@@ -293,11 +291,29 @@ class record_activity : AppCompatActivity() {
         videoRef.putFile(uri, metadata)
             .addOnSuccessListener {
                 videoRef.downloadUrl.addOnSuccessListener { uri ->
+                    // Retrieve and modify the download URL to be downloadable
+                    val downloadUrl = uri.toString()
+                    val downloadableUrl = "$downloadUrl?alt=media"
 
-                    videoUrl = uri.toString()
-                    sendVideoToServer(videoUrl!!)
+                    videoUrl = downloadableUrl
 
-                    Toast.makeText(this, "Video uploaded successfully: $videoUrl", Toast.LENGTH_SHORT).show()
+                    val db = Firebase.firestore
+
+                    // create a new document with relevant data
+                    val videoData = hashMapOf(
+                        "videoUrl" to videoUrl,
+                        "videoName" to uri.lastPathSegment,
+                        "uploadTime" to System.currentTimeMillis()
+                    )
+
+                    // add this document to a collection called "videos"
+                    db.collection("videos").add(videoData)
+                        .addOnSuccessListener {
+                            Toast.makeText(this, "Video and URL uploaded successfully: $videoUrl", Toast.LENGTH_SHORT).show()
+                        }
+                        .addOnFailureListener { exception ->
+                            Toast.makeText(this, "Failed to upload video data: $exception", Toast.LENGTH_SHORT).show()
+                        }
                 }
             }
             .addOnFailureListener { exception ->
@@ -305,6 +321,7 @@ class record_activity : AppCompatActivity() {
             }
     }
 
+/*
     private fun sendVideoToServer(url: String) {
         val client = OkHttpClient()
 
@@ -333,6 +350,10 @@ class record_activity : AppCompatActivity() {
             }
         }
     }
+
+
+ */
+
 
 
     /*
