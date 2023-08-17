@@ -78,4 +78,5 @@ dependencies {
     implementation "androidx.camera:camera-extensions:${camerax_version}"
 
     implementation("androidx.security:security-crypto:1.0.0")
+
 }

@@ -2,62 +2,51 @@ package com.example.mobilityscooterapp
 
 import android.content.ContentResolver
 import android.content.ContentValues
-import android.content.Context
 import android.content.Intent
-import android.content.res.AssetManager
-import android.graphics.Bitmap
-import android.media.MediaMetadataRetriever
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.SystemClock
 import android.provider.MediaStore
-import androidx.appcompat.app.AppCompatActivity
-import androidx.camera.video.Recorder
-import androidx.camera.video.Recording
-import androidx.camera.video.VideoCapture
-import androidx.core.content.ContextCompat
-import java.util.concurrent.ExecutorService
-import java.util.concurrent.Executors
-import android.widget.Toast
-import androidx.camera.lifecycle.ProcessCameraProvider
-import androidx.camera.core.Preview
-import androidx.camera.core.CameraSelector
 import android.util.Log
 import android.view.WindowManager
 import android.widget.Chronometer
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.camera.core.CameraSelector
+import androidx.camera.core.Preview
+import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.video.MediaStoreOutputOptions
 import androidx.camera.video.Quality
 import androidx.camera.video.QualitySelector
+import androidx.camera.video.Recorder
+import androidx.camera.video.Recording
+import androidx.camera.video.VideoCapture
 import androidx.camera.video.VideoRecordEvent
-import androidx.core.content.PermissionChecker
+import androidx.core.content.ContextCompat
 import androidx.documentfile.provider.DocumentFile
 import androidx.security.crypto.EncryptedFile
 import androidx.security.crypto.MasterKeys
 import com.example.mobilityscooterapp.databinding.ActivityRecordPreviewBinding
-import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.google.firebase.storage.ktx.storageMetadata
+import okhttp3.Call
+import okhttp3.Callback
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.RequestBody.Companion.toRequestBody
+import okhttp3.Response
+import org.json.JSONObject
 import java.io.File
-import java.io.FileInputStream
-import java.io.FileOutputStream
-import java.nio.MappedByteBuffer
-import java.nio.channels.FileChannel
+import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
-import org.tensorflow.lite.Interpreter
-import java.nio.ByteBuffer
-import java.nio.ByteOrder
-
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import okhttp3.RequestBody
-import okhttp3.RequestBody.Companion.toRequestBody
-import org.json.JSONObject
 
 
 class record_activity : AppCompatActivity() {
@@ -73,7 +62,7 @@ class record_activity : AppCompatActivity() {
     private var timeStamp: String = ""
 
     private var videoUrl: String? = null
-
+    private var dataFromServer: String? = null
 
     private lateinit var cameraExecutor: ExecutorService
 
@@ -171,6 +160,7 @@ class record_activity : AppCompatActivity() {
                                 putExtra("session_length", sessionLengthFormatted)
                                 putExtra("encrypted_video_path", encryptedFilePath)
                                 putExtra("video_timestamp", timeStamp)
+                                putExtra("poseData", dataFromServer)
                             }
                             finish()
                             startActivity(sessionSummary)
@@ -287,38 +277,56 @@ class record_activity : AppCompatActivity() {
             contentType = "video/mp4"
         }
 
-        // Upload the file to Firebase Storage
+        // Upload the video
         videoRef.putFile(uri, metadata)
             .addOnSuccessListener {
                 videoRef.downloadUrl.addOnSuccessListener { uri ->
-                    // Retrieve and modify the download URL to be downloadable
+                    // Retrieve the download URL
                     val downloadUrl = uri.toString()
                     val downloadableUrl = "$downloadUrl?alt=media"
 
                     videoUrl = downloadableUrl
 
-                    val db = Firebase.firestore
-
-                    // create a new document with relevant data
-                    val videoData = hashMapOf(
-                        "videoUrl" to videoUrl,
-                        "videoName" to uri.lastPathSegment,
-                        "uploadTime" to System.currentTimeMillis()
-                    )
-
-                    // add this document to a collection called "videos"
-                    db.collection("videos").add(videoData)
-                        .addOnSuccessListener {
-                            Toast.makeText(this, "Video and URL uploaded successfully: $videoUrl", Toast.LENGTH_SHORT).show()
-                        }
-                        .addOnFailureListener { exception ->
-                            Toast.makeText(this, "Failed to upload video data: $exception", Toast.LENGTH_SHORT).show()
-                        }
+                    // Send the video URL through HTTP POST request to the server
+                    sendVideoUrlToServer(videoUrl!!)
                 }
             }
             .addOnFailureListener { exception ->
                 Toast.makeText(this, "Failed to upload video: $exception", Toast.LENGTH_SHORT).show()
             }
     }
+
+    private fun sendVideoUrlToServer(videoUrl: String) {
+        val jsonBody = JSONObject().apply {
+            put("url", videoUrl)
+        }
+
+        val mediaType = "application/json".toMediaType()
+        val requestBody = jsonBody.toString().toRequestBody(mediaType)
+
+
+        val request = Request.Builder()
+            .url("http://34.125.211.47:5000/") // server url
+            .post(requestBody)
+            .build()
+
+        OkHttpClient().newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                // Handle the error
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                // Handle the response
+                if (response.isSuccessful) {
+                    val responseString = response.body?.string()
+                    dataFromServer = response.body?.string()
+                    Log.d(TAG, "Response from server: $responseString")
+                } else {
+                    Log.e(TAG, "Error response from server: ${response.message}")
+                }
+            }
+        })
+    }
+
 
 }
