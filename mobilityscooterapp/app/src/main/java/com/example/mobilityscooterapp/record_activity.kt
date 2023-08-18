@@ -150,8 +150,9 @@ class record_activity : AppCompatActivity() {
 
                             val sessionSummary = Intent(this, Driving_Session_Summary_activity::class.java).apply {
                                 val videoUri = recordEvent.outputResults.outputUri
-
+///////////////////////////////////////////////////////////////////////////////////
                                 uploadVideoToFirebaseStorage(videoUri)
+///////////////////////////////////////////////////////////////////////////////////
 
                                 val encryptedFilePath = encryptFile(videoUri, contentResolver)
 
@@ -266,7 +267,7 @@ class record_activity : AppCompatActivity() {
         contentResolver.delete(fileUri, null, null)
     }
 
-
+///////////////////////////////////////////////////////////////////////////////////
 
 
     private fun uploadVideoToFirebaseStorage(uri: Uri) {
