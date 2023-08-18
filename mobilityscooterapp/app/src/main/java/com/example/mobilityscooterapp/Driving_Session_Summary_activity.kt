@@ -56,14 +56,17 @@ class Driving_Session_Summary_activity : AppCompatActivity() {
         val date = intent.getStringExtra("date")
         val startTime = intent.getStringExtra("start_time")
         val sessionLength = intent.getStringExtra("session_length")
+        val esimateData = intent.getStringExtra("poseData")
 
         val dateTextView = findViewById<TextView>(R.id.textViewDate)
         val startTimeTextView = findViewById<TextView>(R.id.textViewStartTime)
         val sessionLengthTextView = findViewById<TextView>(R.id.SessionLength)
+        val poseDataView = findViewById<TextView>(R.id.textViewEstimate)
 
         dateTextView.text = getString(R.string.date_placeholder, date)
         startTimeTextView.text = getString(R.string.start_time_placeholder, startTime)
         sessionLengthTextView.text = getString(R.string.session_length_placeholder, sessionLength)
+        poseDataView.text = getString(R.string.estimate_estimate_placeholder, esimateData)
 
         if (encryptedFilePath != null) {
             val encryptedFile = File(encryptedFilePath)

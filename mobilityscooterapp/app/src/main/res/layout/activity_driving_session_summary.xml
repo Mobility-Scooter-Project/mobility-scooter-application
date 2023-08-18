@@ -85,7 +85,7 @@
             android:id="@+id/textViewEstimate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/estimate_estimate_placeholder"
+            android:text="@string/estimate_data"
             android:textSize="18sp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp" />
@@ -93,7 +93,7 @@
             android:id="@+id/textViewEstimate2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/estimate_estimate_placeholder"
+            android:text="@string/estimate_data2"
             android:textSize="18sp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp" />
