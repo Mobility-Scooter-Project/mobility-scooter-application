@@ -148,24 +148,25 @@ class record_activity : AppCompatActivity() {
                                     TimeUnit.MINUTES.toSeconds(minutes)
                             val sessionLengthFormatted = String.format(Locale.US, "%02d min %02d sec", minutes, seconds)
 
-                            val sessionSummary = Intent(this, Driving_Session_Summary_activity::class.java).apply {
-                                val videoUri = recordEvent.outputResults.outputUri
-///////////////////////////////////////////////////////////////////////////////////
-                                uploadVideoToFirebaseStorage(videoUri)
-///////////////////////////////////////////////////////////////////////////////////
+                            val videoUri = recordEvent.outputResults.outputUri
 
-                                val encryptedFilePath = encryptFile(videoUri, contentResolver)
+                            uploadVideoToFirebaseStorage(videoUri) { downloadableUrl ->
+                                sendVideoUrlToServer(downloadableUrl) { responseFromServer ->
 
-                                putExtra("date", date)
-                                putExtra("start_time", startTimeFormatted)
-                                putExtra("session_length", sessionLengthFormatted)
-                                putExtra("encrypted_video_path", encryptedFilePath)
-                                putExtra("video_timestamp", timeStamp)
-                                putExtra("poseData", dataFromServer)
+                                    val encryptedFilePath = encryptFile(videoUri, contentResolver)
+
+                                    val sessionSummary = Intent(this, Driving_Session_Summary_activity::class.java).apply {
+                                        putExtra("date", date)
+                                        putExtra("start_time", startTimeFormatted)
+                                        putExtra("session_length", sessionLengthFormatted)
+                                        putExtra("encrypted_video_path", encryptedFilePath)
+                                        putExtra("video_timestamp", timeStamp)
+                                        putExtra("poseData", responseFromServer)
+                                    }
+                                    finish()
+                                    startActivity(sessionSummary)
+                                }
                             }
-                            finish()
-                            startActivity(sessionSummary)
-
 
                         } else {
                             recording?.close()
@@ -270,7 +271,7 @@ class record_activity : AppCompatActivity() {
 ///////////////////////////////////////////////////////////////////////////////////
 
 
-    private fun uploadVideoToFirebaseStorage(uri: Uri) {
+    private fun uploadVideoToFirebaseStorage(uri: Uri, onComplete: (String) -> Unit) {
         val storage = Firebase.storage
         val storageRef = storage.reference
         val videoRef = storageRef.child("videos/${uri.lastPathSegment}")
@@ -282,14 +283,9 @@ class record_activity : AppCompatActivity() {
         videoRef.putFile(uri, metadata)
             .addOnSuccessListener {
                 videoRef.downloadUrl.addOnSuccessListener { uri ->
-                    // Retrieve the download URL
                     val downloadUrl = uri.toString()
                     val downloadableUrl = "$downloadUrl?alt=media"
-
-                    videoUrl = downloadableUrl
-
-                    // Send the video URL through HTTP POST request to the server
-                    sendVideoUrlToServer(videoUrl!!)
+                    onComplete(downloadableUrl)
                 }
             }
             .addOnFailureListener { exception ->
@@ -297,37 +293,38 @@ class record_activity : AppCompatActivity() {
             }
     }
 
-    private fun sendVideoUrlToServer(videoUrl: String) {
+    private fun sendVideoUrlToServer(videoUrl: String, onComplete: (String?) -> Unit) {
         val jsonBody = JSONObject().apply {
             put("url", videoUrl)
         }
 
+        Log.d(TAG, "Sending video URL to server: $videoUrl")
+
+
         val mediaType = "application/json".toMediaType()
         val requestBody = jsonBody.toString().toRequestBody(mediaType)
 
-
         val request = Request.Builder()
-            .url("http://34.125.211.47:5000/") // server url
+            .url("http://34.125.170.238:5000/") // server url
             .post(requestBody)
             .build()
 
         OkHttpClient().newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
-                // Handle the error
+                Log.e(TAG, "Network request failed", e)
             }
 
             override fun onResponse(call: Call, response: Response) {
-                // Handle the response
                 if (response.isSuccessful) {
                     val responseString = response.body?.string()
-                    dataFromServer = response.body?.string()
-                    Log.d(TAG, "Response from server: $responseString")
+                    Log.d(TAG, "Successful response from server: $responseString")
+                    onComplete(responseString)
                 } else {
                     Log.e(TAG, "Error response from server: ${response.message}")
                 }
             }
         })
-    }
 
+    }
 
 }
