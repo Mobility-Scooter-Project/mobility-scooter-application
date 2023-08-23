@@ -305,7 +305,7 @@ class record_activity : AppCompatActivity() {
         val requestBody = jsonBody.toString().toRequestBody(mediaType)
 
         val request = Request.Builder()
-            .url("http://34.125.170.238:5000/") // server url
+            .url("https://mobilityscootermoblie.app/") // server url
             .post(requestBody)
             .build()
 
