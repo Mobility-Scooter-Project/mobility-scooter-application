@@ -65,6 +65,7 @@ class record_activity : AppCompatActivity() {
     private var dataFromServer: String? = null
 
     private lateinit var cameraExecutor: ExecutorService
+    private var timeCounter: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -141,6 +142,12 @@ class record_activity : AppCompatActivity() {
                     }
                     is VideoRecordEvent.Finalize -> {
                         if (!recordEvent.hasError()) {
+
+                            timeCounter = SystemClock.elapsedRealtime()
+
+                            val endTime1 = SystemClock.elapsedRealtime()
+                            val elapsedTime1 = endTime1 - timeCounter
+                            Toast.makeText(this, "Time for first process: ${elapsedTime1}ms", Toast.LENGTH_LONG).show()
 
                             sessionLength = System.currentTimeMillis() - startTime
                             val minutes = TimeUnit.MILLISECONDS.toMinutes(sessionLength)
@@ -297,6 +304,9 @@ class record_activity : AppCompatActivity() {
         val jsonBody = JSONObject().apply {
             put("url", videoUrl)
         }
+        val endTime2 = SystemClock.elapsedRealtime()
+        val elapsedTime2 = endTime2 - timeCounter
+        Toast.makeText(this, "Time for second process: ${elapsedTime2}ms", Toast.LENGTH_LONG).show()
 
         Log.d(TAG, "Sending video URL to server: $videoUrl")
 
@@ -316,6 +326,10 @@ class record_activity : AppCompatActivity() {
 
             override fun onResponse(call: Call, response: Response) {
                 if (response.isSuccessful) {
+                    val endTime3 = SystemClock.elapsedRealtime()
+                    val elapsedTime3 = endTime3 - timeCounter
+                    Log.d(TAG, "Time for second process: ${elapsedTime3}ms")
+
                     val responseString = response.body?.string()
                     Log.d(TAG, "Successful response from server: $responseString")
                     onComplete(responseString)
