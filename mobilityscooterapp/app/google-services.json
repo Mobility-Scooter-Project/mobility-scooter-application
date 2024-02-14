@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "778782627717",
+    "project_id": "mobility-scooter-app",
+    "storage_bucket": "mobility-scooter-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:778782627717:android:e246e070802f82c9b2d6ec",
+        "android_client_info": {
+          "package_name": "com.example.mobilityscooterapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "778782627717-hf9n5nvibqh7cdopckblllcaop17ql7h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-qtj3GvYRxKT53fK1RrE76b0_8DDjinY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "778782627717-hf9n5nvibqh7cdopckblllcaop17ql7h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
