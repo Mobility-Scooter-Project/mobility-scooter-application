@@ -115,7 +115,6 @@ class Driving_Session_Summary_activity : AppCompatActivity() {
 
 
 
-
                 // Start video_view_activity with the path of decrypted video
                 binding.videoView.setOnClickListener {
                     val watchVideo = Intent(this, video_view_activity::class.java).apply {
@@ -203,6 +202,7 @@ class Driving_Session_Summary_activity : AppCompatActivity() {
             finish()
             startActivity(goTohHomeFragment)
         }
+
         binding.DriveBottom.setOnClickListener {
             deleteDecryptedFile()
             val drive = Intent(this, drive_activity::class.java)

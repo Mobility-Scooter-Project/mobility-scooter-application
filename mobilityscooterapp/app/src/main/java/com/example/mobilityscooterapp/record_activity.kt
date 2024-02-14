@@ -147,6 +147,9 @@ class record_activity : AppCompatActivity() {
 
                             val endTime1 = SystemClock.elapsedRealtime()
                             val elapsedTime1 = endTime1 - timeCounter
+                            val elapsedTimeFormatted = convertMillisToTimeFormat(elapsedTime1)
+                            Log.d(TAG, "finish record video: 0 ms")
+                            Log.d(TAG, "Sending video https to server: $elapsedTimeFormatted")
                             Toast.makeText(this, "Time for first process: ${elapsedTime1}ms", Toast.LENGTH_LONG).show()
 
                             sessionLength = System.currentTimeMillis() - startTime
@@ -300,12 +303,16 @@ class record_activity : AppCompatActivity() {
             }
     }
 
+
     private fun sendVideoUrlToServer(videoUrl: String, onComplete: (String?) -> Unit) {
         val jsonBody = JSONObject().apply {
             put("url", videoUrl)
         }
         val endTime2 = SystemClock.elapsedRealtime()
         val elapsedTime2 = endTime2 - timeCounter
+        Log.d(TAG, "Sending video https to server: $elapsedTime2")
+        val elapsedTimeFormatted = convertMillisToTimeFormat(endTime2)
+        Log.d(TAG, "Sending video https to server: $elapsedTimeFormatted")
         Toast.makeText(this, "Time for second process: ${elapsedTime2}ms", Toast.LENGTH_LONG).show()
 
         Log.d(TAG, "Sending video URL to server: $videoUrl")
@@ -314,21 +321,30 @@ class record_activity : AppCompatActivity() {
         val mediaType = "application/json".toMediaType()
         val requestBody = jsonBody.toString().toRequestBody(mediaType)
 
+        val client = OkHttpClient.Builder()
+            .connectTimeout(100, TimeUnit.SECONDS) // Increase connect timeout
+            .writeTimeout(100, TimeUnit.SECONDS) // Increase write timeout
+            .readTimeout(1001, TimeUnit.SECONDS) // Increase read timeout
+            .build()
+
         val request = Request.Builder()
             .url("https://mobilityscootermoblie.app/") // server url
             .post(requestBody)
             .build()
 
-        OkHttpClient().newCall(request).enqueue(object : Callback {
+        client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
                 Log.e(TAG, "Network request failed", e)
             }
 
             override fun onResponse(call: Call, response: Response) {
                 if (response.isSuccessful) {
+
                     val endTime3 = SystemClock.elapsedRealtime()
                     val elapsedTime3 = endTime3 - timeCounter
-                    Log.d(TAG, "Time for second process: ${elapsedTime3}ms")
+                    Log.d(TAG, "Time for end process: ${elapsedTime3}ms")
+                    val elapsedTimeFormatted1 = convertMillisToTimeFormat(endTime3)
+                    Log.d(TAG, "Time for end process: ${elapsedTimeFormatted1}ms")
 
                     val responseString = response.body?.string()
                     Log.d(TAG, "Successful response from server: $responseString")
@@ -340,6 +356,12 @@ class record_activity : AppCompatActivity() {
             }
         })
 
+    }
+    fun convertMillisToTimeFormat(millis: Long): String {
+        val hours = millis / (1000 * 60 * 60) % 24
+        val minutes = millis / (1000 * 60) % 60
+        val seconds = millis / 1000 % 60
+        return String.format("%02d:%02d:%02d", hours, minutes, seconds)
     }
 
 }
