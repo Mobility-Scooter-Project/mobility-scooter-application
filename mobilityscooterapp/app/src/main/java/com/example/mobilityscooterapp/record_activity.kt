@@ -346,6 +346,7 @@ class record_activity : AppCompatActivity() {
                     val elapsedTimeFormatted1 = convertMillisToTimeFormat(endTime3)
                     Log.d(TAG, "Time for end process: ${elapsedTimeFormatted1}ms")
 
+
                     val responseString = response.body?.string()
                     Log.d(TAG, "Successful response from server: $responseString")
 
