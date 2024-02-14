@@ -332,6 +332,7 @@ class record_activity : AppCompatActivity() {
 
                     val responseString = response.body?.string()
                     Log.d(TAG, "Successful response from server: $responseString")
+
                     onComplete(responseString)
                 } else {
                     Log.e(TAG, "Error response from server: ${response.message}")
