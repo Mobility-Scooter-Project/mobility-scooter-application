@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+ <navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.mobilityscooterapp.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_drive_start_page"
+            app:destination="@id/drive_start_page" />
+        <action
+            android:id="@+id/action_homeFragment_to_analytic_start_page"
+            app:destination="@id/analytic_start_page" />
+        <action
+            android:id="@+id/action_homeFragment_to_messeges_page"
+            app:destination="@id/messeges_page" />
+        <action
+            android:id="@+id/action_homeFragment_to_accessibilityFragment"
+            app:destination="@id/accessibilityFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/drive_start_page"
+        android:name="com.example.mobilityscooterapp.drive_start_page"
+        android:label="fragment_drive_start_page"
+        tools:layout="@layout/fragment_drive_start_page" >
+        <action
+            android:id="@+id/action_drive_start_page_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_drive_start_page_to_homeFragment2"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_drive_start_page_to_analytic_start_page"
+            app:destination="@id/analytic_start_page" />
+        <action
+            android:id="@+id/action_drive_start_page_to_messeges_page"
+            app:destination="@id/messeges_page" />
+        <action
+            android:id="@+id/action_drive_start_page_to_record_preview_activity"
+            app:destination="@id/record_preview_activity" />
+    </fragment>
+    <fragment
+        android:id="@+id/analytic_start_page"
+        android:name="com.example.mobilityscooterapp.analytic_start_page"
+        android:label="fragment_analytic_start_page"
+        tools:layout="@layout/fragment_analytic_start_page" >
+        <action
+            android:id="@+id/action_analytic_start_page_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_analytic_start_page_to_drive_start_page"
+            app:destination="@id/drive_start_page" />
+        <action
+            android:id="@+id/action_analytic_start_page_to_messeges_page"
+            app:destination="@id/messeges_page" />
+        <action
+            android:id="@+id/action_analytic_start_page_to_homeFragment2"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_analytic_start_page_to_session_history_activity"
+            app:destination="@id/session_history_activity" />
+    </fragment>
+    <fragment
+        android:id="@+id/messeges_page"
+        android:name="com.example.mobilityscooterapp.messeges_page"
+        android:label="fragment_messeges_page"
+        tools:layout="@layout/fragment_messeges_page" >
+        <action
+            android:id="@+id/action_messeges_page_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_messeges_page_to_analytic_start_page"
+            app:destination="@id/analytic_start_page" />
+        <action
+            android:id="@+id/action_messeges_page_to_drive_start_page"
+            app:destination="@id/drive_start_page" />
+    </fragment>
+    <fragment
+        android:id="@+id/accessibilityFragment"
+        android:name="com.example.mobilityscooterapp.AccessibilityFragment"
+        android:label="fragment_accessibility"
+        tools:layout="@layout/fragment_accessibility" >
+        <action
+            android:id="@+id/action_accessibilityFragment_to_drive_start_page"
+            app:destination="@id/drive_start_page" />
+        <action
+            android:id="@+id/action_accessibilityFragment_to_analytic_start_page"
+            app:destination="@id/analytic_start_page" />
+        <action
+            android:id="@+id/action_accessibilityFragment_to_messeges_page"
+            app:destination="@id/messeges_page" />
+        <action
+            android:id="@+id/action_accessibilityFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <activity
+        android:id="@+id/record_preview_activity"
+        android:name="com.example.mobilityscooterapp.record_activity"
+        android:label="activity_record_preview"
+        tools:layout="@layout/activity_record_preview" />
+    <activity
+        android:id="@+id/session_history_activity"
+        android:name="com.example.mobilityscooterapp.session_history_activity"
+        android:label="activity_session_history"
+        tools:layout="@layout/activity_session_history" />
+</navigation>

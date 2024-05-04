@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Driving_Session_Summary_activity">
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="73dp"
+        android:background="#557EA8">
+
+        <ImageView
+            android:id="@+id/hamburgerMenu"
+            android:layout_width="52dp"
+            android:layout_height="60dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="19dp"
+            android:layout_marginBottom="2dp"
+            android:src="@drawable/hamberger_button" />
+
+        <TextView
+            android:id="@+id/text_above"
+            android:layout_width="65dp"
+            android:layout_height="26dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="28dp"
+            android:layout_marginRight="-43dp"
+            android:layout_toLeftOf="@id/hamburgerMenu"
+            android:gravity="end"
+            android:text="@string/more"
+            android:textColor="@color/white" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/relativeLayout3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/home">
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/driving_session_summary"
+            android:textSize="28sp" />
+
+        <TextView
+            android:id="@+id/textViewDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/date_date_placeholder"
+            android:textSize="18sp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:id="@+id/textViewStartTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/start_time_start_time_placeholder"
+            android:textSize="18sp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp" />
+        <TextView
+            android:id="@+id/SessionLength"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sessionLength_placeholder"
+            android:textSize="18sp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:id="@+id/textViewEstimate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/estimate_data"
+            android:textSize="18sp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp" />
+        <TextView
+            android:id="@+id/textViewEstimate2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/estimate_data2"
+            android:textSize="18sp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp" />
+        <TextView
+            android:id="@+id/textviewVideo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="@string/click_the_following_video_to_view_it"
+            android:textSize="20sp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp" />
+
+
+        <FrameLayout
+            android:id="@+id/frameLayoutAroundVideoView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="16dp">
+
+            <VideoView
+                android:id="@+id/videoView"
+                android:layout_width="wrap_content"
+                android:layout_height="200dp"
+                android:layout_gravity="center" />
+
+        </FrameLayout>
+
+
+        <Button
+            android:id="@+id/buttonNext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="Go to session history" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/home"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:background="@drawable/home_button"
+        app:layout_constraintWidth_percent="0.25"
+        app:layout_constraintEnd_toStartOf="@+id/Drive_Bottom"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="Home"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:clickable="true"
+        android:focusable="true"
+        app:drawableBottomCompat="@drawable/baseline_home_24" />
+
+    <TextView
+        android:id="@+id/Drive_Bottom"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:background="@drawable/drive_bottom"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:text="Drive"
+        android:textSize="18sp"
+        app:drawableBottomCompat="@drawable/baseline_bike_scooter_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/analytics_button"
+        app:layout_constraintStart_toEndOf="@id/home"
+        app:layout_constraintWidth_percent="0.25" />
+
+    <TextView
+        android:id="@+id/analytics_button"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:background="@drawable/analytics_bottom"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:text="@string/analytics"
+        android:textSize="18sp"
+        app:drawableBottomCompat="@drawable/baseline_analytics_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button4"
+        app:layout_constraintStart_toEndOf="@id/Drive_Bottom"
+        app:layout_constraintWidth_percent="0.25" />
+
+    <TextView
+        android:id="@+id/button4"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:background="@drawable/messages_bottom"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:text="Messages"
+        android:textSize="18sp"
+        app:drawableBottomCompat="@drawable/baseline_email_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/analytics_button"
+        app:layout_constraintWidth_percent="0.25" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
