@@ -42,7 +42,7 @@
     <string name="start_time_placeholder">Start Time: %1$s</string>
     <string name="session_length_placeholder">Session Length: %1$s</string>
     <string name="request_reset">Request reset</string>
-    <string name="email_address">type your email address</string>
+    <string name="email_address">Type your email address</string>
     <string name="pause">pause</string>
     <string name="estimate_estimate_placeholder">Estimate: %s</string>
     <string name="date_date_placeholder">Date: </string>
