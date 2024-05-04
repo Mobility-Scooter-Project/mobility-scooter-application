@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:fillViewport="true"
     android:padding="16dp"
-    tools:context=".SignupActivity">
+    tools:context=".SignupActivity"
+    android:windowSoftInputMode="adjustPan">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -15,7 +16,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
             android:orientation="vertical">
 
             <LinearLayout
@@ -25,6 +25,27 @@
                 android:layout_marginBottom="10dp"
                 android:orientation="horizontal">
 
+                <ImageView
+                    android:id="@+id/backButton"
+                    android:layout_width="82dp"
+                    android:layout_height="60dp"
+                    android:contentDescription="@string/back"
+                    android:src="@drawable/baseline_arrow_circle_left_24" />
+
+                <TextView
+                    android:id="@+id/createAccountText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/create_an_account"
+                    android:textSize="25sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -42,7 +63,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                 </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -191,58 +218,35 @@
                 android:id="@+id/terms_conditions_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginBottom="10dp"
                 android:text="@string/view_terms_conditions"
+                android:textAllCaps="false"
                 android:textSize="20sp"
-                android:textAllCaps="false" />
+                android:layout_gravity="center_horizontal"/>
 
             <CheckBox
                 android:id="@+id/terms_conditions_checkbox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:text="@string/i_accept_the_terms_conditions"
+                android:textAllCaps="false"
                 android:textSize="18sp"
-                android:textAllCaps="false" />
+                android:layout_gravity="center_horizontal"/>
 
             <Button
                 android:id="@+id/create_account_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginBottom="10dp"
-                android:textSize="22sp"
                 android:text="@string/register"
-                android:textAllCaps="false" />
+                android:textAllCaps="false"
+                android:textSize="22sp" />
 
         </LinearLayout>
 
-
-        <ImageView
-            android:id="@+id/backButton"
-            android:layout_width="wrap_content"
-            android:layout_height="72dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="1dp"
-            android:layout_marginTop="0dp"
-            android:layout_marginEnd="290dp"
-            android:layout_marginBottom="627dp"
-            android:contentDescription="@string/todo"
-            android:src="@drawable/baseline_arrow_circle_left_24" />
-
-        <TextView
-            android:id="@+id/textView7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginEnd="70dp"
-            android:layout_marginBottom="665dp"
-            android:text="@string/create_an_account"
-            android:textSize="25sp" />
 
     </RelativeLayout>
 
