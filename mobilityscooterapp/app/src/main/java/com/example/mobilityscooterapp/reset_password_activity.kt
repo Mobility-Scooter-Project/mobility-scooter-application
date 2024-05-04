@@ -62,8 +62,10 @@ class reset_password_activity : AppCompatActivity() {
         binding.backButton.setOnClickListener {
             finish()
         }
+
         binding.backText.setOnClickListener {
             finish()
         }
+
     }
 }

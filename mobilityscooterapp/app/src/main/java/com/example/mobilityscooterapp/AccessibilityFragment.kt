@@ -19,6 +19,7 @@ class AccessibilityFragment : Fragment() {
     ): View? {
         return inflater.inflate(R.layout.fragment_accessibility, container, false)
     }
+
     private var currentFontSize: Int = DEFAULT_FONT_SIZE
 
     companion object {
@@ -41,10 +42,8 @@ class AccessibilityFragment : Fragment() {
     }
 
     private fun applyFontSize(fontSize: Int) {
-
         val textViews = listOf(
-                view?.findViewById<TextView>(R.id.textView4)
-
+            view?.findViewById<TextView>(R.id.textView4)
         )
         textViews.forEach { textView ->
             textView?.let {
@@ -54,10 +53,8 @@ class AccessibilityFragment : Fragment() {
         }
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
 
         var currentFontSize = getFontSizePreference()
 
@@ -78,8 +75,6 @@ class AccessibilityFragment : Fragment() {
             }
         }
 
-
-//////////////////////////////////////////////////////////////////////////////
         val HomeButton = view.findViewById<TextView>(R.id.home)
         HomeButton?.setOnClickListener {
             findNavController().navigate(R.id.action_accessibilityFragment_to_homeFragment)
@@ -99,7 +94,6 @@ class AccessibilityFragment : Fragment() {
         Messagebutton?.setOnClickListener {
             findNavController().navigate(R.id.action_accessibilityFragment_to_messeges_page)
         }
-////////////////////////////////////////////////////////////////////////////////
     }
 
     private fun changeFontSize(change: Int, fontSizeText: TextView) {
@@ -109,5 +103,4 @@ class AccessibilityFragment : Fragment() {
         saveFontSizePreference(currentFontSize) // Save the new preference
         applyFontSize(currentFontSize) // Apply the new font size
     }
-
 }
