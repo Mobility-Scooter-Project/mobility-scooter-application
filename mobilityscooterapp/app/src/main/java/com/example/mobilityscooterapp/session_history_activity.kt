@@ -32,6 +32,9 @@ class session_history_activity : AppCompatActivity() {
         binding.recyclerView.adapter = adapter
 
         fetchSessions()
+        binding.backButton.setOnClickListener {
+            finish()
+        }
     }
 
     @SuppressLint("NotifyDataSetChanged")
