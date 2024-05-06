@@ -42,6 +42,7 @@
 
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -67,7 +68,7 @@
                 android:layout_height="wrap_content"
                 android:text="Font size:"
                 android:textSize="20sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/decrease_font_size_button"
@@ -76,7 +77,7 @@
                 android:layout_weight="1"
                 android:text="-"
                 android:textSize="20sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/font_size_text"
@@ -86,7 +87,7 @@
                 android:gravity="center"
                 android:text="18"
                 android:textSize="20sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/increase_font_size_button"
@@ -95,7 +96,7 @@
                 android:layout_weight="1"
                 android:text="+"
                 android:textSize="20sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
         </LinearLayout>
 
         <!-- Zoom Level Adjustment -->
@@ -110,7 +111,7 @@
                 android:layout_height="wrap_content"
                 android:text="Font size:"
                 android:textSize="20sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/decrease_zoom_button"
@@ -119,7 +120,7 @@
                 android:layout_weight="1"
                 android:text="-"
                 android:textSize="20sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/zoom_text"
@@ -129,7 +130,7 @@
                 android:gravity="center"
                 android:text="100%"
                 android:textSize="20sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/increase_zoom_button"
@@ -138,7 +139,7 @@
                 android:layout_weight="1"
                 android:text="+"
                 android:textSize="20sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
         </LinearLayout>
 
         <!-- Button Size Adjustment -->
@@ -148,7 +149,7 @@
             android:layout_height="wrap_content"
             android:text="Button size:"
             android:textSize="20sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <RadioGroup
             android:layout_width="match_parent"
@@ -161,7 +162,7 @@
                 android:layout_height="wrap_content"
                 android:text="Small"
                 android:textSize="20sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <RadioButton
                 android:id="@+id/medium_button_size"
@@ -170,7 +171,7 @@
                 android:checked="true"
                 android:text="Medium"
                 android:textSize="20sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <RadioButton
                 android:id="@+id/large_button_size"
@@ -178,7 +179,7 @@
                 android:layout_height="wrap_content"
                 android:text="Large"
                 android:textSize="20sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
         </RadioGroup>
 
         <!-- Dark Mode Toggle -->
@@ -188,7 +189,7 @@
             android:layout_height="wrap_content"
             android:text="Dark mode"
             android:textSize="20sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <!-- Other settings can be added here with similar structures -->
 
@@ -260,5 +261,16 @@
         app:layout_constraintStart_toEndOf="@id/analytics_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintWidth_percent="0.25" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/accessibility"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="122dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

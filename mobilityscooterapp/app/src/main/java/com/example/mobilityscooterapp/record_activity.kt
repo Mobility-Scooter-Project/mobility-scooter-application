@@ -160,6 +160,7 @@ class record_activity : AppCompatActivity() {
 
                             val videoUri = recordEvent.outputResults.outputUri
 
+                            setContentView(R.layout.splash_screen)
                             uploadVideoToFirebaseStorage(videoUri) { downloadableUrl ->
                                 sendVideoUrlToServer(downloadableUrl) { responseFromServer ->
 
