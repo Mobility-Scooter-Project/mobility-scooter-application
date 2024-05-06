@@ -10,7 +10,7 @@
         android:id="@+id/relativeLayout3"
         android:layout_width="match_parent"
         android:layout_height="73dp"
-        android:background="#557EA8">
+        android:background="#033261">
 
         <ImageView
             android:id="@+id/hamburgerMenu"

@@ -11,7 +11,8 @@
         android:id="@+id/relativeLayout2"
         android:layout_width="match_parent"
         android:layout_height="73dp"
-        android:background="#557EA8"
+        android:background="#033261"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints">
 
         <ImageView
@@ -260,12 +261,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintWidth_percent="0.25" />
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/accessibility"
-        android:textStyle="bold"
-        app:layout_constraintVertical_bias="0.135"
-        />
 </androidx.constraintlayout.widget.ConstraintLayout>

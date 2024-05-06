@@ -11,7 +11,7 @@
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="73dp"
-        android:background="#557EA8"
+        android:background="#033261"
         tools:ignore="MissingConstraints">
 
         <ImageView
