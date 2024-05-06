@@ -57,7 +57,7 @@ dependencies {
     implementation "androidx.camera:camera-core:${camerax_version}"
     implementation "androidx.camera:camera-lifecycle:${camerax_version}"
     implementation "androidx.camera:camera-video:${camerax_version}"
-
+    implementation 'com.google.android.material:material:1.0.0'
     implementation libs.exoplayer
 
     implementation 'org.tensorflow:tensorflow-lite:2.7.0'

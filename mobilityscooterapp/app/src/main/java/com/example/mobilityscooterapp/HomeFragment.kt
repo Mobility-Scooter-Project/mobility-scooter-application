@@ -1,8 +1,10 @@
 package com.example.mobilityscooterapp
 
+import android.content.Context
 import android.os.Bundle
 import android.os.Message
 import android.util.Log
+import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 
 
@@ -22,6 +25,20 @@ class HomeFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
+    fun showToast(context: Context, message: String) {
+        val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val layout = inflater.inflate(R.layout.custom_toast_layout, null)
+
+        val toastText = layout.findViewById<TextView>(R.id.toast_text)
+        toastText.text = message
+
+        with (Toast(context)) {
+            duration = Toast.LENGTH_LONG
+            setGravity(Gravity.CENTER, 0, 0)
+            view = layout
+            show()
+        }
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -43,7 +60,8 @@ class HomeFragment : Fragment() {
 
         val accessibilityButton = view.findViewById<Button>(R.id.accessibility_setting_bottom)
         accessibilityButton?.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_accessibilityFragment)
+            showToast(requireContext(), "Under construction!")
+            //findNavController().navigate(R.id.action_homeFragment_to_accessibilityFragment)
         }
 
     }

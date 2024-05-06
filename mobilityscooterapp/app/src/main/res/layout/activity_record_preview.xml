@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:text="Please Position torso within screen and press \record\ when ready"
+            android:text="Please position torso within screen and press \record\ when ready"
             android:textColor="@android:color/black"
             android:textStyle="bold" />
     </androidx.appcompat.widget.Toolbar>
@@ -61,10 +61,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="Start Record"
+        android:text="start recording"
         app:layout_constraintBottom_toBottomOf="@id/viewFinder"
         app:layout_constraintEnd_toEndOf="@id/viewFinder"
-        app:layout_constraintHorizontal_bias="0.944"
+        app:layout_constraintHorizontal_bias="0.94"
         app:layout_constraintStart_toStartOf="@id/viewFinder"
         app:layout_constraintTop_toTopOf="@id/viewFinder"
         app:layout_constraintVertical_bias="0.492" />
