@@ -18,14 +18,14 @@ import androidx.navigation.fragment.findNavController
 
 class HomeFragment : Fragment() {
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_home, container, false)
-    }
+        override fun onCreateView(
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
+        ): View? {
+            return inflater.inflate(R.layout.fragment_home, container, false)
+        }
 
-    fun showToast(context: Context, message: String) {
+        fun showToast(context: Context, message: String) {
         val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val layout = inflater.inflate(R.layout.custom_toast_layout, null)
 
@@ -39,6 +39,7 @@ class HomeFragment : Fragment() {
             show()
         }
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -65,6 +66,8 @@ class HomeFragment : Fragment() {
         }
 
     }
+
+
 }
 
 

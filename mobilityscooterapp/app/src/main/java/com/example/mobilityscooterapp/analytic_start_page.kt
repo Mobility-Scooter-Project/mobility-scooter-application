@@ -27,6 +27,11 @@ class analytic_start_page : Fragment() {
         @SuppressLint("SuspiciousIndentation")
         override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+            val fromHistory = arguments?.getBoolean("fromHistory", false) ?: false
+            if (fromHistory) {
+                val intent = Intent(activity, session_history_activity::class.java)
+                startActivity(intent)
+            }
 
         val homeButton = view.findViewById<TextView>(R.id.home)
             homeButton?.setOnClickListener {

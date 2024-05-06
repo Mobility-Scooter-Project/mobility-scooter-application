@@ -192,32 +192,44 @@ class Driving_Session_Summary_activity : AppCompatActivity() {
 
         binding.buttonNext.setOnClickListener {
             deleteDecryptedFile()
-            val history = Intent(this, session_history_activity::class.java)
+            val history = Intent(this, MainActivity::class.java)
+            history.putExtra("AutoNavigateToHistory", true)
+            history.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             finish()
             startActivity(history)
         }
+
         binding.home.setOnClickListener {
             deleteDecryptedFile()
-            val goTohHomeFragment = Intent(this, MainActivity::class.java)
+            val goToHomeIntent  = Intent(this, MainActivity::class.java)
+            goToHomeIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             finish()
-            startActivity(goTohHomeFragment)
+            startActivity(goToHomeIntent)
         }
 
         binding.DriveBottom.setOnClickListener {
             deleteDecryptedFile()
-            val drive = Intent(this, drive_activity::class.java)
+            val driveIntent = Intent(this, MainActivity::class.java)
+            driveIntent.putExtra("AutoNavigateToDrive", true)
+            driveIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             finish()
-            startActivity(drive)
+            startActivity(driveIntent)
         }
+
         binding.analyticsButton.setOnClickListener {
             deleteDecryptedFile()
-            val analyticsPage = Intent(this, analysis_acitvity::class.java)
+            val analyticsPage = Intent(this, MainActivity::class.java)
+            analyticsPage.putExtra("AutoNavigateToAnalytics", true)
+            analyticsPage.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             finish()
             startActivity(analyticsPage)
         }
+
         binding.button4.setOnClickListener {
             deleteDecryptedFile()
             val toMessage = Intent(this, message_activity::class.java)
+            toMessage.putExtra("AutoNavigateToMessage", true)
+            toMessage.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             finish()
             startActivity(toMessage)
         }

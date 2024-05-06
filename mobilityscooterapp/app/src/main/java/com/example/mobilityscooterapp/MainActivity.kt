@@ -1,6 +1,7 @@
 package com.example.mobilityscooterapp
 
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.NavController
@@ -15,6 +16,36 @@ class MainActivity : AppCompatActivity() {
         val navHomeFragment = supportFragmentManager
             .findFragmentById(R.id.fragment) as NavHostFragment
         navController = navHomeFragment.navController
+
+        handleIntent()
+    }
+
+    private fun handleIntent() {
+        val shouldNavigateToDrive = intent.getBooleanExtra("AutoNavigateToDrive", false)
+        val shouldNavigateToAnalytics = intent.getBooleanExtra("AutoNavigateToAnalytics", false)
+        val shouldNavigateToMessage = intent.getBooleanExtra("AutoNavigateToMessage", false)
+        val shouldNavigateToHistory = intent.getBooleanExtra("AutoNavigateToHistory", false)
+        if (shouldNavigateToDrive) {
+            navController.navigate(R.id.action_homeFragment_to_drive_start_page)
+        }
+        if (shouldNavigateToAnalytics) {
+            navController.navigate(R.id.action_homeFragment_to_analytic_start_page)
+        }
+        if (shouldNavigateToMessage) {
+            navController.navigate(R.id.action_homeFragment_to_messeges_page)
+        }
+        if (shouldNavigateToHistory) {
+            val bundle = Bundle()
+            bundle.putBoolean("fromHistory", true)
+            navController.navigate(R.id.action_homeFragment_to_analytic_start_page)
+        }
+
+    }
+
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+        handleIntent()
     }
 }
 
