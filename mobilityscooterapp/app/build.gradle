@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.mobilityscooterapp'
+    namespace 'com.mobility.mobilityscooterapp'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.mobilityscooterapp"
+        applicationId "com.mobility.mobilityscooterapp"
         minSdk 24
         targetSdk 33
         versionCode 1
