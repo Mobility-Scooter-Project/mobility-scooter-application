@@ -80,18 +80,20 @@
             android:layout_marginEnd="162dp"
             android:layout_marginBottom="50dp"
             android:text="@string/drive"
+            android:textColor="#000000"
             android:textSize="32sp" />
 
         <TextView
-            android:layout_width="226dp"
-            android:layout_height="53dp"
+            android:layout_width="254dp"
+            android:layout_height="52dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="142dp"
-            android:layout_marginEnd="48dp"
+            android:layout_marginEnd="20dp"
             android:layout_marginBottom="2dp"
             android:text="@string/record_a_new_session"
+            android:textColor="#000000"
             android:textSize="22sp" />
     </RelativeLayout>
 
@@ -134,18 +136,20 @@
             android:layout_marginEnd="138dp"
             android:layout_marginBottom="64dp"
             android:text="@string/analytics"
+            android:textColor="#000000"
             android:textSize="32sp" />
 
         <TextView
-            android:layout_width="282dp"
+            android:layout_width="229dp"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="135dp"
-            android:layout_marginEnd="-1dp"
-            android:layout_marginBottom="27dp"
+            android:layout_marginStart="131dp"
+            android:layout_marginEnd="56dp"
+            android:layout_marginBottom="15dp"
             android:text="@string/view_data_analytics_or_history"
+            android:textColor="#000000"
             android:textSize="18sp" />
     </RelativeLayout>
 
@@ -187,6 +191,7 @@
             android:layout_marginEnd="61dp"
             android:layout_marginBottom="33dp"
             android:text="@string/messages"
+            android:textColor="#000000"
             android:textSize="32sp" />
 
     </RelativeLayout>
@@ -220,13 +225,13 @@
             android:background="@android:color/transparent" />
 
         <TextView
-            android:layout_width="181dp"
-            android:layout_height="51dp"
+            android:layout_width="202dp"
+            android:layout_height="52dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="147dp"
-            android:layout_marginEnd="88dp"
+            android:layout_marginEnd="67dp"
             android:layout_marginBottom="51dp"
             android:text="@string/accessibility"
             android:textColor="@color/white"

@@ -23,6 +23,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="@string/driving_session_summary"
+        android:textColor="#000000"
         android:textSize="28sp" />
 
     <TextView
@@ -32,6 +33,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="@string/date_date_placeholder"
+        android:textColor="#000000"
         android:textSize="18sp" />
 
     <TextView
@@ -41,6 +43,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="@string/start_time_start_time_placeholder"
+        android:textColor="#000000"
         android:textSize="18sp" />
 
     <TextView
@@ -50,6 +53,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="@string/sessionLength_placeholder"
+        android:textColor="#000000"
         android:textSize="18sp" />
 
     <TextView
@@ -59,6 +63,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="@string/estimate_estimate_placeholder"
+        android:textColor="#000000"
         android:textSize="18sp" />
 
     <TextView
@@ -68,6 +73,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="@string/estimate_estimate_placeholder"
+        android:textColor="#000000"
         android:textSize="18sp" />
 
     <TextView
@@ -77,6 +83,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="@string/click_the_following_video_to_view_it"
+        android:textColor="#000000"
         android:textSize="20sp"
         android:textStyle="bold" />
 
