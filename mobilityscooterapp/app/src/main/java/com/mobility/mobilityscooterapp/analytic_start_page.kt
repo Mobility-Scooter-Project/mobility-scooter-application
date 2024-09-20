@@ -45,11 +45,11 @@ class analytic_start_page : Fragment() {
 //                findNavController().navigate(R.id.action_analytic_start_page_to_messeges_page)
 //            }
 //
-//            val sessionHistory = view.findViewById<ImageView>(R.id.imageView1)
-//            sessionHistory?.setOnClickListener {
-//                val intent = Intent(activity, session_history_activity::class.java)
-//                startActivity(intent)
-//            }
+            val sessionHistory = view.findViewById<ImageView>(R.id.imageView1)
+            sessionHistory?.setOnClickListener {
+                val intent = Intent(activity, session_history_activity::class.java)
+                startActivity(intent)
+            }
 
 
     }
