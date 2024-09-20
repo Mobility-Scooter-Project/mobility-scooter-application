@@ -27,27 +27,27 @@ class drive_start_page : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val homeButton = view.findViewById<TextView>(R.id.home)
-        homeButton?.setOnClickListener {
-            findNavController().navigate(R.id.action_drive_start_page_to_homeFragment)
-        }
+//        val homeButton = view.findViewById<TextView>(R.id.home)
+//        homeButton?.setOnClickListener {
+//            findNavController().navigate(R.id.action_drive_start_page_to_homeFragment)
+//        }
+//
+//        val analyticsButton = view.findViewById<TextView>(R.id.analytics_button)
+//        analyticsButton?.setOnClickListener {
+//            findNavController().navigate(R.id.action_drive_start_page_to_analytic_start_page)
+//        }
+//
+//        val messageButton = view.findViewById<TextView>(R.id.button4)
+//        messageButton?.setOnClickListener {
+//            findNavController().navigate(R.id.action_drive_start_page_to_messeges_page)
+//        }
+//
+//        val startButton = view.findViewById<Button>(R.id.start_record_button)
+//        startButton?.setOnClickListener {
+//            findNavController().navigate(R.id.action_drive_start_page_to_record_preview_activity)
+//        }
 
-        val analyticsButton = view.findViewById<TextView>(R.id.analytics_button)
-        analyticsButton?.setOnClickListener {
-            findNavController().navigate(R.id.action_drive_start_page_to_analytic_start_page)
-        }
-
-        val messageButton = view.findViewById<TextView>(R.id.button4)
-        messageButton?.setOnClickListener {
-            findNavController().navigate(R.id.action_drive_start_page_to_messeges_page)
-        }
-
-        val startButton = view.findViewById<Button>(R.id.start_record_button)
-        startButton?.setOnClickListener {
-            findNavController().navigate(R.id.action_drive_start_page_to_record_preview_activity)
-        }
-
-        get_permissions()
+        //get_permissions()
     }
 
     fun get_permissions() {

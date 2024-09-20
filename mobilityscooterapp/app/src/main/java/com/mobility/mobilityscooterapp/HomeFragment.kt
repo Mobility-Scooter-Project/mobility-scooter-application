@@ -15,14 +15,14 @@ import androidx.navigation.fragment.findNavController
 
 class HomeFragment : Fragment() {
 
-        override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
-        ): View? {
-            return inflater.inflate(R.layout.fragment_home, container, false)
-        }
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.fragment_home, container, false)
+    }
 
-        fun showToast(context: Context, message: String) {
+    fun showToast(context: Context, message: String) {
         val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val layout = inflater.inflate(R.layout.custom_toast_layout, null)
 
@@ -42,18 +42,18 @@ class HomeFragment : Fragment() {
 
         val driveButton = view.findViewById<Button>(R.id.Drive_Bottom)
         driveButton?.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_drive_start_page)
+            findNavController().navigate(R.id.drive_start_page)
         }
 
 
         val analyzeButton = view.findViewById<Button>(R.id.analytics_bottom)
         analyzeButton?.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_analytic_start_page)
+            findNavController().navigate(R.id.analytic_start_page)
         }
 
-        val Messagebutton = view.findViewById<Button>(R.id.messages_bottom)
-        Messagebutton?.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_messeges_page)
+        val messageButton = view.findViewById<Button>(R.id.messages_bottom)
+        messageButton?.setOnClickListener {
+            findNavController().navigate(R.id.messeges_page)
         }
 
         val accessibilityButton = view.findViewById<Button>(R.id.accessibility_setting_bottom)
