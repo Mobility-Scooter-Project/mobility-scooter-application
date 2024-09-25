@@ -92,7 +92,6 @@ class drive_start_page : Fragment() {
         if (permissionLst.size > 0) {
             requestPermissions(permissionLst.toTypedArray(), 101)
         }
-//
     }
 
     override fun onRequestPermissionsResult(
@@ -110,7 +109,12 @@ class drive_start_page : Fragment() {
     private fun requestCameraPermission() {
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA)
             != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(arrayOf(Manifest.permission.CAMERA), 1001)
+            if(shouldShowRequestPermissionRationale(Manifest.permission.CAMERA)){
+                requestPermissions(arrayOf(Manifest.permission.CAMERA), 1001)
+            }
+            else{
+                requestPermissionLauncher.launch(Manifest.permission.CAMERA)
+            }
         }
     }
     private fun requestWritePermissions() {
