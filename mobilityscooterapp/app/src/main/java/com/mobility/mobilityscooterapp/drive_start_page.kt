@@ -4,6 +4,7 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,6 +17,9 @@ import androidx.navigation.fragment.findNavController
 
 class drive_start_page : Fragment() {
     private lateinit var requestPermissionLauncher: ActivityResultLauncher<String>
+    private var neverCamera: Boolean = shouldShowRequestPermissionRationale(Manifest.permission.CAMERA)
+    private var neverWrite: Boolean = shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+    private var neverRead: Boolean = shouldShowRequestPermissionRationale(Manifest.permission.READ_EXTERNAL_STORAGE)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -49,11 +53,16 @@ class drive_start_page : Fragment() {
                     findNavController().navigate(R.id.action_drive_start_page_to_record_preview_activity)
                 }
                 else{
-                    if(cameraPermissions()==false){
-                        requestCameraPermission()
-                     }
-                    if(writePermissions()==false){
-                        requestWritePermissions()
+                    if(!shouldShowRequestPermissionRationale(Manifest.permission.CAMERA) && !shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)){
+                        requestPermissionLauncher.launch(Manifest.permission.CAMERA)
+                    }
+                    else{
+                        if(!cameraPermissions()){
+                            requestCameraPermission()
+                        }
+                        if(!writePermissions()){
+                            requestWritePermissions()
+                        }
                     }
                 }
 
@@ -79,43 +88,44 @@ class drive_start_page : Fragment() {
         }
         return false
     }
-    fun get_permissions(){
-        var permissionLst = mutableListOf<String>()
-
-        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)
-            permissionLst.add(Manifest.permission.CAMERA)
-        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
-            permissionLst.add(Manifest.permission.READ_EXTERNAL_STORAGE)
-        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
-            permissionLst.add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-
-        if (permissionLst.size > 0) {
-            requestPermissions(permissionLst.toTypedArray(), 101)
-        }
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        grantResults.forEach {
-            if (it != PackageManager.PERMISSION_GRANTED) {
-                get_permissions()
-            }
-        }
-    }
+//    fun get_permissions(){
+//        var permissionLst = mutableListOf<String>()
+//
+//        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)
+//            permissionLst.add(Manifest.permission.CAMERA)
+//        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
+//            permissionLst.add(Manifest.permission.READ_EXTERNAL_STORAGE)
+//        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
+//            permissionLst.add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+//
+//        if (permissionLst.size > 0) {
+//            requestPermissions(permissionLst.toTypedArray(), 101)
+//        }
+//    }
+//
+//    override fun onRequestPermissionsResult(
+//        requestCode: Int,
+//        permissions: Array<out String>,
+//        grantResults: IntArray
+//    ) {
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+//        grantResults.forEach {
+//            if (it != PackageManager.PERMISSION_GRANTED) {
+//                get_permissions()
+//            }
+//        }
+//    }
     private fun requestCameraPermission() {
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA)
             != PackageManager.PERMISSION_GRANTED) {
-            if(shouldShowRequestPermissionRationale(Manifest.permission.CAMERA)){
+            if(shouldShowRequestPermissionRationale(Manifest.permission.CAMERA)) {
                 requestPermissions(arrayOf(Manifest.permission.CAMERA), 1001)
             }
             else{
                 requestPermissionLauncher.launch(Manifest.permission.CAMERA)
             }
         }
+
     }
     private fun requestWritePermissions() {
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE)
