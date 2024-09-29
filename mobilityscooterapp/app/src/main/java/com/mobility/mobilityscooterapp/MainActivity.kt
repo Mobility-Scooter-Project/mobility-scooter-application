@@ -1,23 +1,22 @@
 package com.mobility.mobilityscooterapp
 
-
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.MenuItem
-import android.widget.Toast
-import androidx.core.content.ContextCompat
+import android.widget.TextView
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.onNavDestinationSelected
-import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
-    private lateinit var bottomNav: BottomNavigationView
+
+    // for new custom navbar
+    private lateinit var homeButton: TextView
+    private lateinit var driveButton: TextView
+    private lateinit var analyticsButton: TextView
+    private lateinit var messagesButton: TextView
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -26,39 +25,58 @@ class MainActivity : AppCompatActivity() {
             .findFragmentById(R.id.fragment) as NavHostFragment
         navController = navHomeFragment.navController
 
-        bottomNav = findViewById(R.id.bottom_nav_view)
+        // for new custom navbar
+        homeButton = findViewById(R.id.home)
+        driveButton = findViewById(R.id.Drive_Bottom)
+        analyticsButton = findViewById(R.id.analytics_button)
+        messagesButton = findViewById(R.id.button4)
 
-        bottomNav.setupWithNavController(navController)
+        homeButton.setOnClickListener {
+            navController.navigate(R.id.homeFragment)
+        }
 
-        // Set a listener for navigation item selection
-        bottomNav.setOnNavigationItemSelectedListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.homeFragment -> {
-                    bottomNav.background = ContextCompat.getDrawable(this, R.color.bottom_home_color)
-                    navController.navigate(R.id.homeFragment)
-                    true
-                }
-                R.id.drive_start_page -> {
-                    bottomNav.background = ContextCompat.getDrawable(this, R.color.bottom_drive_color)
-                    navController.navigate(R.id.drive_start_page)
-                    true
-                }
-                R.id.analytic_start_page -> {
-                    bottomNav.background = ContextCompat.getDrawable(this, R.color.bottom_analytics_color)
-                    navController.navigate(R.id.analytic_start_page)
-                    true
-                }
-                R.id.messeges_page -> {
-                    bottomNav.background = ContextCompat.getDrawable(this, R.color.bottom_messages_color)
-                    navController.navigate(R.id.messeges_page)
-                    true
-                }
-                else -> false
-            }
+        driveButton.setOnClickListener {
+            navController.navigate(R.id.drive_start_page)
+        }
+
+        analyticsButton.setOnClickListener {
+            navController.navigate(R.id.analytic_start_page)
+        }
+
+        messagesButton.setOnClickListener {
+            navController.navigate(R.id.messeges_page)
+        }
+
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            updateNavBarColors(destination.id)
         }
 
         //handleIntent()
     }
+
+    private fun updateNavBarColors(fragmentID: Int) {
+
+        homeButton.setBackgroundResource(R.drawable.home_button_bg)
+        driveButton.setBackgroundResource(R.drawable.drive_bottom_bg)
+        analyticsButton.setBackgroundResource(R.drawable.analytics_button_bg)
+        messagesButton.setBackgroundResource(R.drawable.messages_button_bg)
+
+        when (fragmentID) {
+            R.id.homeFragment -> {
+                homeButton.setBackgroundResource(R.drawable.active_home_button)
+            }
+            R.id.drive_start_page -> {
+                driveButton.setBackgroundResource(R.drawable.active_drive_button)
+            }
+            R.id.analytic_start_page -> {
+                analyticsButton.setBackgroundResource(R.drawable.active_analytics_button)
+            }
+            R.id.messeges_page -> {
+                messagesButton.setBackgroundResource(R.drawable.active_messages_button)
+            }
+        }
+    }
+
 
     /*
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
