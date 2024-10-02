@@ -2,6 +2,7 @@ package com.mobility.mobilityscooterapp
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
@@ -17,9 +18,6 @@ import androidx.navigation.fragment.findNavController
 
 class drive_start_page : Fragment() {
     private lateinit var requestPermissionLauncher: ActivityResultLauncher<String>
-    private var neverCamera: Boolean = shouldShowRequestPermissionRationale(Manifest.permission.CAMERA)
-    private var neverWrite: Boolean = shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-    private var neverRead: Boolean = shouldShowRequestPermissionRationale(Manifest.permission.READ_EXTERNAL_STORAGE)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -54,7 +52,16 @@ class drive_start_page : Fragment() {
                 }
                 else{
                     if(!shouldShowRequestPermissionRationale(Manifest.permission.CAMERA) && !shouldShowRequestPermissionRationale(Manifest.permission.WRITE_EXTERNAL_STORAGE)){
-                        requestPermissionLauncher.launch(Manifest.permission.CAMERA)
+                        AlertDialog.Builder(requireContext())
+                            .setTitle("Permissions Needed")
+                            .setMessage("This app needs Camera and Storage permissions to start recording. Please grant these permissions.")
+                            .setPositiveButton("OK") { dialog, _ ->
+                                dialog.dismiss()
+                            }
+                            .setNegativeButton("Cancel") { dialog, _ ->
+                                dialog.dismiss()
+                            }
+                            .show()
                     }
                     else{
                         if(!cameraPermissions()){
@@ -67,7 +74,6 @@ class drive_start_page : Fragment() {
                 }
 
         }
-//        get_permissions()
     }
     private fun cameraPermissions():Boolean{
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED){
@@ -76,18 +82,13 @@ class drive_start_page : Fragment() {
         return false
     }
     private fun writePermissions(): Boolean{
-        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED){
+        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
             return true
         }
         return false
     }
 
-    private fun readPermissions(): Boolean{
-        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
-            return true
-        }
-        return false
-    }
+
 //    fun get_permissions(){
 //        var permissionLst = mutableListOf<String>()
 //
