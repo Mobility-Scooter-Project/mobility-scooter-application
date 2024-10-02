@@ -47,7 +47,7 @@ class drive_start_page : Fragment() {
 
         val startButton = view.findViewById<Button>(R.id.start_record_button)
         startButton?.setOnClickListener {
-                if(cameraPermissions() && writePermissions()){
+                if(cameraPermissions() ){
                     findNavController().navigate(R.id.action_drive_start_page_to_record_preview_activity)
                 }
                 else{
