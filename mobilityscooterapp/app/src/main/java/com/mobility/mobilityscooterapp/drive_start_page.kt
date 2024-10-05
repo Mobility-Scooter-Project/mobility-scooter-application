@@ -51,10 +51,6 @@ class drive_start_page : Fragment() {
                     findNavController().navigate(R.id.action_drive_start_page_to_record_preview_activity)
                 }
                 else{
-                    if(!shouldShowRequestPermissionRationale(Manifest.permission.CAMERA)){
-                        requestCameraPermission()
-                    }
-                    else{
                         AlertDialog.Builder(requireContext())
                             .setTitle("Permissions Needed")
                             .setMessage("This app needs Camera and Storage permissions to start recording. Please grant these permissions.")
@@ -66,7 +62,6 @@ class drive_start_page : Fragment() {
                             }
                             .show()
                     }
-                }
 
         }
     }
