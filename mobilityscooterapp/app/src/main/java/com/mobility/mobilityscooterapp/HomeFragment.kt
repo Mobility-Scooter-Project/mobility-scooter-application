@@ -53,7 +53,7 @@ class HomeFragment : Fragment() {
 
         val Messagebutton = view.findViewById<Button>(R.id.messages_bottom)
         Messagebutton?.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_messeges_page)
+            findNavController().navigate(R.id.action_homeFragment_to_messages_page)
         }
 
         val accessibilityButton = view.findViewById<Button>(R.id.accessibility_setting_bottom)

@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
             navController.navigate(R.id.action_homeFragment_to_analytic_start_page)
         }
         if (shouldNavigateToMessage) {
-            navController.navigate(R.id.action_homeFragment_to_messeges_page)
+            navController.navigate(R.id.action_homeFragment_to_messages_page)
         }
         if (shouldNavigateToHistory) {
             val bundle = Bundle()

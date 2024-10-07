@@ -39,7 +39,7 @@ class drive_start_page : Fragment() {
 
         val messageButton = view.findViewById<TextView>(R.id.button4)
         messageButton?.setOnClickListener {
-            findNavController().navigate(R.id.action_drive_start_page_to_messeges_page)
+            findNavController().navigate(R.id.action_drive_start_page_to_messages_page)
         }
 
         val startButton = view.findViewById<Button>(R.id.start_record_button)

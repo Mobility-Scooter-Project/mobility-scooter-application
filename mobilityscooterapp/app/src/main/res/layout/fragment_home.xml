@@ -24,7 +24,8 @@
             android:layout_alignParentBottom="true"
             android:layout_marginEnd="19dp"
             android:layout_marginBottom="2dp"
-            android:src="@drawable/hamberger_button" />
+            android:src="@drawable/hamburger_menu"
+            android:contentDescription="@string/hamburger_menu_icon"/>
 
         <TextView
             android:id="@+id/text_above"
@@ -68,7 +69,8 @@
             android:id="@+id/Drive_Bottom"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@android:color/transparent" />
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/drive"/>
 
         <TextView
             android:layout_width="110dp"
@@ -124,7 +126,8 @@
             android:id="@+id/analytics_bottom"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@android:color/transparent" />
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/analytics"/>
 
         <TextView
             android:layout_width="143dp"
@@ -179,7 +182,8 @@
             android:id="@+id/messages_bottom"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@android:color/transparent" />
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/messages"/>
 
         <TextView
             android:layout_width="206dp"
@@ -222,7 +226,8 @@
             android:id="@+id/accessibility_setting_bottom"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@android:color/transparent" />
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/accessibility"/>
 
         <TextView
             android:layout_width="202dp"

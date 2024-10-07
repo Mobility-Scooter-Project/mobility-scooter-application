@@ -42,7 +42,7 @@ class analytic_start_page : Fragment() {
             }
         val MessageButton = view.findViewById<TextView>(R.id.button4)
             MessageButton?.setOnClickListener {
-                findNavController().navigate(R.id.action_analytic_start_page_to_messeges_page)
+                findNavController().navigate(R.id.action_analytic_start_page_to_messages_page)
             }
 
             val sessionHistory = view.findViewById<ImageView>(R.id.imageView1)

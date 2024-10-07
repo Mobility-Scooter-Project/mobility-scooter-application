@@ -18,7 +18,7 @@
             android:layout_alignParentBottom="true"
             android:layout_marginEnd="19dp"
             android:layout_marginBottom="2dp"
-            android:src="@drawable/hamberger_button" />
+            android:src="@drawable/hamburger_menu" />
 
         <TextView
             android:id="@+id/text_above"
