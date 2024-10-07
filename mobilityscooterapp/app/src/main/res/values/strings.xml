@@ -13,27 +13,14 @@
     <string name="messages_between_user_and_doctor_goes_here">Messages between user and doctor goes here</string>
     <string name="Username">Username:</string>
     <string name="please_enter_your_username_here">Type username here</string>
-
-
-
-
-
     <string name="todo">TODO</string>
-
     <string name="register">Register</string>
     <string name="hospital">Hospital:</string>
-
-
-
-
-
     <string name="stop_recording">stop recording</string>
     <string name="date_placeholder">Date: %1$s</string>
     <string name="driving_session_summary">Driving Session Summary</string>
     <string name="start_time_placeholder">Start Time: %1$s</string>
     <string name="session_length_placeholder">Session Length: %1$s</string>
-
-
     <string name="pause">pause</string>
     <string name="estimate_estimate_placeholder">Estimate: %s</string>
     <string name="date_date_placeholder">Date: </string>
