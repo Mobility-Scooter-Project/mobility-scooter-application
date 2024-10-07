@@ -21,7 +21,8 @@
             android:layout_alignParentBottom="true"
             android:layout_marginEnd="19dp"
             android:layout_marginBottom="2dp"
-            android:src="@drawable/hamburger_menu" />
+            android:src="@drawable/hamburger_menu"
+            android:contentDescription="@string/hamburger_menu_icon" />
 
         <TextView
             android:id="@+id/text_above"
@@ -144,7 +145,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:text="Go to session history"
+                android:text="@string/go_to_session_history"
+                android:contentDescription="@string/go_to_session_history"
                 android:textColor="#000000"/>
 
         </LinearLayout>

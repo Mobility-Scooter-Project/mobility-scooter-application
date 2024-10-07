@@ -32,6 +32,7 @@
             android:layout_toLeftOf="@id/hamburgerMenu"
             android:gravity="end"
             android:text="@string/more"
+            android:contentDescription="@string/hamburger_menu_icon"
             android:textColor="@color/white" />
     </RelativeLayout>
 

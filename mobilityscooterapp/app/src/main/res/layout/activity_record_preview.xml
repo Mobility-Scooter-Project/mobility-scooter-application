@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:contentDescription="back button"
+            android:contentDescription="@string/back"
             android:src="@drawable/baseline_arrow_circle_left_24" />
 
         <!-- Toolbar Text -->
@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:text="Please position torso within screen and press \record\ when ready"
+            android:text="@string/position_torso"
             android:textColor="@android:color/black"
             android:textStyle="bold" />
     </androidx.appcompat.widget.Toolbar>

@@ -58,7 +58,8 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    android:contentDescription="@string/enter_first_name">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/first_name"
@@ -83,7 +84,8 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    android:contentDescription="@string/enter_last_name">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/last_name"
@@ -109,7 +111,8 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/enter_email">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/email"
@@ -136,7 +139,8 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/enter_password">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/password"
@@ -169,7 +173,7 @@
                         android:id="@+id/confirm_password"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textPassword" />
+                        android:contentDescription="@string/enter_confirm_password"/>
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
@@ -195,7 +199,8 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/clinic_code"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/clinic_code"/>
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
@@ -231,17 +236,19 @@
                 android:text="@string/view_terms_conditions"
                 android:textAllCaps="false"
                 android:textSize="20sp"
-                android:layout_gravity="center_horizontal"/>
+                android:layout_gravity="center_horizontal"
+                android:contentDescription="@string/view_terms_conditions"/>
 
             <CheckBox
                 android:id="@+id/terms_conditions_checkbox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="@string/i_accept_the_terms_conditions"
+                android:text="@string/accept_terms_conditions"
                 android:textAllCaps="false"
                 android:textSize="18sp"
-                android:layout_gravity="center_horizontal"/>
+                android:layout_gravity="center_horizontal"
+                android:contentDescription="@string/accept_terms_conditions"/>
 
             <Button
                 android:id="@+id/create_account_button"
@@ -252,7 +259,8 @@
                 android:text="@string/register"
                 android:textAllCaps="false"
                 android:textSize="22sp"
-                android:textColor="#000000"/>
+                android:textColor="#000000"
+                android:contentDescription="@string/register"/>
 
         </LinearLayout>
 

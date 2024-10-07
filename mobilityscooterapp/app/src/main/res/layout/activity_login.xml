@@ -33,13 +33,15 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
+                android:contentDescription="@string/enter_email"
                 android:layout_height="wrap_content">
+
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/type_email_here"
+                    android:hint="@string/enter_email"
                     android:inputType = "text" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -62,13 +64,14 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/please_enter_your_password_here">
+                android:contentDescription="@string/enter_password">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPassword" />
+                    android:inputType="textPassword"
+                    android:hint="@string/enter_password"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -80,6 +83,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="@string/login"
+            android:contentDescription="@string/login"
             android:textAllCaps="false"
             android:textSize="20sp"
             />
@@ -115,6 +119,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/forgot_password"
+        android:contentDescription="@string/forgot_password"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
