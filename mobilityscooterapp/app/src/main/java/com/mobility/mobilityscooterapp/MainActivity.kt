@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         messagesButton.setOnClickListener {
-            navController.navigate(R.id.messeges_page)
+            navController.navigate(R.id.messages_page)
         }
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
@@ -71,7 +71,7 @@ class MainActivity : AppCompatActivity() {
             R.id.analytic_start_page -> {
                 analyticsButton.setBackgroundResource(R.drawable.active_analytics_button)
             }
-            R.id.messeges_page -> {
+            R.id.messages_page -> {
                 messagesButton.setBackgroundResource(R.drawable.active_messages_button)
             }
         }
