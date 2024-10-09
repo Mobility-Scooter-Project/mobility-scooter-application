@@ -32,9 +32,6 @@
             android:id="@+id/action_drive_start_page_to_homeFragment"
             app:destination="@id/homeFragment" />
         <action
-            android:id="@+id/action_drive_start_page_to_homeFragment2"
-            app:destination="@id/homeFragment" />
-        <action
             android:id="@+id/action_drive_start_page_to_analytic_start_page"
             app:destination="@id/analytic_start_page" />
         <action
@@ -58,9 +55,6 @@
         <action
             android:id="@+id/action_analytic_start_page_to_messages_page"
             app:destination="@id/messages_page" />
-        <action
-            android:id="@+id/action_analytic_start_page_to_homeFragment2"
-            app:destination="@id/homeFragment" />
         <action
             android:id="@+id/action_analytic_start_page_to_session_history_activity"
             app:destination="@id/session_history_activity" />

@@ -18,4 +18,73 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.5"
         app:navGraph="@navigation/my_nav" />
+
+    <LinearLayout
+        android:id="@+id/bottom_nav_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:baselineAligned="false">
+
+
+        <TextView
+            android:id="@+id/home"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingTop="6dp"
+            android:paddingBottom="4dp"
+            android:gravity="center"
+            app:drawableTopCompat="@drawable/baseline_home_24"
+            android:background="@drawable/home_button_bg"
+            android:text="@string/home"
+            android:textSize="16sp"
+            android:textColor="@color/white"/>
+
+        <TextView
+            android:id="@+id/Drive_Bottom"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingTop="6dp"
+            android:paddingBottom="4dp"
+            android:gravity="center"
+            app:drawableTopCompat="@drawable/navbar_drive_icon"
+            android:background="@drawable/drive_bottom_bg"
+            android:text="@string/drive"
+            android:textSize="16sp"
+            android:textColor="@color/white"/>
+
+        <TextView
+            android:id="@+id/analytics_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingTop="6dp"
+            android:paddingBottom="4dp"
+            android:gravity="center"
+            app:drawableTopCompat="@drawable/navbar_analytics_icon"
+            android:background="@drawable/analytics_button_bg"
+            android:text="@string/analytics"
+            android:textSize="16sp"
+            android:textColor="@color/white"/>
+
+        <TextView
+            android:id="@+id/button4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingTop="6dp"
+            android:paddingBottom="4dp"
+            android:gravity="center"
+            app:drawableTopCompat="@drawable/navbar_message_icon"
+            android:background="@drawable/messages_button_bg"
+            android:text="@string/messages"
+            android:textSize="16sp"
+            android:textColor="@color/white"/>
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

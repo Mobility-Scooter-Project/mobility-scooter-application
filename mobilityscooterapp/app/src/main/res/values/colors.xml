@@ -3,4 +3,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="my_blue">#2323AE</color>
+    <color name="bottom_drive">#ED7D31</color>
+    <color name="bottom_analytics">#4EAE5B</color>
+    <color name="bottom_home">#1D4066</color>
+    <color name="bottom_messages">#F5C243</color>
 </resources>

@@ -47,7 +47,7 @@
         android:layout_width="416dp"
         android:layout_height="120dp"
         android:layout_marginTop="200dp"
-        android:background="@drawable/drive_bottom"
+        android:background="@drawable/drive_bottom_bg"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -104,7 +104,7 @@
         android:layout_width="416dp"
         android:layout_height="120dp"
         android:layout_marginTop="330dp"
-        android:background="@drawable/analytics_bottom"
+        android:background="@drawable/analytics_button_bg"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -160,7 +160,7 @@
         android:layout_width="416dp"
         android:layout_height="120dp"
         android:layout_marginTop="460dp"
-        android:background="@drawable/messages_bottom"
+        android:background="@drawable/messages_button_bg"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
