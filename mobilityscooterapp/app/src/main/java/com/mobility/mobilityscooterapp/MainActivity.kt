@@ -4,10 +4,14 @@ package com.mobility.mobilityscooterapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.onNavDestinationSelected
+import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
@@ -24,23 +28,29 @@ class MainActivity : AppCompatActivity() {
 
         bottomNav = findViewById(R.id.bottom_nav_view)
 
+        bottomNav.setupWithNavController(navController)
+
         // Set a listener for navigation item selection
         bottomNav.setOnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
-                R.id.nav_home -> {
+                R.id.homeFragment -> {
                     bottomNav.background = ContextCompat.getDrawable(this, R.color.bottom_home_color)
+                    navController.navigate(R.id.homeFragment)
                     true
                 }
-                R.id.nav_drive -> {
+                R.id.drive_start_page -> {
                     bottomNav.background = ContextCompat.getDrawable(this, R.color.bottom_drive_color)
+                    navController.navigate(R.id.drive_start_page)
                     true
                 }
-                R.id.nav_analytics -> {
+                R.id.analytic_start_page -> {
                     bottomNav.background = ContextCompat.getDrawable(this, R.color.bottom_analytics_color)
+                    navController.navigate(R.id.analytic_start_page)
                     true
                 }
-                R.id.nav_messages -> {
+                R.id.messeges_page -> {
                     bottomNav.background = ContextCompat.getDrawable(this, R.color.bottom_messages_color)
+                    navController.navigate(R.id.messeges_page)
                     true
                 }
                 else -> false
@@ -49,6 +59,15 @@ class MainActivity : AppCompatActivity() {
 
         //handleIntent()
     }
+
+    /*
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val navController = findNavController(R.id.fragment)
+        return item.onNavDestinationSelected(navController) || super.onOptionsItemSelected(item)
+    }
+    */
+
+
     /*
     private fun handleIntent() {
         val shouldNavigateToDrive = intent.getBooleanExtra("AutoNavigateToDrive", false)
