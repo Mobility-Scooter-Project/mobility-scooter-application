@@ -1,57 +1,125 @@
 <resources>
     <string name="app_name">mobility scooter app</string>
-    <string name="home">Home</string>
-    <string name="drive">Drive</string>
-    <string name="analytics">Analytics</string>
-    <string name="messages">Messages</string>
     <string name="button_4">Button 4</string>
     <string name="record_a_new_session">Record a new session</string>
     <string name="view_data_analytics_or_history">View data analytics or history</string>
-    <string name="accessibility">Accessibility</string>
     <string name="edit_accessibility">Edit accessibility settings</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="more">More</string>
     <string name="analyticss">Analytics</string>
     <string name="messagess">Messages</string>
-    <string name="start">Start</string>
     <string name="analytic_data">Analytic_data</string>
     <string name="please_place_your_phone_on_the_scooter">Please place your phone on the scooter</string>
     <string name="messages_between_user_and_doctor_goes_here">Messages between user and doctor goes here</string>
     <string name="Username">Username:</string>
     <string name="please_enter_your_username_here">Type username here</string>
-    <string name="password">Password:</string>
-    <string name="please_enter_your_password_here">Type password here</string>
-    <string name="login">Login</string>
-    <string name="forgot_password">Forgot password?</string>
-    <string name="create_an_account">Create an account</string>
     <string name="todo">TODO</string>
-    <string name="back">Back</string>
-    <string name="view_terms_conditions"><![CDATA[View Terms & Conditions]]></string>
-    <string name="i_accept_the_terms_conditions"><![CDATA[I accept the Terms & Conditions]]></string>
     <string name="register">Register</string>
     <string name="hospital">Hospital:</string>
-    <string name="clinic_code">Clinic code:</string>
-    <string name="confirm_password">Confirm Password:</string>
-    <string name="email">Email:</string>
-    <string name="first_name">First Name:</string>
-    <string name="last_name">Last Name:</string>
-    <string name="terms_conditions"><![CDATA[Terms & Conditions]]></string>
     <string name="stop_recording">stop recording</string>
-    <string name="start_recording">start recording</string>
     <string name="date_placeholder">Date: %1$s</string>
     <string name="driving_session_summary">Driving Session Summary</string>
     <string name="start_time_placeholder">Start Time: %1$s</string>
     <string name="session_length_placeholder">Session Length: %1$s</string>
-    <string name="request_reset">Request reset</string>
-    <string name="email_address">Type your email address</string>
     <string name="pause">pause</string>
     <string name="estimate_estimate_placeholder">Estimate: %s</string>
     <string name="date_date_placeholder">Date: </string>
     <string name="start_time_start_time_placeholder">Start Time: </string>
     <string name="sessionLength_placeholder">Session Length: </string>
     <string name="click_the_following_video_to_view_it">Click the following video to view it:</string>
-    <string name="type_email_here">Type email here</string>
+
     <string name="estimate_data">Estimate data:</string>
     <string name="estimate_data2">Estimate data:</string>
 
+    <!--general-->
+    <string name="back">Back</string>
+    <string name="hamburger_menu_icon">Options</string>
+    <string name="plus">+</string>
+    <string name="minus">-</string>
+
+    <!--home page-->
+    <string name="drive">Drive</string>
+    <string name="drive_icon">Scooter icon</string>
+
+    <string name="analytics">Analytics</string>
+    <string name="analytics_icon">Analytics icon</string>
+
+    <string name="messages">Messages</string>
+    <string name="messages_icon">Messages icon</string>
+
+    <string name="accessibility">Accessibility</string>
+    <string name="accessibility_icon">Accessibility icon</string>
+
+    <!--drive start page-->
+    <string name="start">Start</string>
+    <string name="start_drive">Start drive place phone on scooter</string>
+
+    <!--analytic start page-->
+    <string name="session_history">Session\nhistory</string>
+    <string name="coming_soon">Coming Soon!</string>
+
+    <!--accessibility page-->
+    <string name="font_size">Font size</string>
+    <string name="font_size_default">18</string>
+    <string name="font_size_increase">Increase font size</string>
+    <string name="font_zoom_increase">Increase font zoom</string>
+    
+    <string name="font_zoom">Font zoom</string>
+    <string name="font_zoom_default">100%</string>
+    <string name="font_size_decrease">Decrease font size</string>
+    <string name="font_zoom_decrease">Decrease font zoom</string>
+
+    <string name="button_size">Button size:</string>
+
+    <string name="small">Small</string>
+    <string name="small_text_radio_button">Small text size</string>
+
+    <string name="medium">Medium</string>
+    <string name="medium_text_radio_button">Medium text size</string>
+
+    <string name="large">Large</string>
+    <string name="large_text_radio_button">Large text size</string>
+
+    <string name="dark_mode">Dark mode</string>
+
+    <!--activity record preview-->
+    <string name="start_recording">Start recording</string>
+    <string name="position_torso">Please position torso within screen and press \record\ when ready</string>
+
+    <!--activity driving session summary-->
+    <string name="home">Home</string>
+    <string name="go_to_session_history">Go to session history</string>
+
+    <!--activity login-->
+    <string name="email">Email:</string>
+    <string name="password">Password:</string>
+
+    <string name="enter_email">Enter your email address here</string>
+    <string name="enter_password">Enter your password here</string>
+
+    <string name="login">Login</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="create_an_account">Create an account</string>
+
+    <!--activity reset password-->
+    <string name="request_reset">Request reset</string>
+
+    <!--activity signup-->
+    <string name="first_name">First Name:</string>
+    <string name="last_name">Last Name:</string>
+
+    <string name="enter_first_name">Enter your first name</string>
+    <string name="enter_last_name">Enter your last name</string>
+
+    <string name="confirm_password">Confirm Password:</string>
+    <string name="enter_confirm_password">Enter your password again</string>
+
+    <string name="clinic_code">Clinic code:</string>
+    <string name="enter_clinic_code">Enter clinic code here</string>
+
+    <string name="view_terms_conditions"><![CDATA[View Terms & Conditions]]></string>
+    <string name="accept_terms_conditions"><![CDATA[I accept the Terms & Conditions]]></string>
+
+    <!--splash screen-->
+    <string name="analyzing_wait">Analyzing, please wait...</string>
 </resources>

@@ -10,7 +10,7 @@ class message_activity : AppCompatActivity() {
 
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.containerMessage, messeges_page())
+                .replace(R.id.containerMessage, messages_page())
                 .commitNow()
         }
     }

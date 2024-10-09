@@ -23,7 +23,8 @@
             android:layout_alignParentBottom="true"
             android:layout_marginEnd="19dp"
             android:layout_marginBottom="2dp"
-            android:src="@drawable/hamberger_button" />
+            android:src="@drawable/hamburger_menu"
+            android:contentDescription="@string/hamburger_menu_icon"/>
 
         <TextView
             android:id="@+id/text_above"
@@ -66,7 +67,7 @@
                 android:id="@+id/font_size_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Font size:"
+                android:text="@string/font_size"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -75,7 +76,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="-"
+                android:text="@string/minus"
+                android:contentDescription="@string/font_size_decrease"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -85,7 +87,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:gravity="center"
-                android:text="18"
+                android:text="@string/font_size_default"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -94,7 +96,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="+"
+                android:text="@string/plus"
+                android:contentDescription="@string/font_size_increase"
                 android:textSize="20sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -109,7 +112,7 @@
                 android:id="@+id/zoom_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Font size:"
+                android:text="@string/font_zoom"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -118,7 +121,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="-"
+                android:text="@string/minus"
+                android:contentDescription="@string/font_zoom_decrease"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -128,7 +132,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:gravity="center"
-                android:text="100%"
+                android:text="@string/font_zoom_default"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -137,7 +141,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="+"
+                android:text="@string/plus"
+                android:contentDescription="@string/font_zoom_increase"
                 android:textSize="20sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -147,7 +152,7 @@
             android:id="@+id/button_size_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Button size:"
+            android:text="@string/button_size"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -160,7 +165,8 @@
                 android:id="@+id/small_button_size"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Small"
+                android:text="@string/small"
+                android:contentDescription="@string/small_text_radio_button"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -169,7 +175,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
-                android:text="Medium"
+                android:text="@string/medium"
+                android:contentDescription="@string/medium_text_radio_button"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -177,17 +184,19 @@
                 android:id="@+id/large_button_size"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Large"
+                android:text="@string/large"
+                android:contentDescription="@string/large_text_radio_button"
                 android:textSize="20sp"
                 android:textStyle="bold" />
         </RadioGroup>
 
         <!-- Dark Mode Toggle -->
-        <Switch
+        <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/dark_mode_switch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Dark mode"
+            android:text="@string/dark_mode"
+            android:contentDescription="@string/dark_mode"
             android:textSize="20sp"
             android:textStyle="bold" />
 
