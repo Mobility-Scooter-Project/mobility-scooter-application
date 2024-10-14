@@ -2,13 +2,24 @@ package com.mobility.mobilityscooterapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
+import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import com.google.android.material.navigation.NavigationView
 
 
 class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
+
+    // for sidebar from hamburger menu
+    private lateinit var drawerLayout: DrawerLayout
+    private lateinit var hamburgerMenu : ImageView
 
     // for new custom navbar
     private lateinit var homeButton: TextView
@@ -49,6 +60,30 @@ class MainActivity : AppCompatActivity() {
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             updateNavBarColors(destination.id)
+        }
+
+        // ------------- for side menu ------------- //
+        drawerLayout = findViewById(R.id.drawer_layout)
+        hamburgerMenu = findViewById(R.id.hamburgerMenu)
+
+        hamburgerMenu.setOnClickListener {
+            if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                drawerLayout.closeDrawer(GravityCompat.START)
+            } else {
+                drawerLayout.openDrawer(GravityCompat.START)
+            }
+        }
+
+        val navigationView : NavigationView = findViewById(R.id.side_view)
+        navigationView.setNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.side_view_home -> navController.navigate(R.id.homeFragment)
+                R.id.side_view_drive -> navController.navigate(R.id.drive_start_page)
+                R.id.side_view_analytics -> navController.navigate(R.id.analytic_start_page)
+                R.id.side_view_messages -> navController.navigate(R.id.messages_page)
+            }
+            drawerLayout.closeDrawer(GravityCompat.START)
+            true
         }
 
         //handleIntent()
