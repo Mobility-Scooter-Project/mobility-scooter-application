@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/drive_start_page"
-        android:name="com.mobility.mobilityscooterapp.drive_start_page"
+        android:name="com.mobility.mobilityscooterapp.DriveStartPage"
         android:label="fragment_drive_start_page"
         tools:layout="@layout/fragment_drive_start_page" >
         <action
@@ -43,7 +43,7 @@
     </fragment>
     <fragment
         android:id="@+id/analytic_start_page"
-        android:name="com.mobility.mobilityscooterapp.analytic_start_page"
+        android:name="com.mobility.mobilityscooterapp.AnalyticStartPage"
         android:label="fragment_analytic_start_page"
         tools:layout="@layout/fragment_analytic_start_page" >
         <action

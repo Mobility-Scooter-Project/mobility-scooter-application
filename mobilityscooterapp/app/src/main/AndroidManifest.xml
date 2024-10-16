@@ -29,10 +29,10 @@
             android:name=".message_activity"
             android:exported="false" />
         <activity
-            android:name=".drive_activity"
+            android:name=".DriveActivity"
             android:exported="false" />
         <activity
-            android:name=".analysis_acitvity"
+            android:name=".AnalysisActivity"
             android:exported="false" />
         <activity
             android:name=".session_history_activity"

@@ -12,7 +12,7 @@ import android.widget.TextView
 import androidx.navigation.fragment.findNavController
 
 
-class analytic_start_page : Fragment() {
+class AnalyticStartPage : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
