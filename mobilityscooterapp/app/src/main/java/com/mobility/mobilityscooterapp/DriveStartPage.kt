@@ -41,7 +41,6 @@ class DriveStartPage : Fragment() {
         messageButton?.setOnClickListener {
             findNavController().navigate(R.id.action_drive_start_page_to_messages_page)
         }
-
         val startButton = view.findViewById<Button>(R.id.start_record_button)
         startButton?.setOnClickListener {
                 if(cameraPermissions() ){

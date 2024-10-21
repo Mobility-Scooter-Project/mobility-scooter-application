@@ -40,6 +40,9 @@
         <action
             android:id="@+id/action_drive_start_page_to_record_preview_activity"
             app:destination="@id/record_preview_activity" />
+        <action
+            android:id="@+id/action_drive_start_page_to_accessibilityFragment"
+            app:destination="@id/accessibilityFragment" />
     </fragment>
     <fragment
         android:id="@+id/analytic_start_page"

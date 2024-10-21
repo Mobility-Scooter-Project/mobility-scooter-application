@@ -58,8 +58,7 @@ class HomeFragment : Fragment() {
 
         val accessibilityButton = view.findViewById<Button>(R.id.accessibility_setting_bottom)
         accessibilityButton?.setOnClickListener {
-            showToast(requireContext(), "Under construction!")
-            //findNavController().navigate(R.id.action_homeFragment_to_accessibilityFragment)
+            findNavController().navigate(R.id.action_homeFragment_to_accessibilityFragment)
         }
 
     }
