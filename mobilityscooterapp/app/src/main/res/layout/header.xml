@@ -8,14 +8,14 @@
     android:padding="15dp">
 
     <ImageView
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:src="@drawable/navbar_analytics_icon"/>
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/navbar_drive_icon"/>
     
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="thick of it"
+        android:text="@string/sideview_title"
         android:textSize="24sp"
         android:textColor="@color/white"/>
 
