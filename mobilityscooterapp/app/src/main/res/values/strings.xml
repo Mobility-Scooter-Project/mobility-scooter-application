@@ -36,6 +36,7 @@
     <string name="close">Close</string>
     <string name="profile">Profile</string>
     <string name="sideview_title">Scooter Safety</string>
+    <string name="sideview_logout">Log Out</string>
 
     <!--general-->
     <string name="back">Back</string>

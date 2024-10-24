@@ -21,7 +21,11 @@
         <item
             android:id="@+id/side_view_profile"
             android:title="@string/profile"
-            android:icon="@drawable/baseline_home_24"/>
+            android:icon="@drawable/profile"/>
+        <item
+            android:id="@+id/side_view_logout"
+            android:title="@string/sideview_logout"
+            android:icon="@drawable/logout"/>
     </group>
 
 </menu>
