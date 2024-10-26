@@ -1,7 +1,11 @@
 package com.mobility.mobilityscooterapp
 
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
@@ -12,6 +16,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
 
 
 class MainActivity : AppCompatActivity() {
@@ -27,10 +32,12 @@ class MainActivity : AppCompatActivity() {
     private lateinit var analyticsButton: TextView
     private lateinit var messagesButton: TextView
 
+    private lateinit var firebaseAuth : FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        firebaseAuth = FirebaseAuth.getInstance()
 
         val navHomeFragment = supportFragmentManager
             .findFragmentById(R.id.fragment) as NavHostFragment
@@ -80,6 +87,14 @@ class MainActivity : AppCompatActivity() {
                 R.id.side_view_drive -> navController.navigate(R.id.drive_start_page)
                 R.id.side_view_analytics -> navController.navigate(R.id.analytic_start_page)
                 R.id.side_view_messages -> navController.navigate(R.id.messages_page)
+                R.id.side_view_logout -> {
+                    firebaseAuth.signOut();
+
+                    showToast(this,"Logout successful!");
+                    val intent = Intent(this, LoginActivity::class.java)
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                    startActivity(intent)
+                }
             }
             drawerLayout.closeDrawer(GravityCompat.START)
             true
@@ -142,6 +157,21 @@ class MainActivity : AppCompatActivity() {
             }
         }
     } // end updateSideMenuSelection
+
+    private fun showToast(context: Context, message: String) {
+        val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val layout = inflater.inflate(R.layout.custom_toast_layout, null)
+
+        val toastText = layout.findViewById<TextView>(R.id.toast_text)
+        toastText.text = message
+
+        with (Toast(context)) {
+            duration = Toast.LENGTH_LONG
+            setGravity(Gravity.CENTER, 0, 0)
+            view = layout
+            show()
+        }
+    } // end showTest
 
 
     /*
