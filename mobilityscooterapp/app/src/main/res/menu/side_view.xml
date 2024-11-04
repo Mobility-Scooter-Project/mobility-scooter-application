@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/side_view_home"
+            android:title="@string/home"
+            android:icon="@drawable/baseline_home_24"/>
+        <item
+            android:id="@+id/side_view_drive"
+            android:title="@string/drive"
+            android:icon="@drawable/navbar_drive_icon"/>
+        <item
+            android:id="@+id/side_view_analytics"
+            android:title="@string/analytics"
+            android:icon="@drawable/navbar_analytics_icon"/>
+        <item
+            android:id="@+id/side_view_messages"
+            android:title="@string/messages"
+            android:icon="@drawable/navbar_message_icon"/>
+        <item
+            android:id="@+id/side_view_profile"
+            android:title="@string/profile"
+            android:icon="@drawable/profile"/>
+        <item
+            android:id="@+id/side_view_logout"
+            android:title="@string/sideview_logout"
+            android:icon="@drawable/logout"/>
+    </group>
+
+</menu>
