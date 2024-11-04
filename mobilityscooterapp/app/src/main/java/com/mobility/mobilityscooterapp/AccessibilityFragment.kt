@@ -61,24 +61,24 @@ class AccessibilityFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         darkModeSwitch = view.findViewById(R.id.dark_mode_switch)
-        currentFontSize = getFontSizePreference()
+//        currentFontSize = getFontSizePreference()
 
-        val fontSizeText = view.findViewById<TextView>(R.id.font_size_text)
-        fontSizeText.text = currentFontSize.toString()
-
-        applyFontSize(currentFontSize)
-
-        view.findViewById<Button>(R.id.decrease_font_size_button).setOnClickListener {
-            if (currentFontSize > 12) { // Set a minimum font size
-                changeFontSize(-1, fontSizeText)
-            }
-        }
-
-        view.findViewById<Button>(R.id.increase_font_size_button).setOnClickListener {
-            if (currentFontSize < 30) { // Set a maximum font size
-                changeFontSize(1, fontSizeText)
-            }
-        }
+//        val fontSizeText = view.findViewById<TextView>(R.id.font_size_text)
+//        fontSizeText.text = currentFontSize.toString()
+//
+//        applyFontSize(currentFontSize)
+//
+//        view.findViewById<Button>(R.id.decrease_font_size_button).setOnClickListener {
+//            if (currentFontSize > 12) { // Set a minimum font size
+//                changeFontSize(-1, fontSizeText)
+//            }
+//        }
+//
+//        view.findViewById<Button>(R.id.increase_font_size_button).setOnClickListener {
+//            if (currentFontSize < 30) { // Set a maximum font size
+//                changeFontSize(1, fontSizeText)
+//            }
+//        }
 
         val sharedPref = activity?.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
         val isDarkModeOn = sharedPref?.getBoolean(DARK_MODE_KEY, false) ?: false

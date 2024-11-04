@@ -72,146 +72,146 @@
         <!-- Font Size Adjustment -->
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal">-->
 
-            <TextView
-                android:id="@+id/font_size_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/font_size"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="@color/primaryTextColor"
-               />
+<!--            <TextView-->
+<!--                android:id="@+id/font_size_label"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="@string/font_size"-->
+<!--                android:textSize="20sp"-->
+<!--                android:textStyle="bold"-->
+<!--                android:textColor="@color/primaryTextColor"-->
+<!--               />-->
 
-            <Button
-                android:id="@+id/decrease_font_size_button"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/minus"
-                android:contentDescription="@string/font_size_decrease"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="@color/primaryTextColor"
-                />
+<!--            <Button-->
+<!--                android:id="@+id/decrease_font_size_button"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="1"-->
+<!--                android:text="@string/minus"-->
+<!--                android:contentDescription="@string/font_size_decrease"-->
+<!--                android:textSize="20sp"-->
+<!--                android:textStyle="bold"-->
+<!--                android:textColor="@color/primaryTextColor"-->
+<!--                />-->
 
-            <TextView
-                android:id="@+id/font_size_text"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:gravity="center"
-                android:text="@string/font_size_default"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+<!--            <TextView-->
+<!--                android:id="@+id/font_size_text"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="2"-->
+<!--                android:gravity="center"-->
+<!--                android:text="@string/font_size_default"-->
+<!--                android:textSize="20sp"-->
+<!--                android:textStyle="bold" />-->
 
-            <Button
-                android:id="@+id/increase_font_size_button"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/plus"
-                android:contentDescription="@string/font_size_increase"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-        </LinearLayout>
+<!--            <Button-->
+<!--                android:id="@+id/increase_font_size_button"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="1"-->
+<!--                android:text="@string/plus"-->
+<!--                android:contentDescription="@string/font_size_increase"-->
+<!--                android:textSize="20sp"-->
+<!--                android:textStyle="bold" />-->
+<!--        </LinearLayout>-->
 
         <!-- Zoom Level Adjustment -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal">-->
 
-            <TextView
-                android:id="@+id/zoom_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/font_zoom"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+<!--            <TextView-->
+<!--                android:id="@+id/zoom_label"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="@string/font_zoom"-->
+<!--                android:textSize="20sp"-->
+<!--                android:textStyle="bold" />-->
 
-            <Button
-                android:id="@+id/decrease_zoom_button"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/minus"
-                android:contentDescription="@string/font_zoom_decrease"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+<!--            <Button-->
+<!--                android:id="@+id/decrease_zoom_button"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="1"-->
+<!--                android:text="@string/minus"-->
+<!--                android:contentDescription="@string/font_zoom_decrease"-->
+<!--                android:textSize="20sp"-->
+<!--                android:textStyle="bold" />-->
 
-            <TextView
-                android:id="@+id/zoom_text"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:gravity="center"
-                android:text="@string/font_zoom_default"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+<!--            <TextView-->
+<!--                android:id="@+id/zoom_text"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="2"-->
+<!--                android:gravity="center"-->
+<!--                android:text="@string/font_zoom_default"-->
+<!--                android:textSize="20sp"-->
+<!--                android:textStyle="bold" />-->
 
-            <Button
-                android:id="@+id/increase_zoom_button"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/plus"
-                android:contentDescription="@string/font_zoom_increase"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-        </LinearLayout>
+<!--            <Button-->
+<!--                android:id="@+id/increase_zoom_button"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_weight="1"-->
+<!--                android:text="@string/plus"-->
+<!--                android:contentDescription="@string/font_zoom_increase"-->
+<!--                android:textSize="20sp"-->
+<!--                android:textStyle="bold" />-->
+<!--        </LinearLayout>-->
 
         <!-- Button Size Adjustment -->
-        <TextView
-            android:id="@+id/button_size_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/button_size"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="@color/primaryTextColor"
-            />
+<!--        <TextView-->
+<!--            android:id="@+id/button_size_label"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/button_size"-->
+<!--            android:textSize="20sp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:textColor="@color/primaryTextColor"-->
+<!--            />-->
 
-        <RadioGroup
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+<!--        <RadioGroup-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal">-->
 
-            <RadioButton
-                android:id="@+id/small_button_size"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/small"
-                android:contentDescription="@string/small_text_radio_button"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="@color/primaryTextColor"/>
+<!--            <RadioButton-->
+<!--                android:id="@+id/small_button_size"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="@string/small"-->
+<!--                android:contentDescription="@string/small_text_radio_button"-->
+<!--                android:textSize="20sp"-->
+<!--                android:textStyle="bold"-->
+<!--                android:textColor="@color/primaryTextColor"/>-->
 
-            <RadioButton
-                android:id="@+id/medium_button_size"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="@string/medium"
-                android:contentDescription="@string/medium_text_radio_button"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="@color/primaryTextColor"/>
+<!--            <RadioButton-->
+<!--                android:id="@+id/medium_button_size"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:checked="true"-->
+<!--                android:text="@string/medium"-->
+<!--                android:contentDescription="@string/medium_text_radio_button"-->
+<!--                android:textSize="20sp"-->
+<!--                android:textStyle="bold"-->
+<!--                android:textColor="@color/primaryTextColor"/>-->
 
-            <RadioButton
-                android:id="@+id/large_button_size"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/large"
-                android:contentDescription="@string/large_text_radio_button"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="@color/primaryTextColor"/>
-        </RadioGroup>
+<!--            <RadioButton-->
+<!--                android:id="@+id/large_button_size"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="@string/large"-->
+<!--                android:contentDescription="@string/large_text_radio_button"-->
+<!--                android:textSize="20sp"-->
+<!--                android:textStyle="bold"-->
+<!--                android:textColor="@color/primaryTextColor"/>-->
+<!--        </RadioGroup>-->
 
         <!-- Dark Mode Toggle -->
         <androidx.appcompat.widget.SwitchCompat
