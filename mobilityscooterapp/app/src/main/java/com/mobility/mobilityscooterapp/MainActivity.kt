@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -11,6 +12,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
@@ -20,6 +22,11 @@ import com.google.firebase.auth.FirebaseAuth
 
 
 class MainActivity : AppCompatActivity() {
+    companion object {
+        const val PREFS_NAME = "AppSettingsPrefs"
+        const val DARK_MODE_KEY = "DarkMode"
+    }
+
     private lateinit var navController: NavController
 
     // for sidebar from hamburger menu
@@ -36,6 +43,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val sharedPref = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        val isDarkModeOn = sharedPref.getBoolean(DARK_MODE_KEY, false)
+        setDarkMode(isDarkModeOn)
         setContentView(R.layout.activity_main)
         firebaseAuth = FirebaseAuth.getInstance()
 
@@ -173,6 +183,13 @@ class MainActivity : AppCompatActivity() {
         }
     } // end showTest
 
+    //Dark Mode setting
+
+    private fun setDarkMode(isDarkMode: Boolean) {
+        Log.e("TESTING", "It works")
+        val mode = if (isDarkMode) AppCompatDelegate.MODE_NIGHT_YES else AppCompatDelegate.MODE_NIGHT_NO
+        AppCompatDelegate.setDefaultNightMode(mode)
+    }
 
     /*
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
