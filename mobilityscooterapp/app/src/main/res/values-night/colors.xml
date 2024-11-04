@@ -7,10 +7,10 @@
     <color name="bottom_analytics">#4EAE5B</color>
     <color name="bottom_home">#1D4066</color>
     <color name="bottom_messages">#F5C243</color>
-<!--    Dark/Normal Colors-->
-    <color name="primaryColor">#FFFFFF</color> <!-- Light background -->
-    <color name="primaryTextColor">#000000</color> <!-- Light text -->
-    <color name="primaryDarkColor">#DDDDDD</color> <!-- Light primary dark -->
-    <color name="accentColor">#FF4081</color> <!-- Accent color -->
-    <color name="blue">#033261</color>
+<!--    colors !-->
+    <color name="primaryColor">#000000</color> <!-- Dark background -->
+    <color name="primaryTextColor">#FFFFFF</color> <!-- Dark text -->
+    <color name="primaryDarkColor">#444444</color> <!-- Dark primary dark -->
+    <color name="accentColor">#FF4081</color> <!-- Accent color remains the same -->
+    <color name="blue">#87CEEB</color>
 </resources>

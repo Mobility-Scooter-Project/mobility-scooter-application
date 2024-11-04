@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme.FullScreen" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColor</item>
+        <item name="colorAccent">@color/accentColor</item>
+        <!-- Customize other styles as needed -->
+    </style>
+
+    <!-- You can define other styles here, specific to night mode -->
+    <style name="CustomTextStyle">
+        <item name="android:textColor">@color/primaryTextColor</item>
+        <item name="android:background">@color/primaryColor</item>
+    </style>
+</resources>

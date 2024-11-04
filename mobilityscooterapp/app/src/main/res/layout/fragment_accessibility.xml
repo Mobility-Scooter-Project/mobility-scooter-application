@@ -1,25 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".AccessibilityFragment">
+    tools:context=".AccessibilityFragment"
+    android:background="@color/primaryColor">
 
 
     <RelativeLayout
         android:id="@+id/relativeLayout2"
         android:layout_width="match_parent"
         android:layout_height="73dp"
-        android:background="#033261"
+        android:background="@color/blue"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints">
+
         <TextView
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/accessibility"
-            android:textColor="#000000"
+            android:textColor="@color/primaryTextColor"
             android:textSize="28sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -49,7 +52,7 @@
             android:layout_toLeftOf="@id/hamburgerMenu"
             android:gravity="end"
             android:text="@string/more"
-            android:textColor="@color/white" />
+            android:textColor="@color/primaryTextColor" />
     </RelativeLayout>
 
 
@@ -80,7 +83,9 @@
                 android:layout_height="wrap_content"
                 android:text="@string/font_size"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="@color/primaryTextColor"
+               />
 
             <Button
                 android:id="@+id/decrease_font_size_button"
@@ -90,7 +95,9 @@
                 android:text="@string/minus"
                 android:contentDescription="@string/font_size_decrease"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="@color/primaryTextColor"
+                />
 
             <TextView
                 android:id="@+id/font_size_text"
@@ -165,7 +172,9 @@
             android:layout_height="wrap_content"
             android:text="@string/button_size"
             android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textColor="@color/primaryTextColor"
+            />
 
         <RadioGroup
             android:layout_width="match_parent"
@@ -179,7 +188,8 @@
                 android:text="@string/small"
                 android:contentDescription="@string/small_text_radio_button"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="@color/primaryTextColor"/>
 
             <RadioButton
                 android:id="@+id/medium_button_size"
@@ -189,7 +199,8 @@
                 android:text="@string/medium"
                 android:contentDescription="@string/medium_text_radio_button"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="@color/primaryTextColor"/>
 
             <RadioButton
                 android:id="@+id/large_button_size"
@@ -198,7 +209,8 @@
                 android:text="@string/large"
                 android:contentDescription="@string/large_text_radio_button"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textColor="@color/primaryTextColor"/>
         </RadioGroup>
 
         <!-- Dark Mode Toggle -->
@@ -209,7 +221,9 @@
             android:text="@string/dark_mode"
             android:contentDescription="@string/dark_mode"
             android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textColor="@color/primaryTextColor"
+            />
 
         <!-- Other settings can be added here with similar structures -->
 
@@ -298,13 +312,13 @@
 <!--        app:layout_constraintTop_toTopOf="@+id/relativeLayout2"-->
 <!--        app:layout_constraintVertical_bias="0.183" />-->
 
-    <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="0dp"
-        android:layout_height="4dp"
-        android:src="@drawable/accessibility_setting_bottom"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="454dp" />
+<!--    <ImageView-->
+<!--        android:id="@+id/imageView6"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="4dp"-->
+<!--        android:src="@drawable/accessibility_setting_bottom"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        tools:layout_editor_absoluteY="454dp" />-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
