@@ -9,51 +9,51 @@
     android:background="@color/primaryColor">
 
 
-    <RelativeLayout
-        android:id="@+id/relativeLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="73dp"
-        android:background="@color/blue"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints">
+<!--    <RelativeLayout-->
+<!--        android:id="@+id/relativeLayout2"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="73dp"-->
+<!--        android:background="@color/blue"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        tools:ignore="MissingConstraints">-->
 
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/accessibility"
-            android:textColor="@color/primaryTextColor"
-            android:textSize="28sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintVertical_bias="0.183" />
-        <ImageView
-            android:id="@+id/hamburgerMenu"
-            android:layout_width="52dp"
-            android:layout_height="60dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginEnd="19dp"
-            android:layout_marginBottom="2dp"
-            android:src="@drawable/hamburger_menu"
-            android:contentDescription="@string/hamburger_menu_icon"/>
+<!--        <TextView-->
+<!--            android:id="@+id/textView4"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/accessibility"-->
+<!--            android:textColor="@color/primaryTextColor"-->
+<!--            android:textSize="28sp"-->
+<!--            android:textStyle="bold"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintVertical_bias="0.183" />-->
+<!--        <ImageView-->
+<!--            android:id="@+id/hamburgerMenu"-->
+<!--            android:layout_width="52dp"-->
+<!--            android:layout_height="60dp"-->
+<!--            android:layout_alignParentEnd="true"-->
+<!--            android:layout_alignParentBottom="true"-->
+<!--            android:layout_marginEnd="19dp"-->
+<!--            android:layout_marginBottom="2dp"-->
+<!--            android:src="@drawable/hamburger_menu"-->
+<!--            android:contentDescription="@string/hamburger_menu_icon"/>-->
 
-        <TextView
-            android:id="@+id/text_above"
-            android:layout_width="65dp"
-            android:layout_height="26dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="3dp"
-            android:layout_marginEnd="28dp"
-            android:layout_marginRight="-43dp"
-            android:layout_toLeftOf="@id/hamburgerMenu"
-            android:gravity="end"
-            android:text="@string/more"
-            android:textColor="@color/primaryTextColor" />
-    </RelativeLayout>
+<!--        <TextView-->
+<!--            android:id="@+id/text_above"-->
+<!--            android:layout_width="65dp"-->
+<!--            android:layout_height="26dp"-->
+<!--            android:layout_alignParentTop="true"-->
+<!--            android:layout_alignParentEnd="true"-->
+<!--            android:layout_marginTop="3dp"-->
+<!--            android:layout_marginEnd="28dp"-->
+<!--            android:layout_marginRight="-43dp"-->
+<!--            android:layout_toLeftOf="@id/hamburgerMenu"-->
+<!--            android:gravity="end"-->
+<!--            android:text="@string/more"-->
+<!--            android:textColor="@color/primaryTextColor" />-->
+<!--    </RelativeLayout>-->
 
 
     <LinearLayout
@@ -66,7 +66,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/relativeLayout2"
         app:layout_constraintVertical_bias="0.3">
 
         <!-- Font Size Adjustment -->

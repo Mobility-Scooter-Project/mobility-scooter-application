@@ -47,16 +47,16 @@ class AccessibilityFragment : Fragment() {
         return sharedPref?.getInt(FONT_SIZE_KEY, DEFAULT_FONT_SIZE) ?: DEFAULT_FONT_SIZE
     }
 
-    private fun applyFontSize(fontSize: Int) {
-        val textViews = listOf(
-            view?.findViewById<TextView>(R.id.textView4)
-        )
-        textViews.forEach { textView ->
-            textView?.let {
-                it.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSize.toFloat())
-            }
-        }
-    }
+//    private fun applyFontSize(fontSize: Int) {
+//        val textViews = listOf(
+//            view?.findViewById<TextView>(R.id.textView4)
+//        )
+//        textViews.forEach { textView ->
+//            textView?.let {
+//                it.setTextSize(TypedValue.COMPLEX_UNIT_SP, fontSize.toFloat())
+//            }
+//        }
+//    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -85,7 +85,6 @@ class AccessibilityFragment : Fragment() {
         darkModeSwitch.isChecked = isDarkModeOn
         setDarkMode(isDarkModeOn)
         darkModeSwitch.setOnCheckedChangeListener { _, isChecked ->
-            Log.d("DarkModeToggle", "Dark Mode Checked: $isChecked")
             setDarkMode(isChecked)
             // Save dark mode preference
             sharedPref?.edit()?.putBoolean(DARK_MODE_KEY, isChecked)?.apply()
@@ -121,9 +120,8 @@ class AccessibilityFragment : Fragment() {
     private fun changeFontSize(change: Int, fontSizeText: TextView) {
         currentFontSize += change
         fontSizeText.text = currentFontSize.toString()
-
         saveFontSizePreference(currentFontSize) // Save the new preference
-        applyFontSize(currentFontSize) // Apply the new font size
+//        applyFontSize(currentFontSize) // Apply the new font size
     }
 
 }
