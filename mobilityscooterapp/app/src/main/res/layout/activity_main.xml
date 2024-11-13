@@ -76,10 +76,10 @@
             android:paddingBottom="4dp"
             android:gravity="center"
             app:drawableTopCompat="@drawable/baseline_home_24"
-            android:background="@drawable/home_button_bg"
+            android:background="@color/home_color"
             android:text="@string/home"
             android:textSize="16sp"
-            android:textColor="@color/white"/>
+            android:textColor="@color/bottom_text"/>
 
         <TextView
             android:id="@+id/Drive_Bottom"
@@ -90,10 +90,10 @@
             android:paddingBottom="4dp"
             android:gravity="center"
             app:drawableTopCompat="@drawable/navbar_drive_icon"
-            android:background="@drawable/drive_bottom_bg"
+            android:background="@color/drive_color"
             android:text="@string/drive"
             android:textSize="16sp"
-            android:textColor="@color/white"/>
+            android:textColor="@color/bottom_text"/>
 
         <TextView
             android:id="@+id/analytics_button"
@@ -104,10 +104,10 @@
             android:paddingBottom="4dp"
             android:gravity="center"
             app:drawableTopCompat="@drawable/navbar_analytics_icon"
-            android:background="@drawable/analytics_button_bg"
+            android:background="@color/analytics_color"
             android:text="@string/analytics"
             android:textSize="16sp"
-            android:textColor="@color/white"/>
+            android:textColor="@color/bottom_text"/>
 
         <TextView
             android:id="@+id/button4"
@@ -118,10 +118,10 @@
             android:paddingBottom="4dp"
             android:gravity="center"
             app:drawableTopCompat="@drawable/navbar_message_icon"
-            android:background="@drawable/messages_button_bg"
+            android:background="@color/message_color"
             android:text="@string/messages"
             android:textSize="16sp"
-            android:textColor="@color/white"/>
+            android:textColor="@color/bottom_text"/>
     </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -134,6 +134,7 @@
         app:headerLayout="@layout/header"
         app:menu="@menu/side_view"
         android:layout_gravity="start"
+        android:background="@color/primaryColor"
         app:itemTextAppearance="@style/CustomSidebarItemStyle"/>
 
 
