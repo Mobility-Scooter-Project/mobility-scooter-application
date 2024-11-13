@@ -7,6 +7,7 @@
     android:fillViewport="true"
     android:padding="16dp"
     tools:context=".SignupActivity"
+    android:background="@color/white"
     android:windowSoftInputMode="adjustPan">
 
     <RelativeLayout
@@ -39,7 +40,7 @@
                     android:layout_marginStart="16dp"
                     android:text="@string/create_an_account"
                     android:textSize="33sp"
-                    android:textColor="#000000"/>
+                    android:textColor="@color/primaryTextColor"/>
             </LinearLayout>
 
             <LinearLayout
@@ -53,18 +54,22 @@
                     android:text="@string/first_name"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    android:textColor="#000000"/>
+                    android:textColor="@color/primaryTextColor"/>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:textColor="@color/primaryTextColor"
                     android:contentDescription="@string/enter_first_name">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/first_name"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:textColorHint="@color/primaryTextColor"
+                        android:textColor="@color/primaryTextColor"
+                        />
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
@@ -79,17 +84,20 @@
                     android:text="@string/last_name"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    android:textColor="#000000"/>
+                    android:textColor="@color/primaryTextColor"/>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:textColor="@color/primaryTextColor"
                     android:contentDescription="@string/enter_last_name">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/last_name"
                         android:layout_width="match_parent"
+                        android:textColor="@color/primaryTextColor"
+                        android:textColorHint="@color/primaryTextColor"
                         android:layout_height="wrap_content" />
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
@@ -107,18 +115,21 @@
                     android:text="@string/email"
                     android:textSize="22sp"
                     android:textStyle="bold"
-                    android:textColor="#000000"/>
+                    android:textColor="@color/primaryTextColor"/>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/primaryTextColor"
                     android:contentDescription="@string/enter_email">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textEmailAddress" />
+                        android:inputType="textEmailAddress"
+                        android:textColorHint="@color/primaryTextColor"
+                        android:textColor="@color/primaryTextColor"/>
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
@@ -135,17 +146,20 @@
                     android:text="@string/password"
                     android:textSize="22sp"
                     android:textStyle="bold"
-                    android:textColor="#000000"/>
+                    android:textColor="@color/primaryTextColor"/>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/primaryTextColor"
                     android:contentDescription="@string/enter_password">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/password"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/primaryTextColor"
+                        android:textColorHint="@color/primaryTextColor"
                         android:inputType="textPassword" />
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
@@ -163,7 +177,7 @@
                     android:text="@string/confirm_password"
                     android:textSize="22sp"
                     android:textStyle="bold"
-                    android:textColor="#000000"/>
+                    android:textColor="@color/primaryTextColor"/>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
@@ -173,6 +187,8 @@
                         android:id="@+id/confirm_password"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/primaryTextColor"
+                        android:textColorHint="@color/primaryTextColor"
                         android:contentDescription="@string/enter_confirm_password"/>
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
@@ -190,7 +206,8 @@
                     android:text="@string/clinic_code"
                     android:textSize="22sp"
                     android:textStyle="bold"
-                    android:textColor="#000000"/>
+                    android:textColor="@color/primaryTextColor"
+                    />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
@@ -200,6 +217,8 @@
                         android:id="@+id/clinic_code"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/primaryTextColor"
+                        android:textColorHint="@color/primaryTextColor"
                         android:contentDescription="@string/clinic_code"/>
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
@@ -217,13 +236,14 @@
                     android:text="@string/hospital"
                     android:textSize="22sp"
                     android:textStyle="bold"
-                    android:textColor="#000000"/>
+                    android:textColor="@color/primaryTextColor"/>
 
                 <Spinner
                     android:id="@+id/hospital_spinner"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:textColor="@color/primaryTextColor"
                     android:entries="@array/hospital_options" />
             </LinearLayout>
 
@@ -236,6 +256,7 @@
                 android:text="@string/view_terms_conditions"
                 android:textAllCaps="false"
                 android:textSize="20sp"
+                android:textColor="@color/primaryTextColor"
                 android:layout_gravity="center_horizontal"
                 android:contentDescription="@string/view_terms_conditions"/>
 
@@ -247,7 +268,9 @@
                 android:text="@string/accept_terms_conditions"
                 android:textAllCaps="false"
                 android:textSize="18sp"
+                android:textColor="@color/primaryTextColor"
                 android:layout_gravity="center_horizontal"
+                android:buttonTint="@color/black"
                 android:contentDescription="@string/accept_terms_conditions"/>
 
             <Button
@@ -259,7 +282,7 @@
                 android:text="@string/register"
                 android:textAllCaps="false"
                 android:textSize="22sp"
-                android:textColor="#000000"
+                android:textColor="@color/primaryTextColor"
                 android:contentDescription="@string/register"/>
 
         </LinearLayout>

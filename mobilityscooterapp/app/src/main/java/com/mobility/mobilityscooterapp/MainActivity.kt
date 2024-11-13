@@ -186,7 +186,6 @@ class MainActivity : AppCompatActivity() {
     //Dark Mode setting
 
     private fun setDarkMode(isDarkMode: Boolean) {
-        Log.e("TESTING", "It works")
         val mode = if (isDarkMode) AppCompatDelegate.MODE_NIGHT_YES else AppCompatDelegate.MODE_NIGHT_NO
         AppCompatDelegate.setDefaultNightMode(mode)
     }

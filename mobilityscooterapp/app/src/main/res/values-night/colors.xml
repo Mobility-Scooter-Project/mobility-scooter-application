@@ -3,15 +3,14 @@
     <color name="black">#FFFFFFFF</color>
     <color name="white">#FF000000</color>
     <color name="my_blue">#2323AE</color>
-    <color name= "bottom_text">#FFFFFFFF</color>
-    <color name="drive_color">#ED7D31</color>
-    <color name="analytics_color">#4EAE5B</color>
-    <color name="message_color">#CA9614</color>
-    <color name ="accessibility_color">#595959</color>
+    <color name="home_color">#1D4066</color>
+    <color name="drive_color">#FFA14F</color>
+    <color name="analytics_color">#6FCC6F</color>
+    <color name="message_color">#EAB825</color>
+    <color name ="accessibility_color">#7A7A7A</color>
 <!--    colors !-->
     <color name="primaryColor">#000000</color> <!-- Dark background -->
     <color name="primaryTextColor">#FFFFFF</color> <!-- Dark text -->
     <color name="primaryDarkColor">#444444</color> <!-- Dark primary dark -->
-    <color name="accentColor">#FF4081</color> <!-- Accent color remains the same -->
     <color name="blue">#87CEEB</color>
 </resources>

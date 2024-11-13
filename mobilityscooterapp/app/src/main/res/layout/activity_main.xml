@@ -79,7 +79,7 @@
             android:background="@color/home_color"
             android:text="@string/home"
             android:textSize="16sp"
-            android:textColor="@color/bottom_text"/>
+            android:textColor="@color/primaryTextColor"/>
 
         <TextView
             android:id="@+id/Drive_Bottom"
@@ -93,7 +93,7 @@
             android:background="@color/drive_color"
             android:text="@string/drive"
             android:textSize="16sp"
-            android:textColor="@color/bottom_text"/>
+            android:textColor="@color/primaryTextColor"/>
 
         <TextView
             android:id="@+id/analytics_button"
@@ -107,7 +107,7 @@
             android:background="@color/analytics_color"
             android:text="@string/analytics"
             android:textSize="16sp"
-            android:textColor="@color/bottom_text"/>
+            android:textColor="@color/primaryTextColor"/>
 
         <TextView
             android:id="@+id/button4"
@@ -121,7 +121,7 @@
             android:background="@color/message_color"
             android:text="@string/messages"
             android:textSize="16sp"
-            android:textColor="@color/bottom_text"/>
+            android:textColor="@color/primaryTextColor"/>
     </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
