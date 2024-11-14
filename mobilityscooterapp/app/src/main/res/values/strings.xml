@@ -107,7 +107,7 @@
 
     <string name="login">Login</string>
     <string name="forgot_password">Forgot password?</string>
-    <string name="create_an_account">Create an account</string>
+    <string name="create_an_account">Create Account</string>
 
     <!--activity reset password-->
     <string name="request_reset">Request reset</string>

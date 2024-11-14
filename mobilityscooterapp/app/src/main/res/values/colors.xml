@@ -14,4 +14,9 @@
     <color name="primaryDarkColor">#DDDDDD</color> <!-- Light primary dark -->
     <color name="accentColor">#FF4081</color> <!-- Accent color -->
     <color name="blue">#033261</color>
+
+<!--    Extra Colors -->
+    <color name="lightGreen">#71D04B</color>
+    <color name="pastelGreen">#77DD77</color>
+    <color name="darkPastelGreen">#5EB15E</color>
 </resources>
