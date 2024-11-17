@@ -68,7 +68,8 @@
         </activity>
         <activity
             android:name=".SignupActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/AppTheme.Login"/>
         <activity
             android:name=".MainActivity"
             android:exported="true" />

@@ -25,11 +25,10 @@
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowTranslucentNavigation">true</item>
 
-<!--        <item name="colorPrimary">@color/primaryColor</item>-->
-<!--        <item name="colorPrimaryDark">@color/primaryDarkColor</item>-->
-<!--        <item name="colorAccent">@color/accentColor</item>-->
+        <item name="colorPrimary">@color/pastelGreen</item>
     </style>
 
+    <!-- style for text boxes on Login Page -->
     <style name="Rounded.TextBoxes" parent="ShapeAppearance.MaterialComponents.SmallComponent">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">12dp</item>

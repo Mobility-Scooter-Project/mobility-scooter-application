@@ -119,11 +119,19 @@
     <string name="enter_first_name">Enter your first name</string>
     <string name="enter_last_name">Enter your last name</string>
 
+    <string name="first_name_signup">First Name</string>
+    <string name="last_name_signup">Last Name</string>
+
+    <string name="email_signup">Email</string>
+
+    <string name="password_signup">Password</string>
     <string name="confirm_password">Confirm Password:</string>
     <string name="enter_confirm_password">Enter your password again</string>
 
-    <string name="clinic_code">Clinic code:</string>
+    <string name="clinic_code">Clinic Code</string>
     <string name="enter_clinic_code">Enter clinic code here</string>
+
+    <string name="terms_conditions">Agree with <font color='#5EB15E'><![CDATA[Terms & Conditions]]></font></string>
 
     <string name="view_terms_conditions"><![CDATA[View Terms & Conditions]]></string>
     <string name="accept_terms_conditions"><![CDATA[I accept the Terms & Conditions]]></string>
