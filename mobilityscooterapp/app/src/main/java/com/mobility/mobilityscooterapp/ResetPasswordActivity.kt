@@ -60,9 +60,9 @@ class reset_password_activity : AppCompatActivity() {
             finish()
         }
 
-        binding.backText.setOnClickListener {
-            finish()
-        }
+//        binding.backText.setOnClickListener {
+//            finish()
+//        }
 
     }
 }
