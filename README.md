@@ -85,3 +85,101 @@ The core objective of this project is to bridge the existing safety assessment g
 - Enhance user-to-doctor communication for more personalized safety recommendations.
 - Collect more data to improve the machine learning models for better driving analysis.
 
+## Task Updates
+<table style="border-top: solid 1px; border-left: solid 1px; border-right: solid 1px; border-bottom: solid 1px">
+    <thead>
+        <tr>
+            <th rowspan=1 style="text-align: center; border-right: solid 1px">Task</th>
+            <th colspan=3 style="text-align: center; border-right: solid 1px">Description</th>
+            <th colspan=1 style="text-align: center; border-right: solid 1px">Assigned To</th>
+            <th colspan=1 style="text-align: center; border-right: solid 1px">Completed?</th>
+            <th colspan=1 style="text-align: center; border-right: solid 1px">Tested?</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align: center; border-right: solid 1px">Add Delete Video Feature</td>
+            <td colspan=3 style="text-align: center; border-right: solid 1px">Allow users to delete previous sessions.</td>
+            <td style="text-align: center; border-right: solid 1px">Andrew</td>
+            <td style="text-align: center; border-right: solid 1px">No</td>
+            <td style="text-align: center; border-right: solid 1px">No</td>
+        </tr>
+        <tr>
+            <td style="text-align: center; border-right: solid 1px">Verify User's Position Before Recording</td>
+            <td colspan=3 style="text-align: center; border-right: solid 1px">Create a screen before a user records that asks them to send a screenshot of their body to the server.</td>
+            <td style="text-align: center; border-right: solid 1px">Justin</td>
+            <td style="text-align: center; border-right: solid 1px">No</td>
+            <td style="text-align: center; border-right: solid 1px">No</td>
+        </tr>
+        <tr>
+            <td style="text-align: center; border-right: solid 1px">Add Dark Mode</td>
+            <td colspan=3 style="text-align: center; border-right: solid 1px">Implement a Dark Mode Feature.</td>
+            <td style="text-align: center; border-right: solid 1px">Alvan</td>
+            <td style="text-align: center; border-right: solid 1px">No</td>
+            <td style="text-align: center; border-right: solid 1px">No</td>
+        </tr>
+        <tr>
+            <td style="text-align: center; border-right: solid 1px">Make Screens Scale</td>
+            <td colspan=3 style="text-align: center; border-right: solid 1px">Make each screen scale with different screen sizes rather than stay a fixed size.</td>
+            <td style="text-align: center; border-right: solid 1px">Kenia</td>
+            <td style="text-align: center; border-right: solid 1px">No</td>
+            <td style="text-align: center; border-right: solid 1px">No</td>
+        </tr>
+        <tr>
+            <td style="text-align: center; border-right: solid 1px">Restyle Login & Register Screens</td>
+            <td colspan=3 style="text-align: center; border-right: solid 1px">Restyle the login and reigster screens to be more visually appealing.</td>
+            <td style="text-align: center; border-right: solid 1px">Justin & Alvan</td>
+            <td style="text-align: center; border-right: solid 1px">No</td>
+            <td style="text-align: center; border-right: solid 1px">No</td>
+        </tr>
+        <tr>
+            <td style="text-align: center; border-right: solid 1px">Thumbnail Bug</td>
+            <td colspan=3 style="text-align: center; border-right: solid 1px">Fix the bug where some thumbnails are not created properly.</td>
+            <td style="text-align: center; border-right: solid 1px">Andrew</td>
+            <td style="text-align: center; border-right: solid 1px">Yes</td>
+            <td style="text-align: center; border-right: solid 1px">Yes</td>
+        </tr>
+        <tr>
+            <td style="text-align: center; border-right: solid 1px">Hamburger Menu & Logout Feature</td>
+            <td colspan=3 style="text-align: center; border-right: solid 1px">Implement a hamburger menu that appears from the side and add a feature for the users to log out.</td>
+            <td style="text-align: center; border-right: solid 1px">Justin</td>
+            <td style="text-align: center; border-right: solid 1px">Yes</td>
+            <td style="text-align: center; border-right: solid 1px">Yes</td>
+        </tr>
+        <tr>
+            <td style="text-align: center; border-right: solid 1px">Fix Bottom Nav Bar</td>
+            <td colspan=3 style="text-align: center; border-right: solid 1px">Make nav bar persistent rather than hard coded in each screen.</td>
+            <td style="text-align: center; border-right: solid 1px">Justin</td>
+            <td style="text-align: center; border-right: solid 1px">Yes</td>
+            <td style="text-align: center; border-right: solid 1px">Yes</td>
+        </tr>
+        <tr>
+            <td style="text-align: center; border-right: solid 1px">Migrate Server</td>
+            <td colspan=3 style="text-align: center; border-right: solid 1px">Migrate Flask server from GCP to Jetstream2.</td>
+            <td style="text-align: center; border-right: solid 1px">Melvin</td>
+            <td style="text-align: center; border-right: solid 1px">Yes</td>
+            <td style="text-align: center; border-right: solid 1px">Yes</td>
+        </tr>
+        <tr>
+            <td style="text-align: center; border-right: solid 1px">Implement Talkback Compatibility</td>
+            <td colspan=3 style="text-align: center; border-right: solid 1px">Add content descriptions to each UI element for the screen reader.</td>
+            <td style="text-align: center; border-right: solid 1px">Andrew</td>
+            <td style="text-align: center; border-right: solid 1px">Yes</td>
+            <td style="text-align: center; border-right: solid 1px">Yes</td>
+        </tr>
+        <tr>
+            <td style="text-align: center; border-right: solid 1px">Fix Permissions</td>
+            <td colspan=3 style="text-align: center; border-right: solid 1px">Refactor the way the app is asking for user's permissions.</td>
+            <td style="text-align: center; border-right: solid 1px">Alvan</td>
+            <td style="text-align: center; border-right: solid 1px">Yes</td>
+            <td style="text-align: center; border-right: solid 1px">Yes</td>
+        </tr>
+        <tr>
+            <td style="text-align: center; border-right: solid 1px">Fix Crashing & Freezing Issues</td>
+            <td colspan=3 style="text-align: center; border-right: solid 1px">Stop the app from freezing and crashing when the drive menu is opened.</td>
+            <td style="text-align: center; border-right: solid 1px">Alvan + Melvin</td>
+            <td style="text-align: center; border-right: solid 1px">Yes</td>
+            <td style="text-align: center; border-right: solid 1px">Yes</td>
+        </tr>
+    </tbody>
+</table>
