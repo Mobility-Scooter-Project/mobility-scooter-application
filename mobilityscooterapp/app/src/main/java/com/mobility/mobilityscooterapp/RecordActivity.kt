@@ -1,5 +1,6 @@
 package com.mobility.mobilityscooterapp
 
+import android.app.AlertDialog
 import android.content.ContentResolver
 import android.content.ContentValues
 import android.content.Intent
@@ -142,21 +143,25 @@ class record_activity : AppCompatActivity() {
                     }
                     is VideoRecordEvent.Finalize -> {
                         if (!recordEvent.hasError()) {
-
+                            sessionLength = System.currentTimeMillis() - startTime
+                            if (sessionLength >= 5000 && sessionLength <= 30000) {
                             timeCounter = SystemClock.elapsedRealtime()
-
                             val endTime1 = SystemClock.elapsedRealtime()
                             val elapsedTime1 = endTime1 - timeCounter
                             val elapsedTimeFormatted = convertMillisToTimeFormat(elapsedTime1)
                             Log.d(TAG, "finish record video: 0 ms")
                             Log.d(TAG, "Sending video https to server: $elapsedTimeFormatted")
-                            Toast.makeText(this, "Time for first process: ${elapsedTime1}ms", Toast.LENGTH_LONG).show()
+                            Toast.makeText(
+                                this,
+                                "Time for first process: ${elapsedTime1}ms",
+                                Toast.LENGTH_LONG
+                            ).show()
 
-                            sessionLength = System.currentTimeMillis() - startTime
                             val minutes = TimeUnit.MILLISECONDS.toMinutes(sessionLength)
                             val seconds = TimeUnit.MILLISECONDS.toSeconds(sessionLength) -
                                     TimeUnit.MINUTES.toSeconds(minutes)
-                            val sessionLengthFormatted = String.format(Locale.US, "%02d min %02d sec", minutes, seconds)
+                            val sessionLengthFormatted =
+                                String.format(Locale.US, "%02d min %02d sec", minutes, seconds)
 
                             val videoUri = recordEvent.outputResults.outputUri
 
@@ -166,7 +171,10 @@ class record_activity : AppCompatActivity() {
 
                                     val encryptedFilePath = encryptFile(videoUri, contentResolver)
 
-                                    val sessionSummary = Intent(this, Driving_Session_Summary_activity::class.java).apply {
+                                    val sessionSummary = Intent(
+                                        this,
+                                        Driving_Session_Summary_activity::class.java
+                                    ).apply {
                                         putExtra("date", date)
                                         putExtra("start_time", startTimeFormatted)
                                         putExtra("session_length", sessionLengthFormatted)
@@ -177,6 +185,17 @@ class record_activity : AppCompatActivity() {
                                     finish()
                                     startActivity(sessionSummary)
                                 }
+                            }
+                        }
+                            else{
+                                AlertDialog.Builder(this)
+                                    .setTitle("Invalid Recording Time")
+                                    .setMessage("The video must be between 5 seconds and 5 minutes. Please try again.")
+                                    .setPositiveButton("OK") { dialog, _ ->
+                                        dialog.dismiss()
+                                    }
+                                    .setCancelable(false)
+                                    .show()
                             }
 
                         } else {
