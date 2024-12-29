@@ -104,7 +104,7 @@ class AccessibilityFragment : Fragment() {
             findNavController().navigate(R.id.action_accessibilityFragment_to_analytic_start_page)
         }
 
-        val messageButton = view.findViewById<TextView>(R.id.button4)
+        val messageButton = view.findViewById<TextView>(R.id.messages_button)
         messageButton?.setOnClickListener {
             findNavController().navigate(R.id.action_accessibilityFragment_to_messages_page)
         }

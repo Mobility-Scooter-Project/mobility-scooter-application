@@ -40,7 +40,7 @@ class AnalyticStartPage : Fragment() {
                 findNavController().navigate(R.id.action_analytic_start_page_to_drive_start_page)
 
             }
-        val MessageButton = view.findViewById<TextView>(R.id.button4)
+        val MessageButton = view.findViewById<TextView>(R.id.messages_button)
             MessageButton?.setOnClickListener {
                 findNavController().navigate(R.id.action_analytic_start_page_to_messages_page)
             }

@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
         homeButton = findViewById(R.id.home)
         driveButton = findViewById(R.id.Drive_Bottom)
         analyticsButton = findViewById(R.id.analytics_button)
-        messagesButton = findViewById(R.id.button4)
+        messagesButton = findViewById(R.id.messages_button)
 
         homeButton.setOnClickListener {
             navController.navigate(R.id.homeFragment)

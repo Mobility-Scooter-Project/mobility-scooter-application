@@ -9,6 +9,7 @@
     <color name="message_color">#CA9614</color>
     <color name ="accessibility_color">#595959</color>
 <!--    Dark/Normal Colors-->
+    <color name= "fullBlack">#FF000000</color>
     <color name="primaryColor">#FFFFFF</color> <!-- Light background -->
     <color name="primaryTextColor">#000000</color> <!-- Light text -->
     <color name="primaryDarkColor">#DDDDDD</color> <!-- Light primary dark -->

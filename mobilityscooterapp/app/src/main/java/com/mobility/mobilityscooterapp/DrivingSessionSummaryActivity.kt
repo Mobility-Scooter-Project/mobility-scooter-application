@@ -215,7 +215,7 @@ class Driving_Session_Summary_activity : AppCompatActivity() {
             startActivity(analyticsPage)
         }
 
-        binding.button4.setOnClickListener {
+        binding.messagesButton.setOnClickListener {
             deleteDecryptedFile()
             val toMessage = Intent(this, message_activity::class.java)
             toMessage.putExtra("AutoNavigateToMessage", true)
