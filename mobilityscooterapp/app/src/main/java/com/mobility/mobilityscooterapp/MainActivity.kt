@@ -38,7 +38,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var driveButton: TextView
     private lateinit var analyticsButton: TextView
     private lateinit var messagesButton: TextView
-
     private lateinit var firebaseAuth : FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -88,9 +87,9 @@ class MainActivity : AppCompatActivity() {
                 drawerLayout.openDrawer(GravityCompat.START)
             }
         }
-
         // navigate to corresponding pages from side menu (NavigationView)
         val navigationView : NavigationView = findViewById(R.id.side_view)
+
         navigationView.setNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.side_view_home -> navController.navigate(R.id.homeFragment)

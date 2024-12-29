@@ -134,6 +134,7 @@
         app:headerLayout="@layout/header"
         app:menu="@menu/side_view"
         android:layout_gravity="start"
+        app:itemIconTint="@color/black"
         android:background="@color/primaryColor"
         app:itemTextAppearance="@style/CustomSidebarItemStyle"/>
 
