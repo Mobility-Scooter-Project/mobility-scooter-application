@@ -27,6 +27,7 @@ class DriveStartPage : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //Navigation buttons
         val homeButton = view.findViewById<TextView>(R.id.home)
         homeButton?.setOnClickListener {
             findNavController().navigate(R.id.action_drive_start_page_to_homeFragment)
@@ -61,6 +62,7 @@ class DriveStartPage : Fragment() {
 
         }
     }
+    //Check Camera permissions for ability to record
     private fun cameraPermissions():Boolean{
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED){
             return true

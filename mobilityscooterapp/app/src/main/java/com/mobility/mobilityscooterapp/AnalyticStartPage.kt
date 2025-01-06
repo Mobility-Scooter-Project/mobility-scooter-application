@@ -30,7 +30,7 @@ class AnalyticStartPage : Fragment() {
                 val intent = Intent(activity, session_history_activity::class.java)
                 startActivity(intent)
             }
-
+        //Navigation buttons
         val homeButton = view.findViewById<TextView>(R.id.home)
             homeButton?.setOnClickListener {
             findNavController().navigate(R.id.action_analytic_start_page_to_homeFragment)
@@ -44,13 +44,11 @@ class AnalyticStartPage : Fragment() {
             MessageButton?.setOnClickListener {
                 findNavController().navigate(R.id.action_analytic_start_page_to_messages_page)
             }
-
-            val sessionHistory = view.findViewById<ImageView>(R.id.imageView1)
+        val sessionHistory = view.findViewById<ImageView>(R.id.imageView1)
             sessionHistory?.setOnClickListener {
                 val intent = Intent(activity, session_history_activity::class.java)
                 startActivity(intent)
             }
-
 
     }
 

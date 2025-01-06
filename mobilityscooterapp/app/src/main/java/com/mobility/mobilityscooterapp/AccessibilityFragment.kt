@@ -16,8 +16,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SwitchCompat
 
-
 class AccessibilityFragment : Fragment() {
+    //Currently only dark mode due to static screen
     private lateinit var darkModeSwitch: SwitchCompat
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

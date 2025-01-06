@@ -10,13 +10,10 @@ class AnalysisActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_analysis_acitvity)
 
-
-
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.container, AnalyticStartPage())
                 .commitNow()
-
         }
     }
 }
