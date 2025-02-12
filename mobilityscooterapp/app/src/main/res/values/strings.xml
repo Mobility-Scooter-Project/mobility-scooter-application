@@ -58,8 +58,23 @@
     <string name="accessibility_icon">Accessibility icon</string>
 
     <!--drive start page-->
+    <string name="record_session">Record Session</string>
     <string name="start">Start</string>
     <string name="start_drive">Start drive place phone on scooter</string>
+    <string name="send_photo">Send Photo</string>
+    <string name="send_photo_text">Verify Body Position</string>
+    <string name="start_recording_text">Record Body Activity</string>
+    <string name="camera_image_description">Camera Icon</string>
+    <string name="video_image_description">Video Icon</string>
+
+    <!-- send photo page -->
+    <string name="verify_position">Verify Position</string>
+    <string name="upload_photo">Upload Photo</string>
+    <string name="upload_photo_button">Upload Photo Button</string>
+    <string name="confirm_and_send">Confirm and Send</string>
+    <string name="take_photo">Take Photo</string>
+    <string name="chosen_image">Image View to hold chosen/take photo</string>
+
 
     <!--analytic start page-->
     <string name="session_history">Session\nhistory</string>

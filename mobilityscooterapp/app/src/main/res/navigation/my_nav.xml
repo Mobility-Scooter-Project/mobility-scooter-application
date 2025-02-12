@@ -37,9 +37,12 @@
         <action
             android:id="@+id/action_drive_start_page_to_messages_page"
             app:destination="@id/messages_page" />
-        <action
-            android:id="@+id/action_drive_start_page_to_record_preview_activity"
-            app:destination="@id/record_preview_activity" />
+<!--        <action-->
+<!--            android:id="@+id/action_drive_start_page_to_record_preview_activity"-->
+<!--            app:destination="@id/record_preview_activity" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_drive_start_page_to_send_photo_activity"-->
+<!--            app:destination="@id/send_photo_activity" />-->
         <action
             android:id="@+id/action_drive_start_page_to_accessibilityFragment"
             app:destination="@id/accessibilityFragment" />
@@ -95,11 +98,17 @@
             android:id="@+id/action_accessibilityFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
-    <activity
-        android:id="@+id/record_preview_activity"
-        android:name="com.mobility.mobilityscooterapp.record_activity"
-        android:label="activity_record_preview"
-        tools:layout="@layout/activity_record_preview" />
+<!--    <activity-->
+<!--        android:id="@+id/record_preview_activity"-->
+<!--        android:name="com.mobility.mobilityscooterapp.record_activity"-->
+<!--        android:label="activity_record_preview"-->
+<!--        tools:layout="@layout/activity_record_preview" />-->
+<!--    <activity-->
+<!--        android:id="@+id/send_photo_activity"-->
+<!--        android:name="com.mobility.mobilityscooterapp.PhotoActivity"-->
+<!--        android:label="activity_send_photo"-->
+<!--        tools:layout="@layout/activity_send_photo"-->
+<!--        />-->
     <activity
         android:id="@+id/session_history_activity"
         android:name="com.mobility.mobilityscooterapp.session_history_activity"

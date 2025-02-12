@@ -3,6 +3,7 @@ package com.mobility.mobilityscooterapp
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.AlertDialog
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -41,10 +42,14 @@ class DriveStartPage : Fragment() {
         messageButton?.setOnClickListener {
             findNavController().navigate(R.id.action_drive_start_page_to_messages_page)
         }
+
+        // recording
         val startButton = view.findViewById<Button>(R.id.start_record_button)
         startButton?.setOnClickListener {
                 if(cameraPermissions() ){
-                    findNavController().navigate(R.id.action_drive_start_page_to_record_preview_activity)
+//                    findNavController().navigate(R.id.action_drive_start_page_to_record_preview_activity)
+                    val intent = Intent(requireContext(), record_activity::class.java)
+                    startActivity(intent)
                 }
                 else{
                         AlertDialog.Builder(requireContext())
@@ -60,6 +65,31 @@ class DriveStartPage : Fragment() {
                     }
 
         }
+        // send photo
+        val sendPhotoButton = view.findViewById<Button>(R.id.send_photo_button)
+        sendPhotoButton?.setOnClickListener {
+            if(cameraPermissions() ){
+//                findNavController().navigate(R.id.action_drive_start_page_to_send_photo_activity)
+                val intent = Intent(requireContext(), PhotoActivity::class.java)
+                startActivity(intent)
+
+            }
+            else{
+                AlertDialog.Builder(requireContext())
+                    .setTitle("Permissions Needed")
+                    .setMessage("This app needs Camera and Storage permissions to start recording. Please grant these permissions.")
+                    .setPositiveButton("OK") { dialog, _ ->
+                        dialog.dismiss()
+                    }
+                    .setNegativeButton("Cancel") { dialog, _ ->
+                        dialog.dismiss()
+                    }
+                    .show()
+            }
+        }
+
+
+
     }
     private fun cameraPermissions():Boolean{
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED){

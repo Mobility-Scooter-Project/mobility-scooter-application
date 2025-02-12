@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:text="Record Session"
+        android:text="@string/record_session"
         android:textColor="@color/primaryTextColor"
         android:textSize="32sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,23 +29,31 @@
         app:layout_constraintTop_toBottomOf="@+id/titleTextView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="128dp">
+        android:layout_marginTop="116dp">
+
+        <ImageView
+            android:id="@+id/cameraImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/camera_icon"
+            android:contentDescription="@string/camera_image_description" />
 
         <TextView
             android:id="@+id/send_photo_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Verify Body Position"
+            android:text="@string/send_photo_text"
             android:textColor="#000000"
             android:textSize="20sp" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/login_button"
+            android:id="@+id/send_photo_button"
             android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_gravity="center"
-            android:text="Send Photo"
+            android:text="@string/send_photo"
             android:contentDescription="@string/login"
             android:textAllCaps="false"
             android:textSize="20sp"
@@ -66,11 +74,20 @@
         android:orientation="vertical"
         android:layout_marginTop="64dp">
 
+
+        <ImageView
+            android:id="@+id/videoImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/video_icon"
+            android:contentDescription="@string/video_image_description" />
+
         <TextView
             android:id="@+id/start_recording_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/please_place_your_phone_on_the_scooter"
+            android:text="@string/start_recording_text"
             android:textColor="#000000"
             android:textSize="20sp" />
 
@@ -88,36 +105,5 @@
             android:textColor="@android:color/white" />
 
     </LinearLayout>
-
-
-<!--    <TextView-->
-<!--        android:id="@+id/textView2"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="@string/please_place_your_phone_on_the_scooter"-->
-<!--        android:textColor="#000000"-->
-<!--        android:textSize="20sp"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.593"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintVertical_bias="0.516" />-->
-
-<!--    <Button-->
-<!--       android:id="@+id/start_record_button"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:background="#FF0000"-->
-<!--        android:text="@string/start"-->
-<!--        android:contentDescription="@string/start_drive"-->
-<!--        android:textColor="#FFFFFF"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.498"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintVertical_bias="0.606"-->
-<!--        tools:ignore="MissingConstraints" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
