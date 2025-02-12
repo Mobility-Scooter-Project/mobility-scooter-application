@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".DriveStartPage">
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/titleTextView"
@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:text="Record Session"
+        android:text="Verify Position"
         android:textColor="@color/primaryTextColor"
         android:textSize="32sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,31 +21,43 @@
         android:layout_marginTop="48dp"
         />
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:contentDescription="Body Photo"
+        android:layout_marginTop="128dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleTextView"
+        />
+
     <LinearLayout
         android:id="@+id/send_photo_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@+id/titleTextView"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="128dp">
+        android:layout_marginTop="64dp">
 
-        <TextView
-            android:id="@+id/send_photo_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Verify Body Position"
-            android:textColor="#000000"
-            android:textSize="20sp" />
+<!--        <TextView-->
+<!--            android:id="@+id/upload_photo_text"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:text="Upload Photo"-->
+<!--            android:textColor="#000000"-->
+<!--            android:textSize="20sp" />-->
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/login_button"
+            android:id="@+id/upload_button"
             android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_gravity="center"
-            android:text="Send Photo"
+            android:text="Upload Photo"
             android:contentDescription="@string/login"
             android:textAllCaps="false"
             android:textSize="20sp"
@@ -66,13 +78,13 @@
         android:orientation="vertical"
         android:layout_marginTop="64dp">
 
-        <TextView
-            android:id="@+id/start_recording_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/please_place_your_phone_on_the_scooter"
-            android:textColor="#000000"
-            android:textSize="20sp" />
+<!--        <TextView-->
+<!--            android:id="@+id/start_recording_text"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/please_place_your_phone_on_the_scooter"-->
+<!--            android:textColor="#000000"-->
+<!--            android:textSize="20sp" />-->
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/start_record_button"
@@ -80,7 +92,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_gravity="center"
-            android:text="@string/start_recording"
+            android:text="Take Photo"
             android:contentDescription="@string/start_drive"
             android:textAllCaps="false"
             android:textSize="20sp"
@@ -89,35 +101,5 @@
 
     </LinearLayout>
 
-
-<!--    <TextView-->
-<!--        android:id="@+id/textView2"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="@string/please_place_your_phone_on_the_scooter"-->
-<!--        android:textColor="#000000"-->
-<!--        android:textSize="20sp"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.593"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintVertical_bias="0.516" />-->
-
-<!--    <Button-->
-<!--       android:id="@+id/start_record_button"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:background="#FF0000"-->
-<!--        android:text="@string/start"-->
-<!--        android:contentDescription="@string/start_drive"-->
-<!--        android:textColor="#FFFFFF"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.498"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintVertical_bias="0.606"-->
-<!--        tools:ignore="MissingConstraints" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

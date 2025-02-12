@@ -91,7 +91,7 @@
     <string name="dark_mode">Dark mode</string>
 
     <!--activity record preview-->
-    <string name="start_recording">Start recording</string>
+    <string name="start_recording">Start Recording</string>
     <string name="position_torso">Please position torso within screen and press \record\ when ready</string>
 
     <!--activity driving session summary-->
