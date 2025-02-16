@@ -1,4 +1,14 @@
 package com.mobility.mobilityscooterapp
+/**
+ * AccessibilityFragment provides accessibility options for the Mobility Scooter app.
+ *
+ * Features:
+ * - Dark Mode toggle
+ * - (Planned) Font size adjustments for better readability
+ *
+ * This fragment allows users to enable or disable dark mode and navigate to different sections.
+ * Font size adjustment functionality is currently commented out.
+ */
 
 import android.content.Context
 import android.os.Bundle
@@ -16,8 +26,10 @@ import androidx.navigation.fragment.findNavController
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SwitchCompat
 
+/**
+ * A fragment that provides accessibility settings for the app, currently only dark mode toggle
+ */
 class AccessibilityFragment : Fragment() {
-    //Currently only dark mode due to static screen
     private lateinit var darkModeSwitch: SwitchCompat
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,15 +37,28 @@ class AccessibilityFragment : Fragment() {
     ): View? {
         return inflater.inflate(R.layout.fragment_accessibility, container, false)
     }
+
     private var currentFontSize: Int = DEFAULT_FONT_SIZE
 
     companion object {
+        /**  Shared  Preferences file name */
         const val PREFS_NAME = "AppSettingsPrefs"
+
+        /**  Key for storing font size preference */
         const val FONT_SIZE_KEY = "FontSize"
+
+        /**  Key for storing dark mode preference */
         const val DARK_MODE_KEY = "DarkMode"
+
+        /**  Default font size used in the app */
         const val DEFAULT_FONT_SIZE = 18
     }
 
+    /**
+     * Saves the selected font size to SharedPreferences.
+     *
+     * @param fontSize The new font size to save.
+     */
     private fun saveFontSizePreference(fontSize: Int) {
         val sharedPref = activity?.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE) ?: return
         with(sharedPref.edit()) {
@@ -42,11 +67,20 @@ class AccessibilityFragment : Fragment() {
         }
     }
 
+    /**
+     * Gets the current font size of the app
+     *
+     * @return The stored current font size or default if not found
+     */
     private fun getFontSizePreference(): Int {
         val sharedPref = activity?.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
         return sharedPref?.getInt(FONT_SIZE_KEY, DEFAULT_FONT_SIZE) ?: DEFAULT_FONT_SIZE
     }
 
+    /**
+     * Applies font size changes to the app
+     *
+     */
 //    private fun applyFontSize(fontSize: Int) {
 //        val textViews = listOf(
 //            view?.findViewById<TextView>(R.id.textView4)
@@ -89,6 +123,7 @@ class AccessibilityFragment : Fragment() {
             // Save dark mode preference
             sharedPref?.edit()?.putBoolean(DARK_MODE_KEY, isChecked)?.apply()
         }
+
         val homeButton = view.findViewById<TextView>(R.id.home)
         homeButton?.setOnClickListener {
             findNavController().navigate(R.id.action_accessibilityFragment_to_homeFragment)
@@ -109,6 +144,12 @@ class AccessibilityFragment : Fragment() {
             findNavController().navigate(R.id.action_accessibilityFragment_to_messages_page)
         }
     }
+
+    /**
+     *Applies dark mode based on the key from Dark Mode
+     *
+     *
+     */
     private fun setDarkMode(isDarkMode: Boolean) {
         val mode = if (isDarkMode) {
             AppCompatDelegate.MODE_NIGHT_YES
@@ -117,6 +158,11 @@ class AccessibilityFragment : Fragment() {
         }
         AppCompatDelegate.setDefaultNightMode(mode)
     }
+    /**
+     *Applies font size changes based on the user's input of increasing or decreasing
+     *
+     *
+     */
     private fun changeFontSize(change: Int, fontSizeText: TextView) {
         currentFontSize += change
         fontSizeText.text = currentFontSize.toString()
