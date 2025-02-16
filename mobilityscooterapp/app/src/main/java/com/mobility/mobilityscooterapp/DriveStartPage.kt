@@ -1,5 +1,14 @@
 package com.mobility.mobilityscooterapp
-
+/**
+ * Drive Start Page Fragment allows the user to start the recording session
+ *
+ * Features:
+ * - Start button
+ *
+ *
+ * This fragment allows users to start recordings and adds logic for permissions
+ *
+ */
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.AlertDialog
@@ -42,12 +51,15 @@ class DriveStartPage : Fragment() {
         messageButton?.setOnClickListener {
             findNavController().navigate(R.id.action_drive_start_page_to_messages_page)
         }
+
         val startButton = view.findViewById<Button>(R.id.start_record_button)
         startButton?.setOnClickListener {
+                /** Checks for permissions to determine what to prompt the user*/
                 if(cameraPermissions() ){
                     findNavController().navigate(R.id.action_drive_start_page_to_record_preview_activity)
                 }
                 else{
+                    /**  Alert logic where permissions are needed and are requested*/
                         AlertDialog.Builder(requireContext())
                             .setTitle("Permissions Needed")
                             .setMessage("This app needs Camera and Storage permissions to start recording. Please grant these permissions.")
@@ -62,6 +74,11 @@ class DriveStartPage : Fragment() {
 
         }
     }
+    /**
+     * Returns camera permissions data from app
+     *
+     * @return true if user allowed app to access camera permissions, other wise returns false
+     */
     //Check Camera permissions for ability to record
     private fun cameraPermissions():Boolean{
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED){

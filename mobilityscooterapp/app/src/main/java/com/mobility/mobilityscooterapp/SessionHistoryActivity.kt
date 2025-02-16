@@ -12,7 +12,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 
-class session_history_activity : AppCompatActivity() {
+class SessionHistoryActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySessionHistoryBinding
     private lateinit var adapter: SessionAdapter

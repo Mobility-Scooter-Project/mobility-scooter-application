@@ -26,7 +26,7 @@ import java.io.File
 import kotlinx.coroutines.*
 import java.io.FileOutputStream
 
-class Driving_Session_Summary_activity : AppCompatActivity() {
+class DrivingSessionSummaryActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDrivingSessionSummaryBinding
     private lateinit var decryptedFile: File
@@ -179,6 +179,7 @@ class Driving_Session_Summary_activity : AppCompatActivity() {
             }
         }
 
+        //Navigation buttons
         binding.buttonNext.setOnClickListener {
             deleteDecryptedFile()
             val history = Intent(this, MainActivity::class.java)

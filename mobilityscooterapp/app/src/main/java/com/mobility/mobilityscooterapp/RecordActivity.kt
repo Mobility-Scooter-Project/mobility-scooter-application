@@ -50,7 +50,7 @@ import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 
 
-class record_activity : AppCompatActivity() {
+class RecordActivity : AppCompatActivity() {
     private lateinit var viewBinding: ActivityRecordPreviewBinding
 
     private var videoCapture: VideoCapture<Recorder>? = null
@@ -173,7 +173,7 @@ class record_activity : AppCompatActivity() {
 
                                     val sessionSummary = Intent(
                                         this,
-                                        Driving_Session_Summary_activity::class.java
+                                        DrivingSessionSummaryActivity::class.java
                                     ).apply {
                                         putExtra("date", date)
                                         putExtra("start_time", startTimeFormatted)
