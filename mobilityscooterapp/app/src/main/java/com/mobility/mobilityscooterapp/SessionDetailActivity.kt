@@ -6,27 +6,26 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
 import androidx.security.crypto.EncryptedFile
 import androidx.security.crypto.MasterKeys
 import com.mobility.mobilityscooterapp.databinding.ActivitySessionDetailBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.io.File
-import java.io.FileOutputStream
 import java.io.IOException
 
-
-import okhttp3.Call
-import okhttp3.Callback
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import okhttp3.Response
 import okio.buffer
 import okio.sink
-
 
 class session_detail_activity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySessionDetailBinding
     private lateinit var decryptedFile: File
+    private lateinit var videoFile: File
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,60 +39,74 @@ class session_detail_activity : AppCompatActivity() {
         val sessionLength = intent.getStringExtra("session_length")
         val encryptedFilePath = intent.getStringExtra("encryptedFilePath")
         val videoUrl = intent.getStringExtra("video_url")
-        /*
-        val estimate1 = intent.getStringExtra("estimate1")
-        val estimate2 = intent.getStringExtra("estimate2")
-         */
 
         binding.textViewDate.text = getString(R.string.date_placeholder, date)
         binding.textViewStartTime.text = getString(R.string.start_time_placeholder, startTime)
         binding.SessionLength.text = getString(R.string.session_length_placeholder, sessionLength)
-        /*
-        binding.textViewEstimate.text = getString(R.string.estimate_placeholder, estimate1)
-        binding.textViewEstimate2.text = getString(R.string.estimate_placeholder, estimate2)
 
-         */
         if (encryptedFilePath != null && videoUrl != null) {
             val encryptedFile = File(encryptedFilePath)
 
             if (!encryptedFile.exists()) {
-                downloadFile(videoUrl, encryptedFilePath)
-            }
-        }
-
-        if (encryptedFilePath != null) {
-            val encryptedFile = File(encryptedFilePath)
-
-            if (encryptedFile.exists()) {
-                val decryptedFile = decryptFile(encryptedFile)
-                if (decryptedFile != null) {
-                    val videoUri = Uri.fromFile(decryptedFile)
-                    binding.videoView.setVideoURI(videoUri)
-                    binding.videoView.setOnPreparedListener { mp ->
-                        mp.isLooping = true
-                        binding.videoView.start()
+                lifecycleScope.launch {
+                    try{
+                        val filePath = downloadFile(videoUrl, encryptedFilePath)
+                        videoFile = File(filePath)
+                        playVideo()
+                    } catch (e: Exception) {
+                        Log.e("Download", "Download failed: ${e.message}")
                     }
-
-                    binding.videoView.setOnClickListener {
-                        val watchVideo = Intent(this, video_view_activity::class.java).apply {
-                            putExtra("video_path", decryptedFile.absolutePath)
-                        }
-                        startActivity(watchVideo)
-                    }
-                } else {
-                    Toast.makeText(this, "Decryption failed", Toast.LENGTH_SHORT).show()
                 }
             } else {
-                Toast.makeText(this, "File does not exist", Toast.LENGTH_SHORT).show()
+                try {
+                    val encryptedFile = File(encryptedFilePath)
+                    val decryptedFile = decryptFile(encryptedFile)
+
+                    if (decryptedFile == null) {
+                        encryptedFile.delete()
+                        Toast.makeText(this, "Decryption failed", Toast.LENGTH_SHORT).show()
+                    } else{
+                        videoFile = decryptedFile
+                        playVideo()
+                    }
+                } catch (e: Exception) {
+                    Toast.makeText(this, "Decryption failed", Toast.LENGTH_SHORT).show()
+                }
             }
-        } else {
-            Log.e("SessionDetailActivity", "Video URL is null")
         }
+
         binding.backButton.setOnClickListener {
             deleteDecryptedFile()
+            deleteVideoFile()
             finish()
         }
 
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        deleteDecryptedFile()
+        deleteVideoFile()
+    }
+
+    private fun playVideo() {
+        if (videoFile.exists()) {
+            val videoUri = Uri.fromFile(videoFile)
+            binding.videoView.setVideoURI(videoUri)
+            binding.videoView.setOnPreparedListener { mp ->
+                mp.isLooping = true
+                binding.videoView.start()
+            }
+
+            binding.videoView.setOnClickListener {
+                val watchVideo = Intent(this, video_view_activity::class.java).apply {
+                    putExtra("video_path", videoFile.absolutePath)
+                }
+                startActivity(watchVideo)
+            }
+        } else {
+            Toast.makeText(this, "File does not exist", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun decryptFile(encryptedFile: File): File? {
@@ -103,18 +116,14 @@ class session_detail_activity : AppCompatActivity() {
         try {
             val encryptedFileInput = EncryptedFile.Builder(
                 encryptedFile,
-                this,
+                applicationContext,
                 masterKeyAlias,
                 EncryptedFile.FileEncryptionScheme.AES256_GCM_HKDF_4KB
             ).build()
 
             encryptedFileInput.openFileInput().use { inputStream ->
-                FileOutputStream(decryptedFile).use { outputStream ->
-                    val buffer = ByteArray(1024)
-                    var length: Int
-                    while (inputStream.read(buffer).also { length = it } != -1) {
-                        outputStream.write(buffer, 0, length)
-                    }
+                decryptedFile.outputStream().use { outputStream ->
+                    inputStream.copyTo(outputStream)
                 }
             }
         } catch (e: Exception) {
@@ -131,35 +140,33 @@ class session_detail_activity : AppCompatActivity() {
         }
     }
 
-    private fun downloadFile(url: String, path: String) {
-        val request = Request.Builder().url(url).build()
-
-        OkHttpClient().newCall(request).enqueue(object : Callback {
-            override fun onFailure(call: Call, e: IOException) {
-                runOnUiThread {
-                    Toast.makeText(this@session_detail_activity, "Failed to download file: ${e.message}", Toast.LENGTH_SHORT).show()
-                }
-            }
-
-            override fun onResponse(call: Call, response: Response) {
-                if (response.isSuccessful) {
-                    val file = File(path)
-                    val sink = file.sink().buffer()
-                    sink.writeAll(response.body!!.source())
-                    sink.close()
-
-                    runOnUiThread {
-                        Toast.makeText(this@session_detail_activity, "File downloaded successfully", Toast.LENGTH_SHORT).show()
-                        // Here you can call a method to process the downloaded file
-                    }
-                } else {
-                    runOnUiThread {
-                        Toast.makeText(this@session_detail_activity, "Failed to download file", Toast.LENGTH_SHORT).show()
-                    }
-                }
-            }
-        })
+    private fun deleteVideoFile() {
+        if (::videoFile.isInitialized && videoFile.exists()) {
+            videoFile.delete()
+        }
     }
 
+    private suspend fun downloadFile(url: String, path: String): String {
+        return withContext(Dispatchers.IO) {  // Run in background thread
+            val request = Request.Builder().url(url).build()
+            val client = OkHttpClient()
 
+            try {
+                val response = client.newCall(request).execute() // Synchronous request
+
+                if (!response.isSuccessful) {
+                    throw IOException("Failed to download file: ${response.code}")
+                }
+
+                val file = File(path)
+                file.sink().buffer().use { sink ->
+                    sink.writeAll(response.body!!.source()) // Write response body to file
+                }
+
+                return@withContext file.absolutePath // Return the downloaded file path
+            } catch (e: Exception) {
+                throw IOException("Download failed: ${e.message}", e) // Throw error if download fails
+            }
+        }
+    }
 }

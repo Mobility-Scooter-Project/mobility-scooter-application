@@ -113,7 +113,7 @@ class Driving_Session_Summary_activity : AppCompatActivity() {
                                 val thumbnailUri: Uri = Tasks.await(thumbnailRef.putFile(Uri.fromFile(thumbnailFile))
                                     .continueWithTask { thumbnailRef.downloadUrl }) // thumbnail
 
-                                val videoUri: Uri = Tasks.await(videoRef.putFile(Uri.fromFile(encryptedFile))
+                                val videoUri: Uri = Tasks.await(videoRef.putFile(Uri.fromFile(decryptedFile))
                                     .continueWithTask { videoRef.downloadUrl }) // video
 
                                 val sessionData = hashMapOf(
