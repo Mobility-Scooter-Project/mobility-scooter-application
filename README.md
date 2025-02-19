@@ -62,13 +62,14 @@ The core objective of this project is to bridge the existing safety assessment g
 - Sorting of sessions by recency is made possible by Firestore's query capabilities.
 
 ### Server and Data Classification
-- Developed a secure server environment on an AWS EC2 instance using Flask.
+- Developed a secure server environment on a Jetstream2 VM instance using Flask.
 - Communication is encrypted via HTTPS and authenticated through SSL certificates.
 - Data classification is carried out using a pre-trained TensorFlow model on the server side.
 - 
 ### Accessibility
 - Developed with a focus on accessibility to make the app usable for people with varying abilities.
 - Elements like easily readable fonts, contrasting color schemes, and intuitive navigation enhance accessibility.
+- App is designed to be fully compatible with Android Talkback feature.
 
 
 ## Installation
