@@ -1,5 +1,12 @@
 package com.mobility.mobilityscooterapp
-
+/**
+ * SessionDetailActivity
+ * Handles results from recordings
+ *
+ * Responsibilities:
+ * - Manages decrypting and handling video file
+ * - Handles downloading the videos
+ */
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity

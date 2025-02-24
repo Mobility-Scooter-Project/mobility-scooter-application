@@ -1,5 +1,9 @@
 package com.mobility.mobilityscooterapp
-
+/**
+ * TermsAndConditionsActivity
+ * Displays terms and conditions
+ *
+ */
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.mobility.mobilityscooterapp.databinding.ActivityTermsAndConditonBinding

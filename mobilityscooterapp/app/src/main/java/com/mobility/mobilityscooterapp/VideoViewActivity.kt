@@ -1,5 +1,12 @@
 package com.mobility.mobilityscooterapp
-
+/**
+ * VideoViewActivity
+ * Handles getting the video form a path and then showing the video to the user
+ *
+ * Responsibilities:
+ * - Handle using the url for videos
+ * - Error handling for misinputs or user errors
+ */
 import android.net.Uri
 import android.os.Bundle
 import android.widget.MediaController
