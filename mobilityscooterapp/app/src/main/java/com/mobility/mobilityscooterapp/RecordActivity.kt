@@ -1,5 +1,12 @@
 package com.mobility.mobilityscooterapp
-
+/**
+ * RecordActivity
+ * Handles users recording and sending data to server to save
+ *
+ * Responsibilities:
+ * - Manage connection between server and user to save recording and get analysis for later usage
+ * - Handles encrypting and protection of user's recording data
+ */
 import android.app.AlertDialog
 import android.content.ContentResolver
 import android.content.ContentValues
@@ -53,15 +60,18 @@ import java.util.concurrent.TimeUnit
 class RecordActivity : AppCompatActivity() {
     private lateinit var viewBinding: ActivityRecordPreviewBinding
 
+    //Saving recording data
     private var videoCapture: VideoCapture<Recorder>? = null
     private var recording: Recording? = null
 
+   //Saving the time/date data
     private lateinit var date: String
     var startTime: Long = 0
     var startTimeFormatted: String = ""
     private var sessionLength: Long = 0
     private var timeStamp: String = ""
 
+    //Saving where to get the video data post recording
     private var videoUrl: String? = null
     private var dataFromServer: String? = null
 
@@ -87,6 +97,19 @@ class RecordActivity : AppCompatActivity() {
         cameraExecutor = Executors.newSingleThreadExecutor()
     }
 
+    /**
+     * Captures a video using CameraX and handles recording session logic.
+     *
+     * This function starts or stops a video recording session based on the current state.
+     * - If recording is already in progress, it stops the session and saves the video.
+     * - If no recording is active, it starts a new recording session.
+     *
+     * The function also:
+     * - Manages UI updates for the record button.
+     * - Tracks session length using a Chronometer.
+     * - Saves video metadata and uploads it to Firebase after recording.
+     * - Ensures the recording duration is within valid limits (5 seconds to 5 minutes).
+     */
     private fun captureVideo() {
         val chronometer: Chronometer = findViewById(R.id.chronometer)
         val videoCapture = this.videoCapture ?: return
@@ -213,6 +236,11 @@ class RecordActivity : AppCompatActivity() {
             }
     }
 
+    /**
+     * Handles logic of processing the recording and saving data/selecting camera
+     *
+     *
+     */
     private fun startCamera() {
         val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
 

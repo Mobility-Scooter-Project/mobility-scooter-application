@@ -1,5 +1,13 @@
 package com.mobility.mobilityscooterapp
-
+/**
+ * DrivingSessionSummaryActivity
+ * Handles the data from the Machine learning algorithm over the recording
+ *
+ * Responsibilities:
+ * - Manages inputs from server for the video
+ * - decrypts the files and deletes them afterwards
+ * - Handles security logic for videos
+ */
 import android.content.ContentValues.TAG
 import android.content.Intent
 import android.graphics.Bitmap
@@ -46,7 +54,6 @@ class DrivingSessionSummaryActivity : AppCompatActivity() {
         val startTime = intent.getStringExtra("start_time")
         val sessionLength = intent.getStringExtra("session_length")
         val estimateData = intent.getStringExtra("poseData")
-
         val dateTextView = findViewById<TextView>(R.id.textViewDate)
         val startTimeTextView = findViewById<TextView>(R.id.textViewStartTime)
         val sessionLengthTextView = findViewById<TextView>(R.id.SessionLength)

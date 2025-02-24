@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.navigation.fragment.findNavController
-
+//Still working on, blank page
 class messages_page : Fragment() {
 
     override fun onCreateView(

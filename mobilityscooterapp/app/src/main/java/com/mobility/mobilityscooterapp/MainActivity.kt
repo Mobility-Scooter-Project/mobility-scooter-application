@@ -1,5 +1,12 @@
 package com.mobility.mobilityscooterapp
-
+/**
+ * MainActivity
+ * Home page that where users will navigate through the features
+ *
+ * Responsibilities:
+ * - Manage connection between user inputs and other activities/fragments
+ * - Displays all the content for the app in a page
+ */
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

@@ -1,4 +1,13 @@
 package com.mobility.mobilityscooterapp
+/**
+ * DriveActivity
+ * Handles user interactions related to driving mode in the app.
+ *
+ * Responsibilities:
+ * - Manages UI elements for driving mode.
+ * - Listens for user inputs and updates the UI accordingly.
+ * - Handles necessary permissions and sensor interactions.
+ */
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
