@@ -13,7 +13,7 @@ import android.widget.MediaController
 import androidx.appcompat.app.AppCompatActivity
 import com.mobility.mobilityscooterapp.databinding.ActivityVideoViewBinding
 
-class video_view_activity : AppCompatActivity() {
+class VideoViewActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityVideoViewBinding
 

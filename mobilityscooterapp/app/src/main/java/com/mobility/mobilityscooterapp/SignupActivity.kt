@@ -89,7 +89,7 @@ class SignupActivity : AppCompatActivity() {
             startActivity(loginIntent)
         }
         binding.termsConditionsButton.setOnClickListener {
-            val termsAndCondition = Intent(this,Terms_and_conditon_activity::class.java )
+            val termsAndCondition = Intent(this,TermsAndConditionsActivity::class.java )
             startActivity(termsAndCondition)
         }
 

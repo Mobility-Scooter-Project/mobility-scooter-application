@@ -49,7 +49,7 @@ class SessionAdapter(var sessions: List<Session>, val context: Context) : Recycl
 
 
         holder.itemView.setOnClickListener {
-            val intent = Intent(context, session_detail_activity::class.java)
+            val intent = Intent(context, SessionDetailActivity::class.java)
             intent.putExtra("date", session.date)
             intent.putExtra("start_time", session.start_time)
             intent.putExtra("session_length", session.session_length)

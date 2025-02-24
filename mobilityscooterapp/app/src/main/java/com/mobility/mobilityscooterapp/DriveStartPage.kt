@@ -81,10 +81,7 @@ class DriveStartPage : Fragment() {
      */
     //Check Camera permissions for ability to record
     private fun cameraPermissions():Boolean{
-        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED){
-            return true
-        }
-        return false
+        return ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED
     }
 
 }

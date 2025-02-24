@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.mobility.mobilityscooterapp.databinding.ActivityTermsAndConditonBinding
 
-class Terms_and_conditon_activity : AppCompatActivity() {
+class TermsAndConditionsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityTermsAndConditonBinding
     override fun onCreate(savedInstanceState: Bundle?) {

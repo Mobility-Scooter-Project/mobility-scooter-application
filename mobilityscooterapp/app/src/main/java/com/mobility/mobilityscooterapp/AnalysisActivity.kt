@@ -9,7 +9,7 @@ class AnalysisActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         //Binding was not being used before needs to be tested
-//        binding = ActivityAnalysisActivityBinding.inflate(layoutInflater)
+        binding = ActivityAnalysisActivityBinding.inflate(layoutInflater)
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_analysis_activity)

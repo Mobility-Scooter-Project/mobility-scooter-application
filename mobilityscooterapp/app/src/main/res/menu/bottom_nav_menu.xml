@@ -15,7 +15,7 @@
         android:icon="@drawable/baseline_bike_scooter_24"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/bottom_messages_color"/>
+       />
     <item
         android:id="@+id/analytic_start_page"
         android:title="@string/analytics"

@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.provider.MediaStore.Video
 import android.util.Log
 import android.widget.TextView
 import androidx.annotation.RequiresApi
@@ -156,7 +157,7 @@ class DrivingSessionSummaryActivity : AppCompatActivity() {
 
                 // start video_view_activity with path of decrypted video
                 binding.videoView.setOnClickListener {
-                    val watchVideo = Intent(this, video_view_activity::class.java).apply {
+                    val watchVideo = Intent(this, VideoViewActivity::class.java).apply {
                         putExtra("video_path", decryptedFile.absolutePath)
                     }
                     startActivity(watchVideo)
@@ -225,7 +226,7 @@ class DrivingSessionSummaryActivity : AppCompatActivity() {
 
         binding.messagesButton.setOnClickListener {
             deleteDecryptedFile()
-            val toMessage = Intent(this, message_activity::class.java)
+            val toMessage = Intent(this, MessageActivity::class.java)
             toMessage.putExtra("AutoNavigateToMessage", true)
             toMessage.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             finish()
