@@ -10,9 +10,15 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+/**
+ * SessionHistoryActivity
+ * Handles showing the previous recordings to the user
+ *
+ * Responsibilities:
+ * - Manages navigating through previous recordings in the database
+ */
 
-
-class session_history_activity : AppCompatActivity() {
+class SessionHistoryActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySessionHistoryBinding
     private lateinit var adapter: SessionAdapter

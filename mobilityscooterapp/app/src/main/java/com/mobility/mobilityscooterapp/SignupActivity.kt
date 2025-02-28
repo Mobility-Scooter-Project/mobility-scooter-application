@@ -1,5 +1,12 @@
 package com.mobility.mobilityscooterapp
-
+/**
+ * SignupActivity
+ * Handles the process of user signing up their accounts for future access
+ *
+ * Responsibilities:
+ * - Manages connection to server and generating the account to be saved
+ * - Error handling for misinputs or user errors
+ */
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -82,7 +89,7 @@ class SignupActivity : AppCompatActivity() {
             startActivity(loginIntent)
         }
         binding.termsConditionsButton.setOnClickListener {
-            val termsAndCondition = Intent(this,Terms_and_conditon_activity::class.java )
+            val termsAndCondition = Intent(this,TermsAndConditionsActivity::class.java )
             startActivity(termsAndCondition)
         }
 

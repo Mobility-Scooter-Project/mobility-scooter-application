@@ -8,7 +8,9 @@
     <color name="analytics_color">#6FCC6F</color>
     <color name="message_color">#EAB825</color>
     <color name ="accessibility_color">#7A7A7A</color>
+
 <!--    colors !-->
+    <color name= "fullBlack">#FF000000</color>
     <color name="primaryColor">#000000</color> <!-- Dark background -->
     <color name="primaryTextColor">#FFFFFF</color> <!-- Dark text -->
     <color name="primaryDarkColor">#444444</color> <!-- Dark primary dark -->

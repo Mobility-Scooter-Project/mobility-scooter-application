@@ -1,5 +1,13 @@
 package com.mobility.mobilityscooterapp
-
+/**
+ * RecordActivity
+ * Handles users recording and sending data to server to save
+ *
+ * Responsibilities:
+ * - Manage connection between server and user to save recording and get analysis for later usage
+ * - Handles encrypting and protection of user's recording data
+ */
+import android.app.AlertDialog
 import android.content.ContentResolver
 import android.content.ContentValues
 import android.content.Intent
@@ -49,18 +57,21 @@ import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 
 
-class record_activity : AppCompatActivity() {
+class RecordActivity : AppCompatActivity() {
     private lateinit var viewBinding: ActivityRecordPreviewBinding
 
+    //Saving recording data
     private var videoCapture: VideoCapture<Recorder>? = null
     private var recording: Recording? = null
 
+   //Saving the time/date data
     private lateinit var date: String
     var startTime: Long = 0
     var startTimeFormatted: String = ""
     private var sessionLength: Long = 0
     private var timeStamp: String = ""
 
+    //Saving where to get the video data post recording
     private var videoUrl: String? = null
     private var dataFromServer: String? = null
 
@@ -86,6 +97,19 @@ class record_activity : AppCompatActivity() {
         cameraExecutor = Executors.newSingleThreadExecutor()
     }
 
+    /**
+     * Captures a video using CameraX and handles recording session logic.
+     *
+     * This function starts or stops a video recording session based on the current state.
+     * - If recording is already in progress, it stops the session and saves the video.
+     * - If no recording is active, it starts a new recording session.
+     *
+     * The function also:
+     * - Manages UI updates for the record button.
+     * - Tracks session length using a Chronometer.
+     * - Saves video metadata and uploads it to Firebase after recording.
+     * - Ensures the recording duration is within valid limits (5 seconds to 5 minutes).
+     */
     private fun captureVideo() {
         val chronometer: Chronometer = findViewById(R.id.chronometer)
         val videoCapture = this.videoCapture ?: return
@@ -142,21 +166,25 @@ class record_activity : AppCompatActivity() {
                     }
                     is VideoRecordEvent.Finalize -> {
                         if (!recordEvent.hasError()) {
-
+                            sessionLength = System.currentTimeMillis() - startTime
+                            if (sessionLength >= 5000 && sessionLength <= 30000) {
                             timeCounter = SystemClock.elapsedRealtime()
-
                             val endTime1 = SystemClock.elapsedRealtime()
                             val elapsedTime1 = endTime1 - timeCounter
                             val elapsedTimeFormatted = convertMillisToTimeFormat(elapsedTime1)
                             Log.d(TAG, "finish record video: 0 ms")
                             Log.d(TAG, "Sending video https to server: $elapsedTimeFormatted")
-                            Toast.makeText(this, "Time for first process: ${elapsedTime1}ms", Toast.LENGTH_LONG).show()
+                            Toast.makeText(
+                                this,
+                                "Time for first process: ${elapsedTime1}ms",
+                                Toast.LENGTH_LONG
+                            ).show()
 
-                            sessionLength = System.currentTimeMillis() - startTime
                             val minutes = TimeUnit.MILLISECONDS.toMinutes(sessionLength)
                             val seconds = TimeUnit.MILLISECONDS.toSeconds(sessionLength) -
                                     TimeUnit.MINUTES.toSeconds(minutes)
-                            val sessionLengthFormatted = String.format(Locale.US, "%02d min %02d sec", minutes, seconds)
+                            val sessionLengthFormatted =
+                                String.format(Locale.US, "%02d min %02d sec", minutes, seconds)
 
                             val videoUri = recordEvent.outputResults.outputUri
 
@@ -166,7 +194,10 @@ class record_activity : AppCompatActivity() {
 
                                     val encryptedFilePath = encryptFile(videoUri, contentResolver)
 
-                                    val sessionSummary = Intent(this, Driving_Session_Summary_activity::class.java).apply {
+                                    val sessionSummary = Intent(
+                                        this,
+                                        DrivingSessionSummaryActivity::class.java
+                                    ).apply {
                                         putExtra("date", date)
                                         putExtra("start_time", startTimeFormatted)
                                         putExtra("session_length", sessionLengthFormatted)
@@ -177,6 +208,17 @@ class record_activity : AppCompatActivity() {
                                     finish()
                                     startActivity(sessionSummary)
                                 }
+                            }
+                        }
+                            else{
+                                AlertDialog.Builder(this)
+                                    .setTitle("Invalid Recording Time")
+                                    .setMessage("The video must be between 5 seconds and 5 minutes. Please try again.")
+                                    .setPositiveButton("OK") { dialog, _ ->
+                                        dialog.dismiss()
+                                    }
+                                    .setCancelable(false)
+                                    .show()
                             }
 
                         } else {
@@ -194,6 +236,11 @@ class record_activity : AppCompatActivity() {
             }
     }
 
+    /**
+     * Handles logic of processing the recording and saving data/selecting camera
+     *
+     *
+     */
     private fun startCamera() {
         val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
 

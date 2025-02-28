@@ -1,11 +1,19 @@
 package com.mobility.mobilityscooterapp
-
+/**
+ * SessionDetailActivity
+ * Handles results from recordings
+ *
+ * Responsibilities:
+ * - Manages decrypting and handling video file
+ * - Handles downloading the videos
+ */
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import android.widget.VideoView
 import androidx.lifecycle.lifecycleScope
 import androidx.security.crypto.EncryptedFile
 import androidx.security.crypto.MasterKeys
@@ -21,7 +29,7 @@ import okhttp3.Request
 import okio.buffer
 import okio.sink
 
-class session_detail_activity : AppCompatActivity() {
+class SessionDetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySessionDetailBinding
     private lateinit var decryptedFile: File
@@ -99,7 +107,7 @@ class session_detail_activity : AppCompatActivity() {
             }
 
             binding.videoView.setOnClickListener {
-                val watchVideo = Intent(this, video_view_activity::class.java).apply {
+                val watchVideo = Intent(this, VideoViewActivity::class.java).apply {
                     putExtra("video_path", videoFile.absolutePath)
                 }
                 startActivity(watchVideo)

@@ -11,7 +11,7 @@ import android.widget.Toast
 import com.mobility.mobilityscooterapp.databinding.ActivityResetPasswordBinding
 import com.google.firebase.auth.FirebaseAuth
 
-class reset_password_activity : AppCompatActivity() {
+class ResetPasswordActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityResetPasswordBinding
     private lateinit var firebaseAuth: FirebaseAuth

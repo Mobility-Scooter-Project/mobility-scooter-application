@@ -97,12 +97,12 @@
     </fragment>
     <activity
         android:id="@+id/record_preview_activity"
-        android:name="com.mobility.mobilityscooterapp.record_activity"
+        android:name="com.mobility.mobilityscooterapp.RecordActivity"
         android:label="activity_record_preview"
         tools:layout="@layout/activity_record_preview" />
     <activity
         android:id="@+id/session_history_activity"
-        android:name="com.mobility.mobilityscooterapp.session_history_activity"
+        android:name="com.mobility.mobilityscooterapp.SessionHistoryActivity"
         android:label="activity_session_history"
         tools:layout="@layout/activity_session_history" />
 </navigation>

@@ -1,12 +1,19 @@
 package com.mobility.mobilityscooterapp
-
+/**
+ * VideoViewActivity
+ * Handles getting the video form a path and then showing the video to the user
+ *
+ * Responsibilities:
+ * - Handle using the url for videos
+ * - Error handling for misinputs or user errors
+ */
 import android.net.Uri
 import android.os.Bundle
 import android.widget.MediaController
 import androidx.appcompat.app.AppCompatActivity
 import com.mobility.mobilityscooterapp.databinding.ActivityVideoViewBinding
 
-class video_view_activity : AppCompatActivity() {
+class VideoViewActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityVideoViewBinding
 

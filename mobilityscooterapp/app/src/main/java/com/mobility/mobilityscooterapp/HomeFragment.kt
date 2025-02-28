@@ -1,5 +1,14 @@
 package com.mobility.mobilityscooterapp
-
+/**
+ * Home Fragment
+ *
+ * Features:
+ * - Different pages
+ * - (Planned) Add pictures/thumbnails
+ *
+ * This fragment allows users to navigate through past recordings
+ *
+ */
 import android.content.Context
 import android.os.Bundle
 import android.view.Gravity

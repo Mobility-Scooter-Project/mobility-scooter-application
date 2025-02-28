@@ -1,5 +1,12 @@
 package com.mobility.mobilityscooterapp
-
+/**
+ * MainActivity
+ * Home page that where users will navigate through the features
+ *
+ * Responsibilities:
+ * - Manage connection between user inputs and other activities/fragments
+ * - Displays all the content for the app in a page
+ */
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -38,7 +45,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var driveButton: TextView
     private lateinit var analyticsButton: TextView
     private lateinit var messagesButton: TextView
-
     private lateinit var firebaseAuth : FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,7 +63,7 @@ class MainActivity : AppCompatActivity() {
         homeButton = findViewById(R.id.home)
         driveButton = findViewById(R.id.Drive_Bottom)
         analyticsButton = findViewById(R.id.analytics_button)
-        messagesButton = findViewById(R.id.button4)
+        messagesButton = findViewById(R.id.messages_button)
 
         homeButton.setOnClickListener {
             navController.navigate(R.id.homeFragment)
@@ -88,9 +94,9 @@ class MainActivity : AppCompatActivity() {
                 drawerLayout.openDrawer(GravityCompat.START)
             }
         }
-
         // navigate to corresponding pages from side menu (NavigationView)
         val navigationView : NavigationView = findViewById(R.id.side_view)
+
         navigationView.setNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.side_view_home -> navController.navigate(R.id.homeFragment)

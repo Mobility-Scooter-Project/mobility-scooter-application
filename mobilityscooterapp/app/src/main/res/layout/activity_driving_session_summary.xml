@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Driving_Session_Summary_activity">
+    tools:context=".DrivingSessionSummaryActivity">
 
     <RelativeLayout
         android:id="@+id/relativeLayout3"
@@ -198,12 +198,12 @@
         android:textSize="18sp"
         app:drawableBottomCompat="@drawable/baseline_analytics_24"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button4"
+        app:layout_constraintEnd_toStartOf="@+id/messages_button"
         app:layout_constraintStart_toEndOf="@id/Drive_Bottom"
         app:layout_constraintWidth_percent="0.25" />
 
     <TextView
-        android:id="@+id/button4"
+        android:id="@+id/messages_button"
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:background="@drawable/messages_button_bg"
