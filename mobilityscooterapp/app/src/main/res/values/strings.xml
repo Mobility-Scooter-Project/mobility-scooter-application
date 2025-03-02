@@ -74,6 +74,9 @@
     <string name="confirm_and_send">Confirm and Send</string>
     <string name="take_photo">Take Photo</string>
     <string name="chosen_image">Image View to hold chosen/take photo</string>
+    <string name="body_verified">Body Verified!</string>
+    <string name="body_not_found">Body Not Found</string>
+    <string name="awaiting_verification"></string>
 
 
     <!--analytic start page-->
