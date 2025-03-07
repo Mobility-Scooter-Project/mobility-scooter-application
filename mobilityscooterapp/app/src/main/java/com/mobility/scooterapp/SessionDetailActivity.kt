@@ -1,4 +1,4 @@
-package com.mobility.mobilityscooterapp
+package com.mobility.scooterapp
 /**
  * SessionDetailActivity
  * Handles results from recordings
@@ -13,11 +13,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import android.widget.VideoView
 import androidx.lifecycle.lifecycleScope
 import androidx.security.crypto.EncryptedFile
 import androidx.security.crypto.MasterKeys
-import com.mobility.mobilityscooterapp.databinding.ActivitySessionDetailBinding
+import com.mobility.scooterapp.databinding.ActivitySessionDetailBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

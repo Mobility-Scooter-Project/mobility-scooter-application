@@ -1,4 +1,4 @@
-package com.mobility.mobilityscooterapp
+package com.mobility.scooterapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

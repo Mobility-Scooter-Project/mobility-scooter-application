@@ -1,4 +1,4 @@
-package com.mobility.mobilityscooterapp
+package com.mobility.scooterapp
 
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
@@ -8,7 +8,7 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.widget.TextView
 import android.widget.Toast
-import com.mobility.mobilityscooterapp.databinding.ActivityResetPasswordBinding
+import com.mobility.scooterapp.databinding.ActivityResetPasswordBinding
 import com.google.firebase.auth.FirebaseAuth
 
 class ResetPasswordActivity : AppCompatActivity() {

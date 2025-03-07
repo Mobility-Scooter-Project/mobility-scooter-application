@@ -1,4 +1,4 @@
-package com.mobility.mobilityscooterapp
+package com.mobility.scooterapp
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

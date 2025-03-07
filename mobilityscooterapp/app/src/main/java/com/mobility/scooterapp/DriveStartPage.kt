@@ -1,4 +1,4 @@
-package com.mobility.mobilityscooterapp
+package com.mobility.scooterapp
 /**
  * Drive Start Page Fragment allows the user to start the recording session
  *

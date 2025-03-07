@@ -1,4 +1,4 @@
-package com.mobility.mobilityscooterapp
+package com.mobility.scooterapp
 /**
  * DrivingSessionSummaryActivity
  * Handles the data from the Machine learning algorithm over the recording
@@ -18,14 +18,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.provider.MediaStore.Video
 import android.util.Log
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.lifecycleScope
 import androidx.security.crypto.EncryptedFile
 import androidx.security.crypto.MasterKeys
-import com.mobility.mobilityscooterapp.databinding.ActivityDrivingSessionSummaryBinding
+import com.mobility.scooterapp.databinding.ActivityDrivingSessionSummaryBinding
 import com.google.android.gms.tasks.Tasks
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore

@@ -1,4 +1,4 @@
-package com.mobility.mobilityscooterapp
+package com.mobility.scooterapp
 
 import android.content.ContentValues.TAG
 import android.content.Context

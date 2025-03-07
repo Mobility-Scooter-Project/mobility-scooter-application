@@ -1,4 +1,4 @@
-package com.mobility.mobilityscooterapp
+package com.mobility.scooterapp
 /**
  * DriveActivity
  * Handles user interactions related to driving mode in the app.

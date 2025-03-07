@@ -1,4 +1,4 @@
-package com.mobility.mobilityscooterapp
+package com.mobility.scooterapp
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

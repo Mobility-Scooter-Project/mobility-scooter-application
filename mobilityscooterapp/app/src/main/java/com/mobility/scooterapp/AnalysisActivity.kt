@@ -1,8 +1,8 @@
-package com.mobility.mobilityscooterapp
+package com.mobility.scooterapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.mobility.mobilityscooterapp.databinding.ActivityAnalysisActivityBinding
+import com.mobility.scooterapp.databinding.ActivityAnalysisActivityBinding
 
 class AnalysisActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAnalysisActivityBinding

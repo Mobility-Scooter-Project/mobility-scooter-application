@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.mobility.mobilityscooterapp.HomeFragment"
+        android:name="com.mobility.scooterapp.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/drive_start_page"
-        android:name="com.mobility.mobilityscooterapp.DriveStartPage"
+        android:name="com.mobility.scooterapp.DriveStartPage"
         android:label="fragment_drive_start_page"
         tools:layout="@layout/fragment_drive_start_page" >
         <action
@@ -46,7 +46,7 @@
     </fragment>
     <fragment
         android:id="@+id/analytic_start_page"
-        android:name="com.mobility.mobilityscooterapp.AnalyticStartPage"
+        android:name="com.mobility.scooterapp.AnalyticStartPage"
         android:label="fragment_analytic_start_page"
         tools:layout="@layout/fragment_analytic_start_page" >
         <action
@@ -64,7 +64,7 @@
     </fragment>
     <fragment
         android:id="@+id/messages_page"
-        android:name="com.mobility.mobilityscooterapp.messages_page"
+        android:name="com.mobility.scooterapp.messages_page"
         android:label="fragment_messages_page"
         tools:layout="@layout/fragment_messages_page" >
         <action
@@ -79,7 +79,7 @@
     </fragment>
     <fragment
         android:id="@+id/accessibilityFragment"
-        android:name="com.mobility.mobilityscooterapp.AccessibilityFragment"
+        android:name="com.mobility.scooterapp.AccessibilityFragment"
         android:label="fragment_accessibility"
         tools:layout="@layout/fragment_accessibility" >
         <action
@@ -97,12 +97,12 @@
     </fragment>
     <activity
         android:id="@+id/record_preview_activity"
-        android:name="com.mobility.mobilityscooterapp.RecordActivity"
+        android:name="com.mobility.scooterapp.RecordActivity"
         android:label="activity_record_preview"
         tools:layout="@layout/activity_record_preview" />
     <activity
         android:id="@+id/session_history_activity"
-        android:name="com.mobility.mobilityscooterapp.SessionHistoryActivity"
+        android:name="com.mobility.scooterapp.SessionHistoryActivity"
         android:label="activity_session_history"
         tools:layout="@layout/activity_session_history" />
 </navigation>

@@ -1,4 +1,4 @@
-package com.mobility.mobilityscooterapp
+package com.mobility.scooterapp
 /**
  * RecordActivity
  * Handles users recording and sending data to server to save
@@ -35,7 +35,7 @@ import androidx.core.content.ContextCompat
 import androidx.documentfile.provider.DocumentFile
 import androidx.security.crypto.EncryptedFile
 import androidx.security.crypto.MasterKeys
-import com.mobility.mobilityscooterapp.databinding.ActivityRecordPreviewBinding
+import com.mobility.scooterapp.databinding.ActivityRecordPreviewBinding
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.google.firebase.storage.ktx.storageMetadata

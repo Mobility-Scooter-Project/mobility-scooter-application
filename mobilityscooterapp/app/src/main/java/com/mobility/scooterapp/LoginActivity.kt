@@ -1,4 +1,4 @@
-package com.mobility.mobilityscooterapp
+package com.mobility.scooterapp
 /**
  * DriveActivity
  * Handles users login access
@@ -19,11 +19,9 @@ import android.view.LayoutInflater
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
-import com.mobility.mobilityscooterapp.databinding.ActivityLoginBinding
+import com.mobility.scooterapp.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
-import com.mobility.mobilityscooterapp.MainActivity.Companion
 
 class LoginActivity : AppCompatActivity() {
 
@@ -61,7 +59,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val sharedPref = getSharedPreferences(com.mobility.mobilityscooterapp.MainActivity.PREFS_NAME, Context.MODE_PRIVATE)
+        val sharedPref = getSharedPreferences(com.mobility.scooterapp.MainActivity.PREFS_NAME, Context.MODE_PRIVATE)
         val isDarkModeOn = sharedPref.getBoolean(MainActivity.DARK_MODE_KEY, false)
         setDarkMode(isDarkModeOn)
         firebaseAuth = FirebaseAuth.getInstance()

@@ -1,4 +1,4 @@
-package com.mobility.mobilityscooterapp
+package com.mobility.scooterapp
 /**
  * VideoViewActivity
  * Handles getting the video form a path and then showing the video to the user
@@ -11,7 +11,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.widget.MediaController
 import androidx.appcompat.app.AppCompatActivity
-import com.mobility.mobilityscooterapp.databinding.ActivityVideoViewBinding
+import com.mobility.scooterapp.databinding.ActivityVideoViewBinding
 
 class VideoViewActivity : AppCompatActivity() {
 

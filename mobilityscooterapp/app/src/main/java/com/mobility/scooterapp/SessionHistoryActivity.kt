@@ -1,11 +1,11 @@
-package com.mobility.mobilityscooterapp
+package com.mobility.scooterapp
 import android.annotation.SuppressLint
 import android.content.ContentValues.TAG
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.mobility.mobilityscooterapp.databinding.ActivitySessionHistoryBinding
+import com.mobility.scooterapp.databinding.ActivitySessionHistoryBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore

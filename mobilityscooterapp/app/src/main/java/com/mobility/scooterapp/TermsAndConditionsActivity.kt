@@ -1,4 +1,4 @@
-package com.mobility.mobilityscooterapp
+package com.mobility.scooterapp
 /**
  * TermsAndConditionsActivity
  * Displays terms and conditions
@@ -6,7 +6,7 @@ package com.mobility.mobilityscooterapp
  */
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.mobility.mobilityscooterapp.databinding.ActivityTermsAndConditonBinding
+import com.mobility.scooterapp.databinding.ActivityTermsAndConditonBinding
 
 class TermsAndConditionsActivity : AppCompatActivity() {
 

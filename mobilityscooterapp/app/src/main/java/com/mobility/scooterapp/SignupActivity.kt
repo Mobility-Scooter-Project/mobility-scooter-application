@@ -1,4 +1,4 @@
-package com.mobility.mobilityscooterapp
+package com.mobility.scooterapp
 /**
  * SignupActivity
  * Handles the process of user signing up their accounts for future access
@@ -15,7 +15,7 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.widget.TextView
 import android.widget.Toast
-import com.mobility.mobilityscooterapp.databinding.ActivitySignupBinding
+import com.mobility.scooterapp.databinding.ActivitySignupBinding
 import com.google.firebase.auth.FirebaseAuth
 
 class SignupActivity : AppCompatActivity() {

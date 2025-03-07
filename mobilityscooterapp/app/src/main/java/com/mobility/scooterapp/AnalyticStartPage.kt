@@ -1,4 +1,4 @@
-package com.mobility.mobilityscooterapp
+package com.mobility.scooterapp
 /**
  * Analytics Start Page Fragment provides menu for looking at past recordings
  *

@@ -1,4 +1,4 @@
-package com.mobility.mobilityscooterapp
+package com.mobility.scooterapp
 /**
  * AccessibilityFragment provides accessibility options for the Mobility Scooter app.
  *
@@ -12,16 +12,11 @@ package com.mobility.mobilityscooterapp
 
 import android.content.Context
 import android.os.Bundle
-import android.os.Debug
-import android.util.Log
-import android.util.TypedValue
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SwitchCompat
