@@ -79,7 +79,8 @@
             android:background="@color/home_color"
             android:text="@string/home"
             android:textSize="16sp"
-            android:textColor="@color/primaryTextColor"/>
+            android:textColor="@color/white"
+            app:drawableTint="@color/white"/>
 
         <TextView
             android:id="@+id/Drive_Bottom"

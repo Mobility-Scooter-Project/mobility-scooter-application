@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="150dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@drawable/home_button_bg"
     android:gravity="bottom"
@@ -10,7 +11,8 @@
     <ImageView
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:src="@drawable/navbar_drive_icon"/>
+        android:src="@drawable/navbar_drive_icon"
+        app:tint="@color/white" />
     
     <TextView
         android:layout_width="wrap_content"

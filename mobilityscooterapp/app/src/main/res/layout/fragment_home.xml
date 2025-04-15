@@ -206,7 +206,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="540dp"
-        android:background="@color/accessibility_color">
+        android:background="@color/salmon">
 
         <ImageView
             android:id="@+id/imageView9"
