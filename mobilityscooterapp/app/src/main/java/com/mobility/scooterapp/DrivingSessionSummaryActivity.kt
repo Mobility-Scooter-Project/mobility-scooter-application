@@ -189,10 +189,10 @@ class DrivingSessionSummaryActivity : AppCompatActivity() {
         //Navigation buttons
         binding.buttonNext.setOnClickListener {
             deleteDecryptedFile()
-            val history = Intent(this, MainActivity::class.java)
+            val history = Intent(this, SessionHistoryActivity::class.java)
             history.putExtra("AutoNavigateToHistory", true)
-            history.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            finish()
+            //history.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            //finish()
             startActivity(history)
         }
 
