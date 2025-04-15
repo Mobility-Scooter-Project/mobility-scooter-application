@@ -93,7 +93,7 @@
 
     <!--activity record preview-->
     <string name="start_recording">Start recording</string>
-    <string name="position_torso">Please position torso within screen and press \record\ when ready</string>
+    <string name="recording_instructions">Press record when ready. Once you begin recording, stay still for 30 seconds, then proceed with driving.</string>
 
     <!--activity driving session summary-->
     <string name="home">Home</string>
