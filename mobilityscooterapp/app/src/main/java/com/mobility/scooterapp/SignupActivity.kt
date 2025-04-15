@@ -73,10 +73,10 @@ class SignupActivity : AppCompatActivity() {
                         showToast(this, "please read and accept the terms and conditions")
                     }
                 }else{
-                    showToast(this, "Password doesn't matched")
+                    showToast(this, "Passwords do not match")
                 }
                 }else{
-                    showToast(this, "password at least 8 characters")
+                    showToast(this, "password must be at least 9 characters")
                 }
             }else{
                 showToast(this, "Fields cannot be empty")

@@ -20,4 +20,8 @@
     <color name="lightGreen">#71D04B</color>
     <color name="pastelGreen">#77DD77</color>
     <color name="darkPastelGreen">#5EB15E</color>
+
+<!-- CPP Colors -->
+    <color name="cpp_green">#005030</color>
+    <color name="cpp_gold">#FFB81C</color>
 </resources>
