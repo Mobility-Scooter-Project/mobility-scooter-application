@@ -167,7 +167,7 @@ class RecordActivity : AppCompatActivity() {
                     is VideoRecordEvent.Finalize -> {
                         if (!recordEvent.hasError()) {
                             sessionLength = System.currentTimeMillis() - startTime
-                            if (sessionLength >= 5000 && sessionLength <= 30000) {
+                            if (sessionLength >= 5000 && sessionLength <= 900000) {
                             timeCounter = SystemClock.elapsedRealtime()
                             val endTime1 = SystemClock.elapsedRealtime()
                             val elapsedTime1 = endTime1 - timeCounter
@@ -213,7 +213,7 @@ class RecordActivity : AppCompatActivity() {
                             else{
                                 AlertDialog.Builder(this)
                                     .setTitle("Invalid Recording Time")
-                                    .setMessage("The video must be between 5 seconds and 5 minutes. Please try again.")
+                                    .setMessage("The video must be between 5 seconds and 15 minutes. Please try again.")
                                     .setPositiveButton("OK") { dialog, _ ->
                                         dialog.dismiss()
                                     }
