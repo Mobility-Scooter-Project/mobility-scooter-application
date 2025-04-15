@@ -65,6 +65,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
+        android:background="#FF0000"
+        android:textColor="#FFFFFF"
         android:text="@string/start_recording"
         android:contentDescription="@string/start_recording"
         app:layout_constraintBottom_toBottomOf="@id/viewFinder"

@@ -9,7 +9,7 @@
     <string name="analyticss">Analytics</string>
     <string name="messagess">Messages</string>
     <string name="analytic_data">Analytic_data</string>
-    <string name="please_place_your_phone_on_the_scooter">Please place your phone on the scooter</string>
+    <string name="drive_instructions">1. Mount phone on scooter as instructed\n\n2. Settle in and prepare to drive\n\n3. Once you begin recording, please stay still for 30 seconds first before driving.\n\n4. Ready to drive? Press the button below to go to the next page!</string>
     <string name="messages_between_user_and_doctor_goes_here">Messages between user and doctor goes here</string>
     <string name="Username">Username:</string>
     <string name="please_enter_your_username_here">Type username here</string>
@@ -59,7 +59,7 @@
     <string name="accessibility_icon">Accessibility icon</string>
 
     <!--drive start page-->
-    <string name="start">Start</string>
+    <string name="go_to_record">Go to Recording Page</string>
     <string name="start_drive">Start drive place phone on scooter</string>
 
     <!--analytic start page-->
