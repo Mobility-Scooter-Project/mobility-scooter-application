@@ -18,6 +18,5 @@ class LoginValidatorTest {
     @Test
     fun testEmptyPassword() {
         assertFalse(LoginValidator.isValid("test@example.com", ""))
-
     }
 }
