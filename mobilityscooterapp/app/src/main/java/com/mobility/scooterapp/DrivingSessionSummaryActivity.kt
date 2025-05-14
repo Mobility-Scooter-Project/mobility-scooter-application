@@ -22,8 +22,6 @@ import android.util.Log
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.lifecycleScope
-import androidx.security.crypto.EncryptedFile
-import androidx.security.crypto.MasterKeys
 import com.mobility.scooterapp.databinding.ActivityDrivingSessionSummaryBinding
 import com.google.android.gms.tasks.Tasks
 import com.google.firebase.auth.FirebaseAuth
@@ -80,7 +78,7 @@ class DrivingSessionSummaryActivity : AppCompatActivity() {
             val sessionDocRef = db.collection("users").document(userId!!).collection("sessions").document()
 
             if (encryptedFile.exists()) {
-                val decryptedFile = decryptFile(encryptedFile)
+                val decryptedFile = RecordingHelper.decryptFile(this, encryptedFile)
 
                 // this section runs in the background
                 lifecycleScope.launch(Dispatchers.IO) {
@@ -231,30 +229,6 @@ class DrivingSessionSummaryActivity : AppCompatActivity() {
             finish()
             startActivity(toMessage)
         }
-    }
-
-    private fun decryptFile(encryptedFile: File): File {
-        val masterKeyAlias = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC)
-
-        val decryptedFile = File(filesDir, encryptedFile.name.replace("encrypted", "decrypted"))
-
-        val encryptedFileInput = EncryptedFile.Builder(
-            encryptedFile,
-            this,
-            masterKeyAlias,
-            EncryptedFile.FileEncryptionScheme.AES256_GCM_HKDF_4KB
-        ).build()
-
-        encryptedFileInput.openFileInput().use { inputStream ->
-            FileOutputStream(decryptedFile).use { outputStream ->
-                val buffer = ByteArray(1024)
-                var length: Int
-                while (inputStream.read(buffer).also { length = it } != -1) {
-                    outputStream.write(buffer, 0, length)
-                }
-            }
-        }
-        return decryptedFile
     }
 
     private fun deleteDecryptedFile() {
