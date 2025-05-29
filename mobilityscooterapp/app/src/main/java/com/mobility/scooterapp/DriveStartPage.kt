@@ -9,19 +9,17 @@ package com.mobility.scooterapp
  * This fragment allows users to start recordings and adds logic for permissions
  *
  */
-import android.Manifest
 import android.annotation.SuppressLint
 import android.app.AlertDialog
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+
 
 class DriveStartPage : Fragment() {
     override fun onCreateView(
@@ -55,7 +53,7 @@ class DriveStartPage : Fragment() {
         val startButton = view.findViewById<Button>(R.id.start_record_button)
         startButton?.setOnClickListener {
                 /** Checks for permissions to determine what to prompt the user*/
-                if(cameraPermissions() ){
+                if(SettingsUtil.hasCameraPermission(requireContext()) ){
                     findNavController().navigate(R.id.action_drive_start_page_to_record_preview_activity)
                 }
                 else{
@@ -73,15 +71,6 @@ class DriveStartPage : Fragment() {
                     }
 
         }
-    }
-    /**
-     * Returns camera permissions data from app
-     *
-     * @return true if user allowed app to access camera permissions, other wise returns false
-     */
-    //Check Camera permissions for ability to record
-    private fun cameraPermissions():Boolean{
-        return ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED
     }
 
 }

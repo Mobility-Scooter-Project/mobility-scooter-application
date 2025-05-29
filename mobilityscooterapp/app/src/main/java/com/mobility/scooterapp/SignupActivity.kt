@@ -17,7 +17,40 @@ import android.widget.TextView
 import android.widget.Toast
 import com.mobility.scooterapp.databinding.ActivitySignupBinding
 import com.google.firebase.auth.FirebaseAuth
+object SignupValidator {
 
+    fun validateFields(
+        firstName: String,
+        lastName: String,
+        email: String,
+        password: String,
+        confirmPassword: String,
+        termsChecked: Boolean
+    ): SignupValidationResult {
+        if (firstName.isBlank() || lastName.isBlank() || email.isBlank() || password.isBlank() || confirmPassword.isBlank()) {
+            return SignupValidationResult.Error("Fields cannot be empty")
+        }
+
+        if (password.length <= 8) {
+            return SignupValidationResult.Error("Password must be at least 9 characters")
+        }
+
+        if (password != confirmPassword) {
+            return SignupValidationResult.Error("Passwords do not match")
+        }
+
+        if (!termsChecked) {
+            return SignupValidationResult.Error("Please read and accept the terms and conditions")
+        }
+
+        return SignupValidationResult.Success
+    }
+
+    sealed class SignupValidationResult {
+        object Success : SignupValidationResult()
+        data class Error(val message: String) : SignupValidationResult()
+    }
+}
 class SignupActivity : AppCompatActivity() {
 
     private lateinit var binding:ActivitySignupBinding
@@ -54,33 +87,27 @@ class SignupActivity : AppCompatActivity() {
             val confirmPassword = binding.confirmPassword.text.toString()
             val clinicCode = binding.clinicCode.text.toString()
             val termsConditionsChecked = binding.termsConditionsCheckbox.isChecked
-
-            if (firstName.isNotEmpty() && lastName.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty() && confirmPassword.isNotEmpty()){
-
-                if (password.length > 8){
-                if (password == confirmPassword){
-                    if (termsConditionsChecked) {
-                        firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener{
-                            if(it.isSuccessful){
+            val result = SignupValidator.validateFields(firstName,lastName,email,password, confirmPassword,termsConditionsChecked)
+            when(result) {
+                is SignupValidator.SignupValidationResult.Success -> {
+                    firebaseAuth.createUserWithEmailAndPassword(email, password)
+                        .addOnCompleteListener {
+                            if (it.isSuccessful) {
                                 showToast(this, "You successfully registered!")
                                 val intent = Intent(this, LoginActivity::class.java)
                                 startActivity(intent)
-                            }else{
-                                Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
+                            } else {
+                                Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT)
+                                    .show()
                             }
                         }
-                    } else {
-                        showToast(this, "please read and accept the terms and conditions")
-                    }
-                }else{
-                    showToast(this, "Passwords do not match")
+
                 }
-                }else{
-                    showToast(this, "password must be at least 9 characters")
+                is SignupValidator.SignupValidationResult.Error -> {
+                    showToast(this, result.message)
                 }
-            }else{
-                showToast(this, "Fields cannot be empty")
             }
+
         }
 
 
