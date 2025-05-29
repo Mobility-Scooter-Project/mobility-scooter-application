@@ -3,6 +3,7 @@ package com.mobility.scooterapp
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.renderscript.ScriptGroup.Input
 import android.util.Patterns
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -11,6 +12,11 @@ import android.widget.Toast
 import com.mobility.scooterapp.databinding.ActivityResetPasswordBinding
 import com.google.firebase.auth.FirebaseAuth
 
+object InputValidator {
+    fun isValidEmail(email: String): Boolean {
+        return email.isNotBlank() && Patterns.EMAIL_ADDRESS.matcher(email).matches()
+    }
+}
 class ResetPasswordActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityResetPasswordBinding
@@ -40,7 +46,7 @@ class ResetPasswordActivity : AppCompatActivity() {
         binding.resetButton.setOnClickListener {
             val email = binding.emailInput.text.toString()
             if (email.isNotEmpty()){
-                if (Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+                if (InputValidator.isValidEmail((email))){
                     firebaseAuth.sendPasswordResetEmail(email).addOnCompleteListener{ task ->
                         if (task.isSuccessful){
                             showToast(this,"Reset email send, Check your email")

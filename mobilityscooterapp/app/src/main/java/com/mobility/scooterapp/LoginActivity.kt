@@ -23,6 +23,11 @@ import androidx.core.content.ContextCompat
 import com.mobility.scooterapp.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
 
+object LoginValidator {
+    fun isValid(email: String, password: String): Boolean {
+        return email.isNotEmpty() && password.isNotEmpty()
+    }
+}
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
@@ -61,7 +66,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
         val sharedPref = getSharedPreferences(com.mobility.scooterapp.MainActivity.PREFS_NAME, Context.MODE_PRIVATE)
         val isDarkModeOn = sharedPref.getBoolean(MainActivity.DARK_MODE_KEY, false)
-        setDarkMode(isDarkModeOn)
+        SettingsUtil.setDarkMode(isDarkModeOn)
         firebaseAuth = FirebaseAuth.getInstance()
         if((ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
                     != PackageManager.PERMISSION_GRANTED)){
@@ -71,7 +76,7 @@ class LoginActivity : AppCompatActivity() {
             val email = binding.email.text.toString()
             val password = binding.password.text.toString()
 
-            if(email.isNotEmpty() && password.isNotEmpty()){
+            if(LoginValidator.isValid(email, password)){
                 firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener{
                     if(it.isSuccessful){
                         showToast(this,"Login successful!")
@@ -94,17 +99,5 @@ class LoginActivity : AppCompatActivity() {
             val create_an_account_Intent = Intent(this, SignupActivity::class.java)
             startActivity(create_an_account_Intent)
         }
-    }
-    /**
-     * Called everytime the app is running and will be used based off app's preferences
-     *
-     * This method checks whether the dark mode feature is enabled
-     *
-     * @param isDarkMode checks the dark mode feature is activated or not within the app
-     */
-    private fun setDarkMode(isDarkMode: Boolean) {
-        Log.e("TESTING", "It works")
-        val mode = if (isDarkMode) AppCompatDelegate.MODE_NIGHT_YES else AppCompatDelegate.MODE_NIGHT_NO
-        AppCompatDelegate.setDefaultNightMode(mode)
     }
 }
