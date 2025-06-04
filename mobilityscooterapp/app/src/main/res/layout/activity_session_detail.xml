@@ -63,17 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="@string/estimate_estimate_placeholder"
-        android:textColor="#000000"
-        android:textSize="18sp" />
-
-    <TextView
-        android:id="@+id/textViewEstimate2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/estimate_estimate_placeholder"
+        android:text="@string/estimate_placeholder"
         android:textColor="#000000"
         android:textSize="18sp" />
 

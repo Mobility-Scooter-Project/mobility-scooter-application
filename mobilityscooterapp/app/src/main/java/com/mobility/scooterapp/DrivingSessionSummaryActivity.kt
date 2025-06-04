@@ -60,7 +60,7 @@ class DrivingSessionSummaryActivity : AppCompatActivity() {
         dateTextView.text = getString(R.string.date_placeholder, date)
         startTimeTextView.text = getString(R.string.start_time_placeholder, startTime)
         sessionLengthTextView.text = getString(R.string.session_length_placeholder, sessionLength)
-        poseDataView.text = getString(R.string.estimate_estimate_placeholder, estimateData)
+        poseDataView.text = getString(R.string.estimate_placeholder, estimateData)
 
         // check if encrypted video file path exists
         if (encryptedFilePath != null) {
@@ -128,7 +128,8 @@ class DrivingSessionSummaryActivity : AppCompatActivity() {
                                     "video_url" to videoUri.toString(),
                                     "thumbnail_url" to thumbnailUri.toString(),
                                     "dateTimeString" to "$date $startTime",
-                                    "encryptedFilePath" to encryptedFilePath
+                                    "encryptedFilePath" to encryptedFilePath,
+                                    "estimateData" to estimateData
                                 )
 
                                 // write session data to fire store

@@ -46,10 +46,12 @@ class SessionDetailActivity : AppCompatActivity() {
         val sessionLength = intent.getStringExtra("session_length")
         val encryptedFilePath = intent.getStringExtra("encryptedFilePath")
         val videoUrl = intent.getStringExtra("video_url")
+        val estimateData = intent.getStringExtra("estimateData")
 
         binding.textViewDate.text = getString(R.string.date_placeholder, date)
         binding.textViewStartTime.text = getString(R.string.start_time_placeholder, startTime)
         binding.SessionLength.text = getString(R.string.session_length_placeholder, sessionLength)
+        binding.textViewEstimate.text = getString(R.string.estimate_placeholder, estimateData)
 
         if (encryptedFilePath != null && videoUrl != null) {
             val encryptedFile = File(encryptedFilePath)
