@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/homeFragment"
+        android:title="@string/home"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/baseline_home_24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <item
+        android:id="@+id/drive_start_page"
+        android:title="@string/drive"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/baseline_bike_scooter_24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       />
+    <item
+        android:id="@+id/analytic_start_page"
+        android:title="@string/analytics"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/baseline_analytics_24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <item
+        android:id="@+id/messages_page"
+        android:title="@string/messages"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/baseline_email_24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</menu>

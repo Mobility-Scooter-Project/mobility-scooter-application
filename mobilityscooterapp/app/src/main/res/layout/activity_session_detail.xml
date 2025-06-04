@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".session_detail_activity">
+    tools:context=".SessionDetailActivity">
 
     <ImageView
         android:id="@+id/backButton"
@@ -14,7 +14,8 @@
         android:layout_height="60dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:textSize="28sp" />
+        android:textSize="28sp"
+        android:contentDescription="@string/back"/>
 
     <TextView
         android:id="@+id/textView10"
@@ -62,17 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="@string/estimate_estimate_placeholder"
-        android:textColor="#000000"
-        android:textSize="18sp" />
-
-    <TextView
-        android:id="@+id/textViewEstimate2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/estimate_estimate_placeholder"
+        android:text="@string/estimate_placeholder"
         android:textColor="#000000"
         android:textSize="18sp" />
 
@@ -85,7 +76,8 @@
         android:text="@string/click_the_following_video_to_view_it"
         android:textColor="#000000"
         android:textSize="20sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:contentDescription="@string/click_the_following_video_to_view_it" />
 
     <FrameLayout
         android:id="@+id/frameLayoutAroundVideoView"

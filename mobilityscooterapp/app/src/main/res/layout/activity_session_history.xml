@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".session_history_activity">
+    tools:context=".SessionHistoryActivity">
 
     <TextView
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Session History"
-        android:textSize="30dp"
+        android:text="@string/session_history"
+        android:textSize="30sp"
         android:textColor="#000000"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -32,7 +32,8 @@
         app:layout_constraintHorizontal_bias="0.326"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/baseline_arrow_circle_left_24" />
+        app:srcCompat="@drawable/baseline_arrow_circle_left_24"
+        android:contentDescription="@string/back"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

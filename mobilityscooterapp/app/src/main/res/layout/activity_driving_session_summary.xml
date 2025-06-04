@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Driving_Session_Summary_activity">
+    tools:context=".DrivingSessionSummaryActivity">
 
     <RelativeLayout
         android:id="@+id/relativeLayout3"
@@ -21,7 +21,8 @@
             android:layout_alignParentBottom="true"
             android:layout_marginEnd="19dp"
             android:layout_marginBottom="2dp"
-            android:src="@drawable/hamberger_button" />
+            android:src="@drawable/hamburger_menu"
+            android:contentDescription="@string/hamburger_menu_icon" />
 
         <TextView
             android:id="@+id/text_above"
@@ -50,7 +51,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="@color/white">
 
             <TextView
                 android:id="@+id/textView10"
@@ -59,7 +61,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:text="@string/driving_session_summary"
-                android:textColor="#000000"
+                android:textColor="@color/primaryTextColor"
                 android:textSize="28sp" />
 
             <TextView
@@ -67,7 +69,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/date_date_placeholder"
-                android:textColor="#000000"
+                android:textColor="@color/primaryTextColor"
                 android:textSize="18sp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp" />
@@ -77,7 +79,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/start_time_start_time_placeholder"
-                android:textColor="#000000"
+                android:textColor="@color/primaryTextColor"
                 android:textSize="18sp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp" />
@@ -86,7 +88,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/sessionLength_placeholder"
-                android:textColor="#000000"
+                android:textColor="@color/primaryTextColor"
                 android:textSize="18sp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp" />
@@ -96,26 +98,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/estimate_data"
-                android:textColor="#000000"
+                android:textColor="@color/primaryTextColor"
                 android:textSize="18sp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp" />
-            <TextView
-                android:id="@+id/textViewEstimate2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/estimate_data2"
-                android:textColor="#000000"
-                android:textSize="18sp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp" />
+
             <TextView
                 android:id="@+id/textviewVideo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:text="@string/click_the_following_video_to_view_it"
-                android:textColor="#000000"
+                android:textColor="@color/primaryTextColor"
                 android:textSize="20sp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp" />
@@ -144,8 +138,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:text="Go to session history"
-                android:textColor="#000000"/>
+                android:text="@string/go_to_session_history"
+                android:contentDescription="@string/go_to_session_history"
+                android:textColor="@color/primaryTextColor"/>
 
         </LinearLayout>
     </ScrollView>
@@ -154,7 +149,7 @@
         android:id="@+id/home"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:background="@drawable/home_button"
+        android:background="@drawable/home_button_bg"
         app:layout_constraintWidth_percent="0.25"
         app:layout_constraintEnd_toStartOf="@+id/Drive_Bottom"
         app:layout_constraintStart_toStartOf="parent"
@@ -171,7 +166,7 @@
         android:id="@+id/Drive_Bottom"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:background="@drawable/drive_bottom"
+        android:background="@drawable/drive_bottom_bg"
         android:clickable="true"
         android:focusable="true"
         android:gravity="center"
@@ -187,7 +182,7 @@
         android:id="@+id/analytics_button"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:background="@drawable/analytics_bottom"
+        android:background="@drawable/analytics_button_bg"
         android:clickable="true"
         android:focusable="true"
         android:gravity="center"
@@ -195,15 +190,15 @@
         android:textSize="18sp"
         app:drawableBottomCompat="@drawable/baseline_analytics_24"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button4"
+        app:layout_constraintEnd_toStartOf="@+id/messages_button"
         app:layout_constraintStart_toEndOf="@id/Drive_Bottom"
         app:layout_constraintWidth_percent="0.25" />
 
     <TextView
-        android:id="@+id/button4"
+        android:id="@+id/messages_button"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:background="@drawable/messages_bottom"
+        android:background="@drawable/messages_button_bg"
         android:clickable="true"
         android:focusable="true"
         android:gravity="center"

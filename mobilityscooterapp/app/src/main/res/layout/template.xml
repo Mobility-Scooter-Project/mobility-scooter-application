@@ -18,7 +18,7 @@
             android:layout_alignParentBottom="true"
             android:layout_marginEnd="19dp"
             android:layout_marginBottom="2dp"
-            android:src="@drawable/hamberger_button" />
+            android:src="@drawable/hamburger_menu" />
 
         <TextView
             android:id="@+id/text_above"
@@ -32,6 +32,7 @@
             android:layout_toLeftOf="@id/hamburgerMenu"
             android:gravity="end"
             android:text="@string/more"
+            android:contentDescription="@string/hamburger_menu_icon"
             android:textColor="@color/white" />
     </RelativeLayout>
 
@@ -40,13 +41,13 @@
         android:id="@+id/home"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:background="@drawable/home_button"
+        android:background="@drawable/home_button_bg"
         app:layout_constraintWidth_percent="0.25"
         app:layout_constraintEnd_toStartOf="@+id/Drive_Bottom"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:text="Home"
-        android:textColor="@color/white"
+        android:textColor="@color/primaryTextColor"
         android:gravity="center"
         android:textSize="18sp"
         android:clickable="true"
@@ -57,11 +58,12 @@
         android:id="@+id/Drive_Bottom"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:background="@drawable/drive_bottom"
+        android:background="@drawable/drive_bottom_bg"
         android:clickable="true"
         android:focusable="true"
         android:gravity="center"
         android:text="Drive"
+        android:textColor="@color/primaryTextColor"
         android:textSize="18sp"
         app:drawableBottomCompat="@drawable/baseline_bike_scooter_24"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -74,29 +76,30 @@
         android:id="@+id/analytics_button"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:background="@drawable/analytics_bottom"
+        android:background="@drawable/analytics_button_bg"
         android:clickable="true"
         android:focusable="true"
         android:gravity="center"
         android:text="@string/analytics"
-
+        android:textColor="@color/primaryTextColor"
         android:textSize="18sp"
         app:drawableBottomCompat="@drawable/baseline_analytics_24"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button4"
+        app:layout_constraintEnd_toStartOf="@+id/messages_button"
         app:layout_constraintStart_toEndOf="@id/Drive_Bottom"
         app:layout_constraintWidth_percent="0.25" />
 
     <TextView
-        android:id="@+id/button4"
+        android:id="@+id/messages_button"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:background="@drawable/messages_bottom"
+        android:background="@drawable/messages_button_bg"
         android:clickable="true"
         android:focusable="true"
         android:gravity="center"
         android:text="@string/messages"
         android:textSize="18sp"
+        android:textColor="@color/primaryTextColor"
         app:drawableBottomCompat="@drawable/baseline_email_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/analytics_button"

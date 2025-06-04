@@ -5,101 +5,118 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
+    android:background="@drawable/login_bg_v2"
     tools:context=".LoginActivity">
 
-
     <LinearLayout
-        android:id="@+id/login_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <LinearLayout
+            android:id="@+id/login_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/email"
-                android:textColor="#000000"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/email"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/type_email_here"
-                    android:inputType = "text" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <!-- email -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="325dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_gravity="center"
+            android:hint="@string/email"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:boxBackgroundMode="outline"
+            app:layout_constraintWidth_percent="0.8"
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/password"
-                android:textColor="#000000"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+            app:boxStrokeColor="@color/black"
+            app:boxBackgroundColor="@color/white"
+            app:hintTextColor="@color/primaryTextColor"
+            app:shapeAppearance="@style/Rounded.TextBoxes">
 
-            <com.google.android.material.textfield.TextInputLayout
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/please_enter_your_password_here">
+                android:inputType="textEmailAddress"
+                android:textColor="@color/primaryTextColor"
+                android:textColorHint="@color/primaryTextColor"
+                android:contentDescription="@string/enter_email" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPassword" />
+        <!-- password -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="325dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:hint="@string/password"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:boxBackgroundMode="outline"
+            android:layout_marginTop="16dp"
+            app:layout_constraintWidth_percent="0.8"
 
-            </com.google.android.material.textfield.TextInputLayout>
+            app:boxStrokeColor="@color/black"
+            app:boxBackgroundColor="@color/white"
+            app:hintTextColor="@color/primaryTextColor"
+            app:shapeAppearance="@style/Rounded.TextBoxes">
 
-        </LinearLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:textColor="@color/primaryTextColor"
+                android:textColorHint="@color/primaryTextColor"
+                android:contentDescription="@string/enter_password" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
+        <!-- login -->
+        <!-- Have to use AppCompatButton because Material Theme is overriding button color to be purple -->
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/login_button"
-            android:layout_width="match_parent"
+            android:layout_width="180dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:layout_gravity="center"
             android:text="@string/login"
+            android:contentDescription="@string/login"
             android:textAllCaps="false"
             android:textSize="20sp"
-            />
+            android:background="@color/fullBlack"
+            android:textColor="@android:color/white" />
 
+        <TextView
+            android:id="@+id/forgot_password_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@string/forgot_password"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/my_blue"
+            app:layout_constraintStart_toEndOf="@id/login_button"
+            app:layout_constraintTop_toBottomOf="@id/login_button"
+            android:layout_gravity="center" />
     </LinearLayout>
+
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="129dp"
         android:layout_height="95dp"
         android:src="@drawable/baseline_bike_scooter_24"
+        app:tint ="@color/fullBlack"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.133" />
+        app:layout_constraintVertical_bias="0.133"
+        android:contentDescription="@string/drive_icon"
+        />
 
-    <Button
+    <!-- create account button -->
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/create_account_button"
-        android:layout_width="match_parent"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:text="@string/create_an_account"
         android:textSize="20sp"
@@ -107,20 +124,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.815"
-        android:textAllCaps="false" />
+        app:layout_constraintVertical_bias="0.74"
+        android:textAllCaps="false"
+        android:background="@color/fullBlack"
+        android:textColor="@android:color/white"
+        android:padding="10sp"/>
 
-    <Button
-        android:id="@+id/forgot_password_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/forgot_password"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.73"
-        android:textAllCaps="false" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

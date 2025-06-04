@@ -1,1 +1,5 @@
 "" 
+.idea/
+google-services.json
+mobilityscooterapp/app/release
+mobilityscooterapp/app/debug

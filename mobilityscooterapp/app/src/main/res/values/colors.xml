@@ -3,4 +3,26 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="my_blue">#2323AE</color>
+    <color name="home_color">#1D4066</color>
+    <color name="drive_color">#ED7D31</color>
+    <color name="analytics_color">#4EAE5B</color>
+    <color name="message_color">#CA9614</color>
+    <color name ="accessibility_color">#595959</color>
+<!--    Dark/Normal Colors-->
+    <color name= "fullBlack">#FF000000</color>
+    <color name="primaryColor">#FFFFFF</color> <!-- Light background -->
+    <color name="primaryTextColor">#000000</color> <!-- Light text -->
+    <color name="primaryDarkColor">#DDDDDD</color> <!-- Light primary dark -->
+    <color name="accentColor">#FF4081</color> <!-- Accent color -->
+    <color name="blue">#033261</color>
+
+<!--    Extra Colors -->
+    <color name="lightGreen">#71D04B</color>
+    <color name="pastelGreen">#77DD77</color>
+    <color name="darkPastelGreen">#5EB15E</color>
+    <color name="salmon">#ff7070</color>
+
+<!-- CPP Colors -->
+    <color name="cpp_green">#005030</color>
+    <color name="cpp_gold">#FFB81C</color>
 </resources>

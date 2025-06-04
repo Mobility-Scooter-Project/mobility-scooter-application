@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FFFFFFFF</color>
+    <color name="white">#FF000000</color>
+    <color name="my_blue">#2323AE</color>
+    <color name="home_color">#1D4066</color>
+    <color name="drive_color">#FFA14F</color>
+    <color name="analytics_color">#6FCC6F</color>
+    <color name="message_color">#EAB825</color>
+    <color name ="accessibility_color">#7A7A7A</color>
+
+<!--    colors !-->
+    <color name= "fullBlack">#FF000000</color>
+    <color name="primaryColor">#000000</color> <!-- Dark background -->
+    <color name="primaryTextColor">#FFFFFF</color> <!-- Dark text -->
+    <color name="primaryDarkColor">#444444</color> <!-- Dark primary dark -->
+    <color name="blue">#87CEEB</color>
+</resources>

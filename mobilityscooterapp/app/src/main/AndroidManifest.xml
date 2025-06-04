@@ -8,7 +8,7 @@
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="MediaStore.createWriteRequest" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -22,43 +22,53 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:targetApi="31">
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
         <activity
-            android:name=".session_detail_activity"
+            android:name=".SessionDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".message_activity"
+            android:name=".MessageActivity"
             android:exported="false" />
         <activity
-            android:name=".drive_activity"
+            android:name=".DriveActivity"
             android:exported="false" />
         <activity
-            android:name=".analysis_acitvity"
+            android:name=".AnalysisActivity"
             android:exported="false" />
         <activity
-            android:name=".session_history_activity"
+            android:name=".SessionHistoryActivity"
             android:exported="false" />
         <activity
-            android:name=".video_view_activity"
+            android:name=".VideoViewActivity"
             android:exported="false"
             android:screenOrientation="landscape"
             android:theme="@style/FullScreenTheme" />
         <activity
-            android:name=".Driving_Session_Summary_activity"
+            android:name=".DrivingSessionSummaryActivity"
             android:exported="false" />
         <activity
-            android:name=".record_activity"
+            android:name=".RecordActivity"
             android:exported="false"
             android:screenOrientation="landscape"
             android:theme="@style/FullScreenTheme" />
         <activity
-            android:name=".reset_password_activity"
+            android:name=".ResetPasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".Terms_and_conditon_activity"
+            android:name=".TermsAndConditionsActivity"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/AppTheme.Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
