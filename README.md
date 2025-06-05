@@ -1,5 +1,7 @@
 # mobility-scooter-application
 
+This README is a high level overview of the mobile app. For a more in-depth technical introduction, please see this document: https://docs.google.com/document/d/1W_scMhpFDm7tW4pXxeFg1GmnmTtC6k02_7rlP6oJ3j0/edit?usp=sharing
+
 ## Table of Contents
 - [Introduction](#introduction)
 - [Purpose](#purpose)
